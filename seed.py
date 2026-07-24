@@ -17,107 +17,101 @@ def seed_data():
     Category.objects.all().delete()
 
     print("Creating Categories...")
-    cat_ai = Category.objects.create(name="AI / Data Science")
+    cat_biz = Category.objects.create(name="Business & SaaS")
+    cat_ai = Category.objects.create(name="AI & Data Solutions")
     cat_mobile = Category.objects.create(name="Mobile Apps")
-    cat_web = Category.objects.create(name="Web Development")
-    cat_cloud = Category.objects.create(name="Cloud & DevOps")
+    cat_web = Category.objects.create(name="Web Applications")
 
     print("Creating Technologies...")
-    tech_python = Technology.objects.create(name="Python", description="Core language for AI and script automation.", category=cat_ai)
-    tech_django = Technology.objects.create(name="Django", description="High-level Python web framework.", category=cat_web)
-    tech_flutter = Technology.objects.create(name="Flutter", description="Google mobile cross-platform SDK.", category=cat_mobile)
-    tech_docker = Technology.objects.create(name="Docker", description="Containerization engine for deployments.", category=cat_cloud)
-    tech_aws = Technology.objects.create(name="AWS", description="Amazon Web Services cloud hosting.", category=cat_cloud)
-    tech_postgres = Technology.objects.create(name="PostgreSQL", description="Powerful open-source relational database.", category=cat_cloud)
+    tech_python = Technology.objects.create(name="Python", description="Core language for AI, data pipelines and automation.", category=cat_ai)
+    tech_django = Technology.objects.create(name="Django / REST", description="Robust backend framework for enterprise web apps.", category=cat_web)
+    tech_flutter = Technology.objects.create(name="Flutter", description="Google mobile cross-platform SDK for iOS & Android.", category=cat_mobile)
+    tech_react = Technology.objects.create(name="React.js", description="Modern reactive frontend UI library for SaaS dashboards.", category=cat_biz)
+    tech_docker = Technology.objects.create(name="Docker & Cloud", description="Containerization and cloud deployment infrastructure.", category=cat_biz)
+    tech_postgres = Technology.objects.create(name="PostgreSQL", description="Enterprise relational database.", category=cat_web)
 
     print("Creating FAQs...")
     FAQ.objects.create(
-        question="What happens if my project fails the defense?",
-        answer="We offer a Defense Guarantee. If your project fails to meet the technical requirements outlined in your initial academic proposal, we provide full refactoring and support until it passes, at no additional cost.",
+        question="هل تقدمون خدمات تطوير المظهر وتطبيقات البزنس (MVP) للشركات الناشئة؟",
+        answer="نعم، نحن متخصصون في تحويل أفكار البزنس والأنشطة التجارية إلى تطبيقات ويب وموبايل كاملة (MVP) جاهزة للإطلاق في السوق وربط وسائل الدفع الإلكتروني وقواعد البيانات.",
         category="general",
         order=1
     )
     FAQ.objects.create(
-        question="Do you provide documentation for the academic report?",
-        answer="Yes. Every project delivery includes comprehensive system architecture diagrams, database schemas, and API documentation required for standard university thesis reports.",
+        question="هل تغطون مشاريع التخرج الأكاديمية أيضاً؟",
+        answer="بالتأكيد، لدينا قسم أكاديمي كامل يساعد طلاب الحاسبات والهندسة في تنفيذ وتوثيق مشاريع تخرجهم بأعلى المعايير وتوفير ملفات الشرح والتوثيق للمناقشة.",
         category="general",
         order=2
     )
     FAQ.objects.create(
-        question="Who owns the intellectual property?",
-        answer="Upon full payment, you retain 100% intellectual property rights and full source code ownership. Graduation Projects Studio claims no equity or IP rights.",
+        question="من يملك الملكية الفكرية والكود المصدري للمشروع؟",
+        answer="أنت تملك 100% من الكود المصدري (Source Code) والملكية الفكرية والتسليم الكامل فور انتهاء المشروع دون أي رسوم خفية.",
         category="technical",
         order=1
     )
     FAQ.objects.create(
-        question="Can I pay in installments?",
-        answer="Yes, we structure payments around project milestones (typically 30% kickoff, 40% beta delivery, 30% final deployment).",
+        question="ما هي آلية السداد والتعاقد للمشاريع؟",
+        answer="يتم تقسيم المدفوعات على مراحل منطقية مرنبة حسب الإنجاز (دُفعة بدء، دُفعة بعد معاينة النسخة الأولية، والدُفعة النهائية عند التسليم النهائي).",
         category="pricing",
-        order=1
-    )
-    FAQ.objects.create(
-        question="Can this project be launched as a real startup?",
-        answer="Absolutely. Our 'Enterprise' tier is designed specifically for students intending to take their graduation project to market. We use scalable architecture (AWS/GCP, Docker) to ensure commercial readiness.",
-        category="support",
         order=1
     )
 
     print("Creating Testimonials...")
     Testimonial.objects.create(
-        name="Sarah J.",
-        role_university="M.Sc. Civil Engineering",
-        review_text="The structural analysis framework we developed here set a new faculty standard.",
+        name="م. أحمد التميمي",
+        role_university="مؤسس منصة لوجستية - الإمارات",
+        review_text="قام الفريق بتطوير تطبيق البزنس ولوحة التحكم بالكامل خلال وقت قياسي جداً وبجودة عالية مكنتنا من انطلاق الخدمة.",
         rating=5
     )
     Testimonial.objects.create(
-        name="Alex M.",
-        role_university="B.Sc. Computer Science",
-        review_text="Optimizing neural pathways for latency in a high-stakes setting was perfect. Got full distinction.",
+        name="سارة محمود",
+        role_university="خريجة حاسبات ومعلومات - مصر",
+        review_text="مشروع التخرج في الذكاء الاصطناعي كان مبنياً باحترافية شديدة، وحصلت على تقدير امتياز في المناقشة بفضل الشرح والتوثيق الممتاز.",
         rating=5
     )
     Testimonial.objects.create(
-        name="Elena R.",
-        role_university="B.Sc. Architecture",
-        review_text="Sustainable urban integration models designed here were highly praised by the assessment committee.",
+        name="خالد العتيبي",
+        role_university="مدير عمليات شركة تجارية - السعودية",
+        review_text="نظام أتمتة المبيعات والمخازن يعمل لدينا بكفاءة عالية وبدون أي مشاكل، أنصح بالتعامل معهم بشدة.",
         rating=5
     )
 
-    print("Creating Projects...")
+    print("Creating Business & Academic Projects...")
     proj1 = Project.objects.create(
-        title="Cognitive Diagnostics API",
-        project_type="graduation",
-        client_name="MedTech University",
-        country="Egypt",
-        summary="A scalable RESTful API leveraging deep learning for early-stage disease detection from medical imaging, achieving 94% accuracy.",
-        overview="This project addresses the critical challenge of dynamic medical diagnosis in unstructured environments. By implementing a novel deep convolutional neural network, the system achieves a 40% reduction in error rates compared to baseline systems.\n\nThe system is packaged inside a high-performance Django REST framework interface and is fully containerized with Docker, deployable to AWS ECS.",
-        deliverables=["Source Code", "IEEE Thesis PDF", "Presentation Slide", "Docker Compose"],
+        title="منصة لوجستية وتتبع الشحنات (Smart Logistics SaaS)",
+        project_type="commercial",
+        client_name="ExpressLogistics Corp",
+        country="UAE",
+        summary="منصة بزنس متكاملة لإدارة الأسطول، تتبع الشحنات بالذكاء الاصطناعي، ولوحة تحكم حية للمبيعات والعمليات.",
+        overview="نظام إدارة لوجستيات متكامل يعتمد على Django backend و React frontend. يربط بين السائقين والعملاء والإدارة عبر خرائط حية وتنبيهات لحظية لحالة الشحنات.",
+        deliverables=["Full Source Code", "Web Admin Dashboard", "Mobile Apps (iOS/Android)", "Cloud Hosting Setup"],
         is_featured=True
     )
-    proj1.technologies.add(tech_python, tech_django, tech_postgres)
+    proj1.technologies.add(tech_django, tech_react, tech_postgres, tech_docker)
 
     proj2 = Project.objects.create(
-        title="Urban Mobility Tracker",
-        project_type="graduation",
-        client_name="MetroGov Corp",
+        title="تطبيق متجر إلكتروني ذكي (E-Commerce Mobile App)",
+        project_type="commercial",
+        client_name="RetailPlus Store",
         country="KSA",
-        summary="A cross-platform mobile application utilizing real-time GPS and predictive algorithms to optimize public transit routing for smart cities.",
-        overview="Urban Transit optimization is key for smart city growth. This mobile application built with Flutter links dynamically to a central routing API. It incorporates graph algorithms and historic travel data to forecast delays and offer alternative routes in sub-second timelines.",
-        deliverables=["Mobile App Build (.apk)", "Architecture Design Doc", "Presentation Slides"],
+        summary="تطبيق موبايل تجاري متكامل للبيع والتسوق الإلكتروني مع دعم الدفع عبر البوابة وتنبيهات العروض.",
+        overview="تطبيق هواتف ذكية تم تطويره بلغة Flutter ليخدم أصحاب المتاجر والشركات التجارية مع دعم وسائل الدفع الإلكتروني المباشرة وإدارة المخزون والتوصيل.",
+        deliverables=["Flutter Source Code", "REST APIs", "Payment Gateway Integration"],
         is_featured=True
     )
-    proj2.technologies.add(tech_flutter, tech_aws)
+    proj2.technologies.add(tech_flutter, tech_python, tech_django)
 
     proj3 = Project.objects.create(
-        title="FinTech Trading Terminal",
-        project_type="commercial",
-        client_name="Capital Dynamics",
-        country="UAE",
-        summary="A high-performance, real-time web dashboard for algorithmic trading analysis, featuring WebSocket integration and sub-second latency.",
-        overview="A high-fidelity trading dashboard built to monitor stock exchange APIs. Using WebSockets for dynamic data pipelines, the terminal handles up to 10,000 tick updates per second with zero browser lag. Built with React and Django backend, with Redis caching.",
-        deliverables=["System Source Code", "Deployment Manual", "API Reference Guide"],
+        title="نظام التشخيص الطبي بالذكاء الاصطناعي (AI Cognitive Medical)",
+        project_type="graduation",
+        client_name="Faculty of Computer Science",
+        country="Egypt",
+        summary="مشروع تخرج أكاديمي متقدم يستخدم الشبكات العصبية العميقة للتشخيص المبكر للأمراض من الأشعة والتحاليل بنسبة دقة 95%.",
+        overview="نظام ذكاء اصطناعي طبي متكامل يشمل واجهة RESTful API ونموذج Deep Learning مع التوثيق الأكاديمي الكامل والأبحاث المعتمدة للمناقشة.",
+        deliverables=["Source Code", "IEEE Thesis Paper PDF", "Presentation Deck", "Docker Setup"],
         is_featured=True
     )
-    proj3.technologies.add(tech_django, tech_postgres, tech_docker)
+    proj3.technologies.add(tech_python, tech_django, tech_postgres)
 
     print("Data seeding completed successfully!")
 

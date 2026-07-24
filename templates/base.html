@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>{% block title %}استوديو مشاريع التخرج | Graduation Projects Studio{% endblock %}</title>
+    <title>{% block title %}استوديو البرمجيات وحلول الأعمال | Business Software Studio{% endblock %}</title>
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Geist:wght@400;600;700&display=swap" rel="stylesheet"/>
@@ -66,22 +66,22 @@
             <!-- Brand Logo -->
             <a href="/" class="text-xl md:text-2xl font-bold tracking-tight text-white flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
-                <span>Studio <span class="text-primary">مشاريع التخرج</span></span>
+                <span>Studio <span class="text-primary">حلول البرمجيات والأعمال</span></span>
             </a>
             
             <!-- Simplified Desktop Menu (4 Links only) -->
             <div class="hidden md:flex items-center gap-6 font-semibold text-sm">
                 <a class="px-3 py-2 rounded-lg transition-colors {% if request.path == '/' %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white hover:bg-white/5{% endif %}" href="/">الرئيسية</a>
-                <a class="px-3 py-2 rounded-lg transition-colors {% if '/portfolio' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white hover:bg-white/5{% endif %}" href="/portfolio/">معرض الأعمال</a>
+                <a class="px-3 py-2 rounded-lg transition-colors {% if '/portfolio' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white hover:bg-white/5{% endif %}" href="/portfolio/">المشاريع والأعمال</a>
                 <a class="px-3 py-2 rounded-lg transition-colors {% if '/services' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white hover:bg-white/5{% endif %}" href="/services/">الخدمات والتقنيات</a>
                 <a class="px-3 py-2 rounded-lg transition-colors {% if '/contact' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white hover:bg-white/5{% endif %}" href="/contact/">تواصل معنا</a>
             </div>
 
             <!-- WhatsApp Action Button -->
             <div class="hidden md:flex items-center gap-3">
-                <a href="https://wa.me/201099632832?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تفاصيل%20مشاريع%20التخرج" target="_blank" class="bg-[#10B981] hover:bg-[#059669] text-white px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 whatsapp-glow transition-all active:scale-95">
+                <a href="https://wa.me/201099632832?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="bg-[#10B981] hover:bg-[#059669] text-white px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 whatsapp-glow transition-all active:scale-95">
                     <span class="material-symbols-outlined text-lg">chat</span>
-                    تحدث معنا واتساب
+                    تواصل معنا واتساب
                 </a>
             </div>
 
@@ -94,10 +94,10 @@
         <!-- Mobile Menu Dropdown -->
         <div x-show="mobileMenuOpen" x-transition class="md:hidden border-b border-white/10 bg-surface-container px-4 py-4 space-y-3">
             <a class="block px-4 py-2.5 rounded-lg font-semibold {% if request.path == '/' %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white{% endif %}" href="/">الرئيسية</a>
-            <a class="block px-4 py-2.5 rounded-lg font-semibold {% if '/portfolio' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white{% endif %}" href="/portfolio/">معرض الأعمال</a>
+            <a class="block px-4 py-2.5 rounded-lg font-semibold {% if '/portfolio' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white{% endif %}" href="/portfolio/">المشاريع والأعمال</a>
             <a class="block px-4 py-2.5 rounded-lg font-semibold {% if '/services' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white{% endif %}" href="/services/">الخدمات والتقنيات</a>
             <a class="block px-4 py-2.5 rounded-lg font-semibold {% if '/contact' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white{% endif %}" href="/contact/">تواصل معنا</a>
-            <a href="https://wa.me/201099632832?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تفاصيل%20مشاريع%20التخرج" target="_blank" class="block w-full text-center bg-[#10B981] text-white py-3 rounded-xl font-bold mt-2">
+            <a href="https://wa.me/201099632832?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="block w-full text-center bg-[#10B981] text-white py-3 rounded-xl font-bold mt-2">
                 تحدث معنا واتساب مباشرة
             </a>
         </div>
@@ -115,10 +115,10 @@
             <div>
                 <div class="text-xl font-bold text-white flex items-center gap-2 mb-3">
                     <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
-                    Studio مشاريع التخرج
+                    Studio حلول البرمجيات والأعمال
                 </div>
                 <p class="text-on-surface-variant text-sm leading-relaxed">
-                    نرافقك من الفكرة وحتى اليوم الأخير في المناقشة. كود نظيف، توثيق كامل، وضمان النجاح بأعلى الدرجات.
+                    نطور ونبني حلول البرمجيات وتطبيقات البزنس للشركات والأنشطة التجارية (MVPs & SaaS)، إلى جانب المشاريع الأكاديمية والبحثية المتقدمة بأعلى جودة.
                 </p>
             </div>
             
@@ -126,16 +126,16 @@
                 <h4 class="text-white font-bold mb-3 text-base">روابط سريعة</h4>
                 <div class="flex flex-col space-y-2 text-sm text-on-surface-variant">
                     <a href="/" class="hover:text-primary transition-colors">الرئيسية</a>
-                    <a href="/portfolio/" class="hover:text-primary transition-colors">معرض الأعمال والمشاريع</a>
-                    <a href="/services/" class="hover:text-primary transition-colors">الخدمات المتاحة</a>
+                    <a href="/portfolio/" class="hover:text-primary transition-colors">معرض المشاريع والأعمال</a>
+                    <a href="/services/" class="hover:text-primary transition-colors">خدمات البزنس والتطوير</a>
                     <a href="/contact/" class="hover:text-primary transition-colors">تواصل معنا</a>
                 </div>
             </div>
 
             <div>
                 <h4 class="text-white font-bold mb-3 text-base">الدعم والتواصل المباشر</h4>
-                <p class="text-sm text-on-surface-variant mb-4">هل لديك استفسار أو تود مناقشة مشروع تخرجك؟ تواصل معنا مباشرة:</p>
-                <a href="https://wa.me/201099632832?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تفاصيل%20مشاريع%20التخرج" target="_blank" class="inline-flex items-center gap-2 bg-[#10B981] text-white px-4 py-2 rounded-lg font-bold text-sm hover:bg-[#059669] transition-colors">
+                <p class="text-sm text-on-surface-variant mb-4">هل لديك فكرة تطبيق، نظام بزنس، أو مشروع تخرج؟ تواصل معنا مباشرة:</p>
+                <a href="https://wa.me/201099632832?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="inline-flex items-center gap-2 bg-[#10B981] text-white px-4 py-2 rounded-lg font-bold text-sm hover:bg-[#059669] transition-colors">
                     <span class="material-symbols-outlined text-lg">chat</span>
                     واتساب: 01099632832
                 </a>
@@ -143,7 +143,7 @@
         </div>
 
         <div class="max-w-[1440px] mx-auto border-t border-white/5 mt-8 pt-6 text-center text-xs text-on-surface-variant">
-            © 2026 Graduation Projects Studio. جميع الحقوق محفوظة.
+            © 2026 Studio Software & Business Solutions. جميع الحقوق محفوظة.
         </div>
     </footer>
 

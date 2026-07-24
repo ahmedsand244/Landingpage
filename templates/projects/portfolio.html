@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}معرض الأعمال والمشاريع | استوديو مشاريع التخرج{% endblock %}
+{% block title %}معرض المشاريع والأعمال | استوديو حلول البرمجيات والأعمال{% endblock %}
 
 {% block content %}
 <main class="w-full max-w-[1440px] mx-auto px-4 md:px-8 py-12 space-y-12">
     
     <!-- Header Section -->
     <section class="space-y-4">
-        <span class="text-xs font-bold text-primary uppercase tracking-wider">الأرشيف والمستودع الأكاديمي</span>
+        <span class="text-xs font-bold text-primary uppercase tracking-wider">الأرشيف ومعرض النماذج</span>
         <h1 class="text-3xl md:text-5xl font-extrabold text-white">
-            معرض المشاريع المنفذة
+            معرض المشاريع والحلول البرمجية
         </h1>
         <p class="text-on-surface-variant text-base md:text-lg max-w-3xl leading-relaxed">
-            استعرض أحدث الأعمال ومشاريع التخرج التي قمنا بتنفيذها وتجهيزها بأعلى معايير البرمجة والتوثيق الأكاديمي.
+            استعرض نماذج وأعمال البزنس، المنصات التجارية، وتطبيقات الهواتف المنجزة، إلى جانب الأبحاث ومشاريع التخرج المتقدمة.
         </p>
 
-        <!-- Search & Category Filters -->
+        <!-- Search & Filter Controls -->
         <div class="space-y-4 pt-4">
             <!-- Search Bar -->
             <form method="get" action="." class="glass-card rounded-2xl p-2 flex items-center relative max-w-2xl">
@@ -33,15 +33,32 @@
                 </button>
             </form>
 
-            <!-- Category Badges -->
-            <div class="flex flex-wrap items-center gap-2 pt-2">
-                <a href="?{% if active_type %}type={{ active_type }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
-                   class="px-4 py-2 rounded-xl text-xs font-bold transition-all {% if not active_category %}bg-primary text-white shadow-md{% else %}glass-card text-on-surface-variant hover:text-white{% endif %}">
+            <!-- Project Type Filter Switcher (Business vs Graduation) -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+                <span class="text-xs text-on-surface-variant font-bold">نوع المشروع:</span>
+                <a href="?{% if active_category %}category={{ active_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+                   class="px-4 py-2 rounded-xl text-xs font-bold transition-all {% if not active_type %}bg-primary text-white shadow-md{% else %}glass-card text-on-surface-variant hover:text-white{% endif %}">
                     الكل
+                </a>
+                <a href="?type=commercial{% if active_category %}&category={{ active_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+                   class="px-4 py-2 rounded-xl text-xs font-bold transition-all {% if active_type == 'commercial' %}bg-secondary text-slate-950 font-extrabold shadow-md{% else %}glass-card text-on-surface-variant hover:text-white{% endif %}">
+                    💼 مشاريع البزنس والشركات
+                </a>
+                <a href="?type=graduation{% if active_category %}&category={{ active_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+                   class="px-4 py-2 rounded-xl text-xs font-bold transition-all {% if active_type == 'graduation' %}bg-emerald-500 text-white shadow-md{% else %}glass-card text-on-surface-variant hover:text-white{% endif %}">
+                    🎓 المشاريع الأكاديمية والتخرج
+                </a>
+            </div>
+
+            <!-- Category Badges -->
+            <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/5">
+                <a href="?{% if active_type %}type={{ active_type }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+                   class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all {% if not active_category %}bg-white/10 text-white{% else %}text-on-surface-variant hover:text-white{% endif %}">
+                    كافة التصنيفات
                 </a>
                 {% for cat in categories %}
                     <a href="?category={{ cat.slug }}{% if active_type %}&type={{ active_type }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
-                       class="px-4 py-2 rounded-xl text-xs font-bold transition-all {% if active_category == cat.slug %}bg-primary text-white shadow-md{% else %}glass-card text-on-surface-variant hover:text-white{% endif %}">
+                       class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all {% if active_category == cat.slug %}bg-white/10 text-white border border-white/20{% else %}text-on-surface-variant hover:text-white{% endif %}">
                         {{ cat.name }}
                     </a>
                 {% endfor %}
@@ -59,7 +76,7 @@
                     <img alt="{{ project.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ project.gallery.first.image.url }}"/>
                 {% else %}
                     <div class="flex flex-col items-center gap-2 text-primary/60">
-                        <span class="material-symbols-outlined text-5xl">folder_special</span>
+                        <span class="material-symbols-outlined text-5xl">inventory_2</span>
                         <span class="text-xs font-bold">مشروع مكتمل</span>
                     </div>
                 {% endif %}
