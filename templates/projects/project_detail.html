@@ -2,170 +2,224 @@
 {% load static %}
 {% load whatsapp_filters %}
 
-{% block title %}{{ project.title }} | Graduation Projects Studio{% endblock %}
+{% block title %}{{ project.title }} | استوديو البرمجيات والأعمال{% endblock %}
 
 {% block content %}
-<main class="max-w-[1440px] mx-auto px-safe-margin py-xl grid grid-cols-1 lg:grid-cols-12 gap-grid-gutter relative">
+<main class="w-full max-w-[1440px] mx-auto px-4 md:px-8 py-8 md:py-12 space-y-8">
     
-    <!-- Left Column: Content Canvas -->
-    <div class="col-span-1 lg:col-span-8 space-y-2xl">
-        <!-- 16:9 Showcase Media Header -->
-        <section>
-            <div class="w-full aspect-video rounded-xl overflow-hidden glass-panel relative group">
-                {% if project.gallery.first %}
-                    <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" src="{{ project.gallery.first.image.url }}" alt="{{ project.title }}"/>
-                {% else %}
-                    <div class="w-full h-full bg-gradient-to-tr from-primary/10 via-background to-secondary/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-[64px]">terminal</span>
-                    </div>
-                {% endif %}
-                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent flex flex-col justify-end p-xl">
-                    <div class="inline-flex items-center gap-sm bg-primary-container/20 border border-primary/30 px-sm py-xs rounded-full mb-md w-fit">
-                        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                        <span class="font-label-caps text-label-caps text-primary">{{ project.get_project_type_display }}</span>
-                    </div>
-                    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-sm tracking-tight font-bold">{{ project.title }}</h1>
-                    <p class="font-body-base text-body-base text-on-surface-variant max-w-2xl">{{ project.summary }}</p>
-                </div>
-            </div>
-        </section>
+    <!-- Breadcrumb & Back Link -->
+    <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <div class="flex items-center gap-2 text-xs md:text-sm text-on-surface-variant">
+            <a href="/" class="hover:text-white transition-colors">الرئيسية</a>
+            <span>/</span>
+            <a href="/portfolio/" class="hover:text-white transition-colors">معرض الأعمال</a>
+            <span>/</span>
+            <span class="text-primary font-bold line-clamp-1">{{ project.title }}</span>
+        </div>
 
-        <!-- Overview -->
-        <section class="glass-panel p-xl rounded-xl">
-            <h2 class="font-headline-md text-headline-md text-on-surface mb-md font-bold">Overview</h2>
-            <div class="font-body-base text-body-base text-on-surface-variant space-y-md">
-                {{ project.overview|linebreaks }}
-            </div>
-        </section>
-
-        <!-- Demo Video (if available) -->
-        {% if project.demo_video_url %}
-        <section class="space-y-md">
-            <h2 class="font-headline-md text-headline-md text-on-surface font-bold">System Architecture Demo</h2>
-            <div class="glass-panel p-md rounded-xl aspect-video relative flex items-center justify-center overflow-hidden">
-                <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#4cd7f6 1px, transparent 1px); background-size: 24px 24px;"></div>
-                
-                {% if "youtube.com" in project.demo_video_url or "youtu.be" in project.demo_video_url %}
-                    <!-- Embed youtube -->
-                    <iframe class="w-full h-full rounded-lg relative z-10" src="{{ project.demo_video_url|youtube_embed }}" frameborder="0" allowfullscreen></iframe>
-                {% else %}
-                    <!-- Standard video player -->
-                    <video class="w-full h-full rounded-lg relative z-10" controls>
-                        <source src="{{ project.demo_video_url }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                {% endif %}
-            </div>
-        </section>
-        {% endif %}
-
-        <!-- Image Gallery Screenshots -->
-        {% if project.gallery.all|length > 1 %}
-        <section class="space-y-md">
-            <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Project Gallery</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-md">
-                {% for item in project.gallery.all|slice:"1:" %}
-                <div class="glass-panel rounded-xl overflow-hidden aspect-video relative group cursor-pointer">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" src="{{ item.image.url }}" alt="{{ item.caption|default:project.title }}"/>
-                    {% if item.caption %}
-                        <div class="absolute bottom-0 left-0 right-0 p-xs bg-black/60 text-white text-center text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                            {{ item.caption }}
-                        </div>
-                    {% endif %}
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-        {% endif %}
-
-        <!-- Key Features & Technologies -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-grid-gutter">
-            <div class="glass-panel p-xl rounded-xl">
-                <div class="flex items-center gap-sm mb-md text-secondary">
-                    <span class="material-symbols-outlined">bolt</span>
-                    <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Key Technologies</h3>
-                </div>
-                <ul class="space-y-md font-body-base text-body-base text-on-surface-variant">
-                    {% for tech in project.technologies.all %}
-                    <li class="flex items-center gap-sm">
-                        <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
-                        <span class="font-semibold text-on-surface">{{ tech.name }}</span>
-                        <span class="text-xs text-on-surface-variant">({{ tech.category.name }})</span>
-                    </li>
-                    {% empty %}
-                        <li class="text-on-surface-variant italic">No listed technologies.</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            
-            <div class="glass-panel p-xl rounded-xl">
-                <div class="flex items-center gap-sm mb-md text-secondary">
-                    <span class="material-symbols-outlined">info</span>
-                    <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Details &amp; Client</h3>
-                </div>
-                <ul class="space-y-md font-body-base text-body-base text-on-surface-variant">
-                    <li class="flex items-start gap-sm">
-                        <span class="material-symbols-outlined text-outline text-[20px] mt-xs">school</span>
-                        <span><strong>Client/University:</strong> {{ project.client_name }}</span>
-                    </li>
-                    <li class="flex items-start gap-sm">
-                        <span class="material-symbols-outlined text-outline text-[20px] mt-xs">location_on</span>
-                        <span><strong>Country:</strong> {{ project.country }}</span>
-                    </li>
-                    <li class="flex items-start gap-sm">
-                        <span class="material-symbols-outlined text-outline text-[20px] mt-xs">calendar_today</span>
-                        <span><strong>Date added:</strong> {{ project.created_at|date:"M Y" }}</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
+        <a href="/portfolio/" class="glass-card text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-white/10 transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            <span>العودة للمشاريع</span>
+        </a>
     </div>
 
-    <!-- Right Column: Sticky Sidebar -->
-    <aside class="col-span-1 lg:col-span-4 relative">
-        <div class="sticky top-[100px] space-y-grid-gutter">
+    <!-- Project Header Banner -->
+    <div class="glass-card rounded-3xl p-6 md:p-10 space-y-6 relative overflow-hidden">
+        <div class="flex flex-wrap items-center gap-3">
+            <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-primary/20 text-primary border border-primary/40">
+                {{ project.get_project_type_display }}
+            </span>
+            <span class="text-xs font-mono text-on-surface-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">location_on</span>
+                {{ project.country }}
+            </span>
+            <span class="text-xs font-mono text-on-surface-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">domain</span>
+                {{ project.client_name }}
+            </span>
+        </div>
+
+        <h1 class="text-2xl md:text-4xl font-extrabold text-white leading-tight">
+            {{ project.title }}
+        </h1>
+
+        <p class="text-on-surface-variant text-sm md:text-base max-w-3xl leading-relaxed">
+            {{ project.summary }}
+        </p>
+
+        <!-- Tech Badges -->
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+            {% for tech in project.technologies.all %}
+                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs font-mono text-secondary font-bold">
+                    {{ tech.name }}
+                </span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Main Content Layout (2 Columns) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left 8 Columns: Details & Overview -->
+        <div class="lg:col-span-8 space-y-8">
             
-            <!-- Deliverables Card -->
-            <div class="glass-panel p-lg rounded-xl">
-                <h3 class="font-headline-md text-headline-md text-on-surface mb-lg font-bold">Deliverables</h3>
-                <div class="space-y-md">
-                    {% for del in project.deliverables %}
-                        <div class="flex items-center justify-between p-md rounded-lg bg-white/5 border border-white/5 group">
-                            <div class="flex items-center gap-md">
-                                <div class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center text-primary">
-                                    <span class="material-symbols-outlined">
-                                        {% if "code" in del|lower %}code
-                                        {% elif "thesis" in del|lower or "pdf" in del|lower %}picture_as_pdf
-                                        {% elif "presentation" in del|lower or "slide" in del|lower %}co_present
-                                        {% else %}verified{% endif %}
-                                    </span>
-                                </div>
-                                <div>
-                                    <p class="font-body-base text-body-base font-semibold text-on-surface">{{ del }}</p>
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Milestone Asset</p>
-                                </div>
+            <!-- Media Showcase / Gallery Image -->
+            {% if project.gallery.first %}
+            <div class="glass-card rounded-3xl overflow-hidden aspect-video relative group">
+                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ project.gallery.first.image.url }}" alt="{{ project.title }}"/>
+            </div>
+            {% endif %}
+
+            <!-- Project Overview Section -->
+            <div class="glass-card rounded-3xl p-6 md:p-8 space-y-4">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-4">
+                    <span class="material-symbols-outlined text-primary">description</span>
+                    تفاصيل ونبذة عن المشروع
+                </h2>
+                <div class="text-sm md:text-base text-on-surface-variant leading-relaxed space-y-3">
+                    {{ project.overview|linebreaks }}
+                </div>
+            </div>
+
+            <!-- Demo Video Section -->
+            {% if project.demo_video_url %}
+            <div class="glass-card rounded-3xl p-6 md:p-8 space-y-4">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-4">
+                    <span class="material-symbols-outlined text-secondary">play_circle</span>
+                    عرض وتجربة النظام الحية
+                </h2>
+                <div class="aspect-video rounded-2xl overflow-hidden bg-black/40 border border-white/10">
+                    {% if "youtube.com" in project.demo_video_url or "youtu.be" in project.demo_video_url %}
+                        <iframe class="w-full h-full" src="{{ project.demo_video_url|youtube_embed }}" frameborder="0" allowfullscreen></iframe>
+                    {% else %}
+                        <video class="w-full h-full" controls>
+                            <source src="{{ project.demo_video_url }}" type="video/mp4">
+                            متصفحك لا يدعم تشغيل الفيديو المباشر.
+                        </video>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Additional Gallery Screenshots -->
+            {% if project.gallery.all|length > 1 %}
+            <div class="glass-card rounded-3xl p-6 md:p-8 space-y-4">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-4">
+                    <span class="material-symbols-outlined text-emerald-400">collections</span>
+                    معرض صور النظام والواجهات
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {% for item in project.gallery.all|slice:"1:" %}
+                    <div class="glass-card rounded-2xl overflow-hidden aspect-video relative group">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ item.image.url }}" alt="{{ item.caption|default:project.title }}"/>
+                        {% if item.caption %}
+                            <div class="absolute bottom-0 inset-x-0 p-2 bg-black/70 text-white text-center text-xs">
+                                {{ item.caption }}
                             </div>
-                            <span class="material-symbols-outlined text-on-surface-variant">check_circle</span>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Technical Stack Details -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="glass-card rounded-2xl p-6 space-y-4">
+                    <h3 class="text-base font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+                        <span class="material-symbols-outlined text-secondary">memory</span>
+                        التقنيات المستخدمة
+                    </h3>
+                    <ul class="space-y-2.5 text-xs md:text-sm">
+                        {% for tech in project.technologies.all %}
+                        <li class="flex items-center gap-2 text-on-surface">
+                            <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
+                            <span class="font-bold text-white">{{ tech.name }}</span>
+                            <span class="text-on-surface-variant text-xs">({{ tech.category.name }})</span>
+                        </li>
+                        {% empty %}
+                        <li class="text-on-surface-variant italic">لم تدرج تقنيات محددة.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 space-y-4">
+                    <h3 class="text-base font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+                        <span class="material-symbols-outlined text-primary">info</span>
+                        بيانات العميل والإضافة
+                    </h3>
+                    <ul class="space-y-3 text-xs md:text-sm text-on-surface">
+                        <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                            <span class="text-on-surface-variant">الجهة / الجامعة:</span>
+                            <span class="font-bold text-white">{{ project.client_name }}</span>
+                        </li>
+                        <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                            <span class="text-on-surface-variant">الدولة:</span>
+                            <span class="font-bold text-white">{{ project.country }}</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-on-surface-variant">تاريخ الإضافة:</span>
+                            <span class="font-bold text-white">{{ project.created_at|date:"M Y" }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right 4 Columns: Sticky Sidebar -->
+        <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+            
+            <!-- Deliverables List Card -->
+            <div class="glass-card rounded-3xl p-6 space-y-4">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+                    <span class="material-symbols-outlined text-emerald-400">inventory</span>
+                    مخرجات وتسليمات المشروع
+                </h3>
+                
+                <div class="space-y-3">
+                    {% for del in project.deliverables %}
+                    <div class="p-3.5 rounded-xl bg-surface-container border border-white/5 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-lg">
+                                    {% if "code" in del|lower or "كود" in del %}code
+                                    {% elif "thesis" in del|lower or "pdf" in del|lower or "توثيق" in del %}picture_as_pdf
+                                    {% elif "presentation" in del|lower or "slide" in del|lower or "عرض" in del %}co_present
+                                    {% else %}verified{% endif %}
+                                </span>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold text-white">{{ del }}</div>
+                                <div class="text-[10px] text-on-surface-variant">ملف مكتمل وجاهز</div>
+                            </div>
                         </div>
+                        <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
+                    </div>
                     {% empty %}
-                        <p class="text-on-surface-variant italic">No deliverables declared.</p>
+                    <div class="text-xs text-on-surface-variant italic">الكود المصدري كاملاً والتوثيق.</div>
                     {% endfor %}
                 </div>
             </div>
 
-            <!-- Action Card -->
-            <div class="glass-panel p-lg rounded-xl bg-gradient-to-br from-surface-container-high to-surface-container text-center relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
-                <div class="relative z-10">
-                    <span class="material-symbols-outlined text-[48px] text-primary mb-md">rocket_launch</span>
-                    <h4 class="font-headline-md text-headline-md text-on-surface mb-sm font-bold">Ready to deploy?</h4>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant mb-lg">Contact our elite engineering team to discuss licensing or custom implementation of this architecture.</p>
-                    <a href="{{ project.title|whatsapp_link }}" target="_blank" class="w-full bg-[#10B981] text-white py-md rounded-lg font-label-caps text-label-caps hover:brightness-110 transition-all flex items-center justify-center gap-sm shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]">
-                        <span class="material-symbols-outlined">chat</span> Request Technical Review
-                    </a>
+            <!-- WhatsApp Action Callout Card -->
+            <div class="bg-gradient-to-br from-surface-container via-surface-container-high to-primary/20 border border-white/10 rounded-3xl p-6 text-center space-y-4 relative overflow-hidden">
+                <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mx-auto">
+                    <span class="material-symbols-outlined text-3xl">chat</span>
                 </div>
+                <h4 class="text-lg font-bold text-white">هل تود تنفيذ نظام مشابه؟</h4>
+                <p class="text-xs text-on-surface-variant leading-relaxed">
+                    تواصل مباشرة مع المهندسين المختصين لمناقشة التفاصيل البرمجية والتكلفة وخطة الإنجاز.
+                </p>
+                <a href="{{ project.title|whatsapp_link }}" target="_blank" class="w-full bg-[#10B981] hover:bg-[#059669] text-white py-3.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2 whatsapp-glow transition-all active:scale-95">
+                    <span class="material-symbols-outlined">chat</span>
+                    تحدث معنا الآن عبر واتساب
+                </a>
             </div>
-        </div>
-    </aside>
+
+        </aside>
+
+    </div>
+
 </main>
 {% endblock %}
