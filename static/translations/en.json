@@ -1,0 +1,67 @@
+{
+  "nav_brand": "Studio Software & Business Solutions",
+  "nav_home": "Home",
+  "nav_portfolio": "Projects & Portfolio",
+  "nav_services": "Services & Technologies",
+  "nav_contact": "Contact Us",
+  "nav_whatsapp": "Contact Us on WhatsApp",
+
+  "hero_badge": "Specialized Software Studio for Business & Projects",
+  "hero_title": "We turn business ideas & projects into market-ready apps and software systems",
+  "hero_desc": "We design and develop full-stack Web apps, Mobile apps, and Startup MVPs & SaaS platforms, alongside advanced academic graduation thesis development.",
+  "hero_cta_wa": "Talk to Us to Start Your Project",
+  "hero_cta_portfolio": "Browse Portfolio & Projects",
+
+  "stat_projects_val": "+60",
+  "stat_projects_label": "Business & Academic Projects",
+  "stat_code_val": "100%",
+  "stat_code_label": "Full Source Code Delivery",
+  "stat_support_val": "24/7",
+  "stat_support_label": "Continuous Support & Advice",
+
+  "tracks_title": "Studio Development Tracks",
+  "tracks_sub": "Comprehensive solutions for Business & Academia",
+  "track_biz_title": "💼 Business & Startup Track (Business & MVPs)",
+  "track_biz_desc": "Smart mobile app development, enterprise dashboards, SaaS platforms, and e-commerce stores with payment gateways & cloud deployment.",
+  "track_acad_title": "🎓 Academic & Graduation Track",
+  "track_acad_desc": "AI research development, academic code, full thesis documentation, and defense preparation.",
+
+  "services_sec_badge": "Business & Corporate Services",
+  "services_sec_title": "How we help you build your commercial project?",
+  "services_sec_desc": "We transform your idea into a real software product ready for customers & investors.",
+
+  "srv1_title": "MVP & Startup Development",
+  "srv1_desc": "Building market-ready first version products efficiently to acquire your first customers & investors.",
+  "srv2_title": "SaaS Platforms & Dashboards",
+  "srv2_desc": "Cloud systems for managing operations, sales, logistics with live analytics & charts.",
+  "srv3_title": "AI & Process Automation",
+  "srv3_desc": "Integrating AI models for customer data analytics, sales forecasting, and routine business automation.",
+
+  "portfolio_sec_badge": "Projects & Showcase",
+  "portfolio_sec_title": "Featured Works & Built Platforms",
+  "portfolio_sec_all": "View All Projects",
+
+  "testimonials_title": "What Our Clients & Partners Say?",
+  "testimonials_badge": "Client & Business Trust",
+
+  "comments_title": "Share Your Real Feedback or Inquiry",
+  "comments_desc": "You can post your comment, star rating, and receive direct replies from our Studio team.",
+  "comments_form_title": "Add New Comment / Review",
+  "form_name": "Full Name",
+  "form_role": "Role / Company or University",
+  "form_email": "Email Address (Optional)",
+  "form_rating": "Star Rating",
+  "form_message": "Comment or Inquiry Details",
+  "form_submit": "Post Comment Now",
+
+  "faq_badge": "Frequently Asked Questions",
+  "faq_title": "Answers to Key Inquiries",
+
+  "cta_banner_title": "Ready to launch your business app or custom project?",
+  "cta_banner_desc": "Contact us today to discuss your idea, roadmap, cost estimation, and delivery schedule.",
+  "cta_banner_btn": "Talk to Us Now on WhatsApp",
+
+  "footer_rights": "© 2026 Studio Software & Business Solutions. All rights reserved.",
+  "footer_quick_links": "Quick Links",
+  "footer_support": "Direct Support & Contact"
+}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}استوديو البرمجيات وحلول الأعمال | الصفحة الرئيسية{% endblock %}
+{% block title %}استوديو البرمجيات وحلول الأعمال | Business Software Studio{% endblock %}
 
 {% block content %}
 <div class="space-y-20 pb-16">
@@ -14,43 +14,40 @@
             <div class="lg:col-span-7 space-y-6">
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span class="text-xs md:text-sm font-semibold text-primary">استوديو متخصص لبرمجيات البزنس والمشاريع</span>
+                    <span class="text-xs md:text-sm font-semibold text-primary" x-text="t('hero_badge', 'استوديو متخصص لبرمجيات البزنس والمشاريع')"></span>
                 </div>
 
-                <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
-                    نحول أفكار البزنس والمشاريع <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-emerald-400">إلى تطبيقات وأنظمة برمجية جاهزة للسوق</span>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight" x-text="t('hero_title', 'نحول أفكار البزنس والمشاريع إلى تطبيقات وأنظمة برمجية جاهزة للسوق')">
                 </h1>
 
-                <p class="text-on-surface-variant text-base md:text-lg max-w-2xl leading-relaxed">
-                    نصمم ونطور تطبيقات الويب والموبايل والشركات الناشئة (MVPs & SaaS)، إلى جانب تطوير ومتابعة مشاريع التخرج الأكاديمية بأعلى جودة وتوثيق كامل.
+                <p class="text-on-surface-variant text-base md:text-lg max-w-2xl leading-relaxed" x-text="t('hero_desc', 'نصمم ونطور تطبيقات الويب والموبايل والشركات الناشئة (MVPs & SaaS)، إلى جانب تطوير ومتابعة مشاريع التخرج الأكاديمية بأعلى جودة وتوثيق كامل.')">
                 </p>
 
                 <div class="flex flex-wrap items-center gap-4 pt-2">
                     <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="bg-[#10B981] hover:bg-[#059669] text-white px-8 py-3.5 rounded-xl font-bold text-base flex items-center gap-2 shadow-lg hover:shadow-emerald-500/20 transition-all active:scale-95">
                         <span class="material-symbols-outlined">chat</span>
-                        تحدث معنا لبدء مشروعك
+                        <span x-text="t('hero_cta_wa', 'تحدث معنا لبدء مشروعك')"></span>
                     </a>
 
                     <a href="/portfolio/" class="glass-card text-white px-6 py-3.5 rounded-xl font-bold text-base hover:bg-white/10 transition-colors flex items-center gap-2">
-                        <span>معرض الأعمال والمشاريع</span>
-                        <span class="material-symbols-outlined text-sm">arrow_back</span>
+                        <span x-text="t('hero_cta_portfolio', 'معرض الأعمال والمشاريع')"></span>
+                        <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_back</span>
                     </a>
                 </div>
 
                 <!-- Stats / Highlights -->
                 <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 max-w-lg">
                     <div>
-                        <div class="text-2xl md:text-3xl font-extrabold text-white">+60</div>
-                        <div class="text-xs text-on-surface-variant">مشروع بزنس وأكاديمي</div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-white" x-text="t('stat_projects_val', '+60')"></div>
+                        <div class="text-xs text-on-surface-variant" x-text="t('stat_projects_label', 'مشروع بزنس وأكاديمي')"></div>
                     </div>
                     <div>
-                        <div class="text-2xl md:text-3xl font-extrabold text-emerald-400">100%</div>
-                        <div class="text-xs text-on-surface-variant">تسليم الكود المصدري الكامل</div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-emerald-400" x-text="t('stat_code_val', '100%')"></div>
+                        <div class="text-xs text-on-surface-variant" x-text="t('stat_code_label', 'تسليم الكود المصدري الكامل')"></div>
                     </div>
                     <div>
-                        <div class="text-2xl md:text-3xl font-extrabold text-secondary">24/7</div>
-                        <div class="text-xs text-on-surface-variant">دعم واستشارات مستمرة</div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-secondary" x-text="t('stat_support_val', '24/7')"></div>
+                        <div class="text-xs text-on-surface-variant" x-text="t('stat_support_label', 'دعم واستشارات مستمرة')"></div>
                     </div>
                 </div>
             </div>
@@ -62,32 +59,26 @@
                         <div class="flex items-center gap-3">
                             <span class="material-symbols-outlined text-primary text-3xl">hub</span>
                             <div>
-                                <h3 class="text-white font-bold text-base">مسارات التطوير في الاستوديو</h3>
-                                <p class="text-xs text-on-surface-variant">حلول متكاملة للبزنس والأكاديميا</p>
+                                <h3 class="text-white font-bold text-base" x-text="t('tracks_title', 'مسارات التطوير في الاستوديو')"></h3>
+                                <p class="text-xs text-on-surface-variant" x-text="t('tracks_sub', 'حلول متكاملة للبزنس والأكاديميا')"></p>
                             </div>
                         </div>
-                        <span class="px-2.5 py-1 rounded bg-primary/20 text-primary text-xs font-bold">إنتاج احترافي</span>
+                        <span class="px-2.5 py-1 rounded bg-primary/20 text-primary text-xs font-bold">Pro Studio</span>
                     </div>
 
                     <!-- Business Track Highlight -->
                     <div class="p-4 rounded-xl bg-surface-container border border-white/10 space-y-2">
-                        <div class="flex items-center gap-2 text-secondary font-bold text-sm">
-                            <span class="material-symbols-outlined text-base">storefront</span>
-                            💼 مسار البزنس والشركات (Business & MVPs)
+                        <div class="flex items-center gap-2 text-secondary font-bold text-sm" x-text="t('track_biz_title', '💼 مسار البزنس والشركات (Business & MVPs)')">
                         </div>
-                        <p class="text-xs text-on-surface-variant leading-relaxed">
-                            تطوير تطبيقات الهواتف الذكية، لوحات التحكم للشركات، منصات SaaS ومتاجر الإلكترونية مع ربط الدفع والسيرفرات.
+                        <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('track_biz_desc', 'تطوير تطبيقات الهواتف الذكية، لوحات التحكم للشركات، منصات SaaS ومتاجر الإلكترونية مع ربط الدفع والسيرفرات.')">
                         </p>
                     </div>
 
                     <!-- Academic Track Highlight -->
                     <div class="p-4 rounded-xl bg-surface-container border border-white/10 space-y-2">
-                        <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm">
-                            <span class="material-symbols-outlined text-base">school</span>
-                            🎓 المسار الأكاديمي ومشاريع التخرج
+                        <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm" x-text="t('track_acad_title', '🎓 المسار الأكاديمي ومشاريع التخرج')">
                         </div>
-                        <p class="text-xs text-on-surface-variant leading-relaxed">
-                            تطوير أبحاث الذكاء الاصطناعي، الكود الأكاديمي، التوثيق الكامل (Thesis Documentation)، والتجهيز للمناقشة.
+                        <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('track_acad_desc', 'تطوير أبحاث الذكاء الاصطناعي، الكود الأكاديمي، التوثيق الكامل (Thesis Documentation)، والتجهيز للمناقشة.')">
                         </p>
                     </div>
 
@@ -100,9 +91,9 @@
     <!-- Business & Commercial Solutions Section -->
     <section class="max-w-[1440px] mx-auto px-4 md:px-8 space-y-8">
         <div class="text-center max-w-2xl mx-auto space-y-2">
-            <span class="text-xs font-bold text-secondary uppercase tracking-wider">خدمات البزنس والشركات</span>
-            <h2 class="text-2xl md:text-4xl font-extrabold text-white">كيف نساعدك في بناء مشروعك التجاري؟</h2>
-            <p class="text-on-surface-variant text-sm">نحول الفكرة إلى منتج برمجي حقيقي جاهز لاستقبال العملاء والمستثمرين.</p>
+            <span class="text-xs font-bold text-secondary uppercase tracking-wider" x-text="t('services_sec_badge', 'خدمات البزنس والشركات')"></span>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white" x-text="t('services_sec_title', 'كيف نساعدك في بناء مشروعك التجاري؟')"></h2>
+            <p class="text-on-surface-variant text-sm" x-text="t('services_sec_desc', 'نحول الفكرة إلى منتج برمجي حقيقي جاهز لاستقبال العملاء والمستثمرين.')"></p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -110,30 +101,24 @@
                 <div class="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary">
                     <span class="material-symbols-outlined text-2xl">rocket_launch</span>
                 </div>
-                <h3 class="text-lg font-bold text-white">تطوير الـ MVP والشركات الناشئة</h3>
-                <p class="text-xs text-on-surface-variant leading-relaxed">
-                    بناء النموذج الأول الجاهز للتجربة والسوق بأقل وقت وأعلى كفاءة لجمع أول عملاء ومستثمرين.
-                </p>
+                <h3 class="text-lg font-bold text-white" x-text="t('srv1_title', 'تطوير الـ MVP والشركات الناشئة')"></h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('srv1_desc', 'بناء النموذج الأول الجاهز للتجربة والسوق بأقل وقت وأعلى كفاءة لجمع أول عملاء ومستثمرين.')"></p>
             </div>
 
             <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-primary/40 transition-all">
                 <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                     <span class="material-symbols-outlined text-2xl">dashboard</span>
                 </div>
-                <h3 class="text-lg font-bold text-white">منصات SaaS ولوحات التحكم</h3>
-                <p class="text-xs text-on-surface-variant leading-relaxed">
-                    تطوير أنظمة سحابية متكاملة لإدارة العمليات والمبيعات والشحنات مع تقارير حية ورسومات بيانية.
-                </p>
+                <h3 class="text-lg font-bold text-white" x-text="t('srv2_title', 'منصات SaaS ولوحات التحكم')"></h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('srv2_desc', 'تطوير أنظمة سحابية متكاملة لإدارة العمليات والمبيعات والشحنات مع تقارير حية ورسومات بيانية.')"></p>
             </div>
 
             <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-emerald-400/40 transition-all">
                 <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                     <span class="material-symbols-outlined text-2xl">smart_toy</span>
                 </div>
-                <h3 class="text-lg font-bold text-white">أتمتة العمليات بالذكاء الاصطناعي</h3>
-                <p class="text-xs text-on-surface-variant leading-relaxed">
-                    دمج خوارزميات AI لتحليل بيانات العملاء، التنبؤ بالمبيعات، وأتمتة المهام الروتينية للبزنس.
-                </p>
+                <h3 class="text-lg font-bold text-white" x-text="t('srv3_title', 'أتمتة العمليات بالذكاء الاصطناعي')"></h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('srv3_desc', 'دمج خوارزميات AI لتحليل بيانات العملاء، التنبؤ بالمبيعات، وأتمتة المهام الروتينية للبزنس.')"></p>
             </div>
         </div>
     </section>
@@ -142,11 +127,12 @@
     <section class="max-w-[1440px] mx-auto px-4 md:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
-                <span class="text-xs font-bold text-primary uppercase tracking-wider">معرض النماذج والمشاريع</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold text-white mt-1">أبرز الأعمال والمنصات المنفذة</h2>
+                <span class="text-xs font-bold text-primary uppercase tracking-wider" x-text="t('portfolio_sec_badge', 'معرض النماذج والمشاريع')"></span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white mt-1" x-text="t('portfolio_sec_title', 'أبرز الأعمال والمنصات المنفذة')"></h2>
             </div>
             <a href="/portfolio/" class="text-primary hover:text-white text-sm font-bold flex items-center gap-1 transition-colors">
-                عرض كافة الأعمال <span class="material-symbols-outlined text-base">arrow_back</span>
+                <span x-text="t('portfolio_sec_all', 'عرض كافة الأعمال')"></span>
+                <span class="material-symbols-outlined text-base rtl:rotate-180">arrow_back</span>
             </a>
         </div>
 
@@ -159,7 +145,7 @@
                     {% else %}
                         <div class="flex flex-col items-center gap-2 text-primary/60">
                             <span class="material-symbols-outlined text-5xl">inventory_2</span>
-                            <span class="text-xs font-bold">مشروع مكتمل</span>
+                            <span class="text-xs font-bold">Project Asset</span>
                         </div>
                     {% endif %}
                     <div class="absolute top-3 right-3">
@@ -178,14 +164,14 @@
                     <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-2 text-xs">
                         <span class="text-on-surface-variant font-mono">{{ project.client_name }}</span>
                         <a href="{% url 'projects:project_detail' slug=project.slug %}" class="text-primary font-bold flex items-center gap-1 hover:underline">
-                            التفاصيل الكاملة <span class="material-symbols-outlined text-sm">arrow_back</span>
+                            <span>Details</span> <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_back</span>
                         </a>
                     </div>
                 </div>
             </div>
             {% empty %}
             <div class="col-span-3 text-center py-12 text-on-surface-variant glass-card rounded-2xl">
-                لا توجد مشاريع مضافة حالياً.
+                No featured projects yet.
             </div>
             {% endfor %}
         </div>
@@ -196,22 +182,22 @@
         <div class="glass-card p-8 md:p-12 rounded-3xl space-y-12">
             
             <div class="text-center max-w-2xl mx-auto space-y-2">
-                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">آراء وتعليقات الزوار والعملاء</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold text-white">شاركنا رأيك أو استفسارك الحقيقي</h2>
-                <p class="text-xs md:text-sm text-on-surface-variant">يمكنك كتابة تعليقك وتقييمك وتلقي الرد المباشر من فريق وإدارة الاستوديو.</p>
+                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider" x-text="t('testimonials_badge', 'ثقة العملاء والشركات')"></span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white" x-text="t('comments_title', 'شاركنا رأيك أو استفسارك الحقيقي')"></h2>
+                <p class="text-xs md:text-sm text-on-surface-variant" x-text="t('comments_desc', 'يمكنك كتابة تعليقك وتقييمك وتلقي الرد المباشر من فريق وإدارة الاستوديو.')"></p>
             </div>
 
             <!-- Comment Submission Form -->
             <div class="max-w-3xl mx-auto bg-surface-container p-6 md:p-8 rounded-2xl border border-white/10 space-y-6">
                 <h3 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
                     <span class="material-symbols-outlined text-primary">rate_review</span>
-                    إضافة تعليق / تقييم جديد
+                    <span x-text="t('comments_form_title', 'إضافة تعليق / تقييم جديد')"></span>
                 </h3>
 
                 {% if comment_success %}
                 <div class="p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs md:text-sm font-bold flex items-center gap-2">
                     <span class="material-symbols-outlined text-xl">check_circle</span>
-                    شكراً لك يا {{ commenter_name }}! تم نشر تعليقك بنجاح وسنقوم بالرد عليه قريباً.
+                    <span>Comment submitted successfully! Thank you {{ commenter_name }}.</span>
                 </div>
                 {% endif %}
 
@@ -219,42 +205,42 @@
                     {% csrf_token %}
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-white mb-1">الاسم الكريم <span class="text-red-400">*</span></label>
-                            <input type="text" name="name" required class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="أدخل اسمك..."/>
+                            <label class="block text-xs font-bold text-white mb-1" x-text="t('form_name', 'الاسم الكريم') + ' *'"></label>
+                            <input type="text" name="name" required class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary"/>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-white mb-1">الصفة / الشركة أو الجامعة</label>
-                            <input type="text" name="role_university" class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="مثال: صاحب شركة ناشئة / طالب حاسبات"/>
+                            <label class="block text-xs font-bold text-white mb-1" x-text="t('form_role', 'الصفة / الشركة أو الجامعة')"></label>
+                            <input type="text" name="role_university" class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary"/>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-white mb-1">البريد الإلكتروني (اختياري)</label>
-                            <input type="email" name="email" class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="example@gmail.com"/>
+                            <label class="block text-xs font-bold text-white mb-1" x-text="t('form_email', 'البريد الإلكتروني (اختياري)')"></label>
+                            <input type="email" name="email" class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary"/>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-white mb-1">التقييم بالنجوم</label>
+                            <label class="block text-xs font-bold text-white mb-1" x-text="t('form_rating', 'التقييم بالنجوم')"></label>
                             <select name="rating" class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-amber-400 focus:outline-none focus:border-primary">
-                                <option value="5" selected>⭐⭐⭐⭐⭐ (5 نجوم - ممتاز)</option>
-                                <option value="4">⭐⭐⭐⭐ (4 نجوم - جيد جداً)</option>
-                                <option value="3">⭐⭐⭐ (3 نجوم - جيد)</option>
-                                <option value="2">⭐⭐ (نجمتان)</option>
-                                <option value="1">⭐ (نجمة واحدة)</option>
+                                <option value="5" selected>⭐⭐⭐⭐⭐ (5 Stars)</option>
+                                <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+                                <option value="3">⭐⭐⭐ (3 Stars)</option>
+                                <option value="2">⭐⭐ (2 Stars)</option>
+                                <option value="1">⭐ (1 Star)</option>
                             </select>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-white mb-1">تفاصيل التعليق أو الاستفسار <span class="text-red-400">*</span></label>
-                        <textarea name="review_text" rows="3" required class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="اكتب رأيك أو سؤالك هنا..."></textarea>
+                        <label class="block text-xs font-bold text-white mb-1" x-text="t('form_message', 'تفاصيل التعليق أو الاستفسار') + ' *'"></label>
+                        <textarea name="review_text" rows="3" required class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary"></textarea>
                     </div>
 
                     <button type="submit" class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-xl font-bold text-xs transition-colors flex items-center gap-2">
                         <span class="material-symbols-outlined text-base">send</span>
-                        نشر التعليق الآن
+                        <span x-text="t('form_submit', 'نشر التعليق الآن')"></span>
                     </button>
                 </form>
             </div>
@@ -262,8 +248,7 @@
             <!-- Comments List Display -->
             <div class="space-y-6 max-w-4xl mx-auto">
                 <h3 class="text-lg font-bold text-white border-b border-white/10 pb-3 flex items-center justify-between">
-                    <span>جميع التعليقات والآراء ({{ testimonials|length }})</span>
-                    <span class="text-xs text-on-surface-variant font-normal">تعليقات حقيقية ومحدثة</span>
+                    <span>Reviews & Feedback ({{ testimonials|length }})</span>
                 </h3>
 
                 {% for t in testimonials %}
@@ -289,16 +274,16 @@
                         </div>
                     </div>
 
-                    <p class="text-xs md:text-sm text-on-surface leading-relaxed pr-2 border-r-2 border-primary/40">
+                    <p class="text-xs md:text-sm text-on-surface leading-relaxed border-s-2 border-primary/40 px-3">
                         {{ t.review_text }}
                     </p>
 
                     <!-- Official Admin Reply Display -->
                     {% if t.admin_reply %}
-                    <div class="mr-4 mt-3 p-4 rounded-xl bg-primary/10 border border-primary/30 space-y-1">
+                    <div class="mx-4 mt-3 p-4 rounded-xl bg-primary/10 border border-primary/30 space-y-1">
                         <div class="flex items-center gap-2 text-xs font-bold text-primary">
                             <span class="material-symbols-outlined text-base">verified</span>
-                            رد إدارة الاستوديو:
+                            <span>Studio Admin Reply:</span>
                         </div>
                         <p class="text-xs text-on-surface leading-relaxed">
                             {{ t.admin_reply }}
@@ -307,7 +292,7 @@
                     {% endif %}
 
                     {% if t.created_at %}
-                    <div class="text-[10px] text-on-surface-variant text-left pt-1 font-mono">
+                    <div class="text-[10px] text-on-surface-variant font-mono text-end pt-1">
                         {{ t.created_at|date:"Y-m-d H:i" }}
                     </div>
                     {% endif %}
@@ -315,7 +300,7 @@
                 </div>
                 {% empty %}
                 <div class="text-center py-8 text-on-surface-variant italic">
-                    لا توجد تعليقات حتى الآن. كن أول من يضيف تعليقاً!
+                    No comments yet. Be the first to leave a review!
                 </div>
                 {% endfor %}
             </div>
@@ -327,8 +312,8 @@
     {% if faqs %}
     <section class="max-w-4xl mx-auto px-4 md:px-8 space-y-6">
         <div class="text-center">
-            <span class="text-xs font-bold text-primary uppercase tracking-wider">الأسئلة الشائعة</span>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">إجابات على أهم الاستفسارات</h2>
+            <span class="text-xs font-bold text-primary uppercase tracking-wider" x-text="t('faq_badge', 'الأسئلة الشائعة')"></span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1" x-text="t('faq_title', 'إجابات على أهم الاستفسارات')"></h2>
         </div>
 
         <div class="space-y-4">
@@ -338,7 +323,7 @@
                     <span class="material-symbols-outlined text-primary text-xl">help_outline</span>
                     {{ faq.question }}
                 </h3>
-                <p class="text-xs md:text-sm text-on-surface-variant leading-relaxed pr-7">
+                <p class="text-xs md:text-sm text-on-surface-variant leading-relaxed px-2">
                     {{ faq.answer }}
                 </p>
             </div>
@@ -350,14 +335,13 @@
     <!-- Call to Action Banner -->
     <section class="max-w-[1440px] mx-auto px-4 md:px-8">
         <div class="bg-gradient-to-r from-primary/20 via-surface-container to-emerald-500/20 border border-white/10 p-8 md:p-12 rounded-3xl text-center space-y-6">
-            <h2 class="text-2xl md:text-4xl font-extrabold text-white">جاهز لبدء تطبيق البزنس أو مشروعك الخاص؟</h2>
-            <p class="text-on-surface-variant text-sm md:text-base max-w-xl mx-auto">
-                تواصل معنا اليوم لمناقشة الفكرة والخطة التنفيذية واستلام تقدير التكلفة والجدول الزمني المباشر.
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white" x-text="t('cta_banner_title', 'جاهز لبدء تطبيق البزنس أو مشروعك الخاص؟')"></h2>
+            <p class="text-on-surface-variant text-sm md:text-base max-w-xl mx-auto" x-text="t('cta_banner_desc', 'تواصل معنا اليوم لمناقشة الفكرة والخطة التنفيذية واستلام تقدير التكلفة والجدول الزمني المباشر.')">
             </p>
             <div>
                 <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#059669] text-white px-8 py-3.5 rounded-xl font-bold text-base whatsapp-glow transition-all active:scale-95">
                     <span class="material-symbols-outlined">chat</span>
-                    تحدث معنا الآن عبر واتساب
+                    <span x-text="t('cta_banner_btn', 'تحدث معنا الآن عبر واتساب')"></span>
                 </a>
             </div>
         </div>
