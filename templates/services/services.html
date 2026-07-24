@@ -1,127 +1,173 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}الخدمات والتقنيات | استوديو حلول البرمجيات والأعمال{% endblock %}
+{% block title %}الخدمات والتقنيات | Business & Academic Services{% endblock %}
 
 {% block content %}
-<main class="w-full max-w-[1440px] mx-auto px-4 md:px-8 py-12 space-y-16">
+<main class="w-full max-w-[1440px] mx-auto px-4 md:px-8 py-8 md:py-12 space-y-12">
     
-    <!-- Hero Section -->
-    <section class="text-center max-w-3xl mx-auto space-y-4">
-        <span class="text-xs font-bold text-primary uppercase tracking-wider">خدمات الاستوديو</span>
-        <h1 class="text-3xl md:text-5xl font-extrabold text-white">
-            حلول البرمجيات المتقدمة للبزنس والمشاريع
+    <!-- Hero / Header Section -->
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="px-4 py-1.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 inline-block">
+            استوديو البرمجيات المتقدمة
+        </span>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
+            خدمات برمجية متكاملة للشركات ومشاريع التخرج
         </h1>
-        <p class="text-on-surface-variant text-base md:text-lg leading-relaxed">
-            نقدم استشارات وتطوير برمجيات متكاملة لتطبيقات الويب، الموبايل، الذكاء الاصطناعي، والحلول الأكاديمية المتقدمة.
+        <p class="text-on-surface-variant text-sm md:text-base leading-relaxed">
+            نقدم حلول تطوير ويب وموبايل وأنظمة ذكاء اصطناعي مخصصة للبزنس، بجانب تنفيذ ومتابعة أبحاث ومشاريع التخرج الأكاديمية.
         </p>
-    </section>
+    </div>
 
-    <!-- Core Services Grid -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- 4 Main Services Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         
         <!-- Service 1: Business Apps & MVPs -->
-        <div class="glass-card rounded-2xl p-8 space-y-6 flex flex-col justify-between hover:border-primary/40 transition-all">
+        <div class="glass-card p-8 rounded-3xl space-y-6 hover:border-primary/40 transition-all flex flex-col justify-between">
             <div class="space-y-4">
-                <div class="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                     <span class="material-symbols-outlined text-3xl">rocket_launch</span>
                 </div>
-                <h3 class="text-xl font-bold text-white">تطوير تطبيقات الـ MVP والأنظمة التجارية</h3>
-                <p class="text-sm text-on-surface-variant leading-relaxed">
-                    تحويل الفكرة التجارية إلى تطبيق ويب أو موبايل كامل ومتكامل (Minimum Viable Product) للشركات الناشئة والمؤسسات، يشمل ربط بوابة الدفع ولوحة التحكم ومراقبة الأداء.
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">تطوير تطبيقات البزنس والـ MVPs</h2>
+                <p class="text-on-surface-variant text-sm leading-relaxed">
+                    تحويل الفكرة التجارية إلى منتج برمجي حقيقي (تطبيق موبايل / موقع ويب) جاهز لجمع أول العملاء والمستثمرين في أقل وقت وبأفضل تكلفة.
                 </p>
+                <ul class="space-y-2 text-xs md:text-sm text-on-surface">
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>بناء لوحات تحكم وحسابات مستخدمين</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>ربط بوابات الدفع وشبكات السيرفرات</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>تسليم الكود المصدري كاملاً الملكية 100%</span>
+                    </li>
+                </ul>
             </div>
-            <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10 text-xs">
-                <span class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Django / Node.js</span>
-                <span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20">React & Next.js</span>
-                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">SaaS Systems</span>
-            </div>
+            <a href="https://wa.me/201554397407?text=استفسار%20عن%20خدمة%20تطوير%20تطبيق%20بزنس" target="_blank" class="w-full bg-primary hover:bg-primary-hover text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+                <span class="material-symbols-outlined text-base">chat</span>
+                استفسر عن خدمة البزنس
+            </a>
         </div>
 
-        <!-- Service 2: Mobile Business Apps -->
-        <div class="glass-card rounded-2xl p-8 space-y-6 flex flex-col justify-between hover:border-emerald-400/40 transition-all">
+        <!-- Service 2: SaaS & Cloud Systems -->
+        <div class="glass-card p-8 rounded-3xl space-y-6 hover:border-secondary/40 transition-all flex flex-col justify-between">
             <div class="space-y-4">
-                <div class="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                    <span class="material-symbols-outlined text-3xl">smartphone</span>
+                <div class="w-14 h-14 rounded-2xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary">
+                    <span class="material-symbols-outlined text-3xl">dashboard</span>
                 </div>
-                <h3 class="text-xl font-bold text-white">تطبيقات الموبايل المخصصة للبزنس</h3>
-                <p class="text-sm text-on-surface-variant leading-relaxed">
-                    تطوير تطبيقات الهواتف الذكية لنظامي iOS و Android لتسهيل بيع المنتجات، تتبع الشحنات، وإدارة المبيعات والخدمات مع دعم الإشعارات والخرائط.
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">أنظمة SaaS ولوحات الإدارة المتكاملة</h2>
+                <p class="text-on-surface-variant text-sm leading-relaxed">
+                    بناء منصات إدارة العمليات السحابية للشركات، المتاجر الإلكترونية، تتبع الشحنات، والمبيعات مع رسومات بيانية وتقارير حية.
                 </p>
+                <ul class="space-y-2 text-xs md:text-sm text-on-surface">
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>إدارة الصلاحيات والمستخدمين Multi-tenant</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>تصدير تقارير PDF ورسومات بيانية حية</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>تأمين البيانات وتوفير نسخ احتياطي تلقائي</span>
+                    </li>
+                </ul>
             </div>
-            <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10 text-xs">
-                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Flutter / Cross-Platform</span>
-                <span class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">E-Commerce Apps</span>
-            </div>
+            <a href="https://wa.me/201554397407?text=استفسار%20عن%20تطوير%20نظام%20SaaS" target="_blank" class="w-full bg-secondary hover:opacity-90 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+                <span class="material-symbols-outlined text-base">chat</span>
+                طلب استشارة SaaS
+            </a>
         </div>
 
-        <!-- Service 3: AI & Automation for Business -->
-        <div class="glass-card rounded-2xl p-8 space-y-6 flex flex-col justify-between hover:border-secondary/40 transition-all">
+        <!-- Service 3: AI & Machine Learning -->
+        <div class="glass-card p-8 rounded-3xl space-y-6 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
             <div class="space-y-4">
-                <div class="w-14 h-14 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary">
-                    <span class="material-symbols-outlined text-3xl">smart_toy</span>
+                <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
+                    <span class="material-symbols-outlined text-3xl">psychology</span>
                 </div>
-                <h3 class="text-xl font-bold text-white">حلول الذكاء الاصطناعي والأتمتة</h3>
-                <p class="text-sm text-on-surface-variant leading-relaxed">
-                    دمج أحدث نماذج الذكاء الاصطناعي لمعالجة النصوص والصور، أتمتة المهام الإدارية، وتحليل بيانات العملاء لرفع كفاءة ومبيعات الشركات.
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">حلول الذكاء الاصطناعي و Computer Vision</h2>
+                <p class="text-on-surface-variant text-sm leading-relaxed">
+                    دمج نماذج التعلم العميق وتحليل الصور والبيانات، الرؤية الحاسوبية (YOLO / OpenCV)، وتصنيف البيانات الطبية والأكاديمية.
                 </p>
+                <ul class="space-y-2 text-xs md:text-sm text-on-surface">
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>تدريب نماذج custom PyTorch / TensorFlow</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>تحليل وتصنيف الصور الطبية والمستندات</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>ربط خوارزميات الذكاء الاصطناعي بواجهات API</span>
+                    </li>
+                </ul>
             </div>
-            <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10 text-xs">
-                <span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20">PyTorch & OpenAI API</span>
-                <span class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Computer Vision & NLP</span>
-            </div>
+            <a href="https://wa.me/201554397407?text=استفسار%20عن%20تطوير%20مشروع%20ذكاء%20اصطناعي" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+                <span class="material-symbols-outlined text-base">chat</span>
+                استفسر عن الذكاء الاصطناعي
+            </a>
         </div>
 
-        <!-- Service 4: Academic & Thesis Support -->
-        <div class="glass-card rounded-2xl p-8 space-y-6 flex flex-col justify-between hover:border-amber-400/40 transition-all">
+        <!-- Service 4: Academic Projects & Thesis -->
+        <div class="glass-card p-8 rounded-3xl space-y-6 hover:border-amber-500/40 transition-all flex flex-col justify-between">
             <div class="space-y-4">
-                <div class="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500">
                     <span class="material-symbols-outlined text-3xl">school</span>
                 </div>
-                <h3 class="text-xl font-bold text-white">المشاريع والأبحاث الأكاديمية</h3>
-                <p class="text-sm text-on-surface-variant leading-relaxed">
-                    تطوير مشاريع التخرج الأكاديمية لأعلى المعايير، مع ملفات التوثيق والرسومات المعمارية (UML Diagramming) وتوفير جلسات شرح وافية ومحاكاة للمناقشة.
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">مشاريع التخرج والتوثيق الأكاديمي</h2>
+                <p class="text-on-surface-variant text-sm leading-relaxed">
+                    تطوير مشاريع التخرج الجامعية للكليات الحاسوبية والهندسية كاملة الكود المصدري، مع كتابة التوثيق وشرح النظام والتجهيز للمناقشة.
                 </p>
+                <ul class="space-y-2 text-xs md:text-sm text-on-surface">
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>كتابة التوثيق الأكاديمي الشامل (Thesis Book)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>توفير عروض التقديم (PowerPoint Slides)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <span>جلسات شرح وتدريب فردية للمناقشة</span>
+                    </li>
+                </ul>
             </div>
-            <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10 text-xs">
-                <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">Thesis Documentation</span>
-                <span class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Mock Defense</span>
-            </div>
+            <a href="https://wa.me/201554397407?text=استفسار%20عن%20مشروع%20تخرج%20وتوثيق" target="_blank" class="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+                <span class="material-symbols-outlined text-base">chat</span>
+                استفسر عن مشروع التخرج
+            </a>
         </div>
 
-    </section>
+    </div>
 
-    <!-- Integrated Technology Stack Section -->
-    <section class="glass-card rounded-3xl p-8 md:p-12 space-y-8">
-        <div class="text-center max-w-xl mx-auto space-y-2">
-            <span class="text-xs font-bold text-primary uppercase tracking-wider">أدوات وتقنيات العمل</span>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-white">التقنيات المستخدمة في المشاريع</h2>
-            <p class="text-xs md:text-sm text-on-surface-variant">نعتمد على أدوات برمجية حديثة وقابلة للتوسع لتلبية متطلبات البزنس والأكاديميا.</p>
+    <!-- Technologies Stack Section -->
+    <div class="glass-card p-8 rounded-3xl space-y-8">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+            <span class="text-xs font-bold text-primary uppercase tracking-wider">تقنيات الاستوديو</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">التقنيات والأدوات المستخدمة</h2>
+            <p class="text-on-surface-variant text-xs md:text-sm">نعتمد على أحدث التقنيات البرمجية المستقرة والسريعة عالمياً.</p>
         </div>
 
-        {% if categories %}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {% for cat in categories %}
-            <div class="bg-surface-container p-6 rounded-2xl border border-white/5 space-y-4">
-                <h4 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
-                    <span class="material-symbols-outlined text-primary text-xl">memory</span>
-                    {{ cat.name }}
-                </h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {% for tech in cat.technologies.all %}
-                    <div class="p-3 rounded-xl bg-white/5 border border-white/5 space-y-1">
-                        <div class="font-bold text-sm text-white">{{ tech.name }}</div>
-                        <div class="text-xs text-on-surface-variant line-clamp-2">{{ tech.description }}</div>
-                    </div>
-                    {% empty %}
-                    <div class="text-xs text-on-surface-variant italic">Django, Python, React, Flutter</div>
-                    {% endfor %}
-                </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            {% for tech in technologies %}
+            <div class="p-4 rounded-2xl bg-surface-container border border-slate-200 dark:border-white/10 text-center space-y-2 hover:border-primary/40 transition-colors">
+                <span class="material-symbols-outlined text-primary text-3xl">code</span>
+                <div class="font-bold text-slate-900 dark:text-white text-xs md:text-sm">{{ tech.name }}</div>
+                <div class="text-[10px] text-on-surface-variant">{{ tech.category.name }}</div>
             </div>
+            {% empty %}
+            <div class="col-span-6 text-center py-6 text-on-surface-variant italic">Python, Django, Flutter, React, PyTorch, Tailwind CSS, PostgreSQL.</div>
             {% endfor %}
         </div>
-        {% endif %}
-    </section>
+    </div>
 
 </main>
 {% endblock %}

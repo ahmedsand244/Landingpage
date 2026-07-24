@@ -8,16 +8,16 @@
 <main class="w-full max-w-[1440px] mx-auto px-4 md:px-8 py-8 md:py-12 space-y-8">
     
     <!-- Breadcrumb & Back Link -->
-    <div class="flex items-center justify-between border-b border-white/10 pb-4">
+    <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-4">
         <div class="flex items-center gap-2 text-xs md:text-sm text-on-surface-variant">
-            <a href="/" class="hover:text-white transition-colors">الرئيسية</a>
+            <a href="/" class="hover:text-slate-900 dark:hover:text-white transition-colors">الرئيسية</a>
             <span>/</span>
-            <a href="/portfolio/" class="hover:text-white transition-colors">معرض الأعمال</a>
+            <a href="/portfolio/" class="hover:text-slate-900 dark:hover:text-white transition-colors">معرض الأعمال</a>
             <span>/</span>
             <span class="text-primary font-bold line-clamp-1">{{ project.title }}</span>
         </div>
 
-        <a href="/portfolio/" class="glass-card text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-white/10 transition-colors flex items-center gap-1">
+        <a href="/portfolio/" class="glass-card text-on-surface px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-200/50 dark:hover:bg-white/10 transition-colors flex items-center gap-1">
             <span class="material-symbols-outlined text-sm">arrow_forward</span>
             <span>العودة للمشاريع</span>
         </a>
@@ -42,19 +42,19 @@
 
             <!-- PROMINENT LIVE DEMO LINK BUTTON IN HEADER -->
             {% if project.project_url %}
-            <a href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-primary via-secondary to-emerald-400 hover:opacity-90 text-slate-950 px-6 py-3 rounded-2xl font-extrabold text-sm shadow-lg shadow-primary/20 transition-all active:scale-95">
+            <a href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-primary via-secondary to-emerald-500 hover:opacity-90 text-white px-6 py-3 rounded-2xl font-extrabold text-sm shadow-lg shadow-primary/20 transition-all active:scale-95">
                 <span class="material-symbols-outlined text-xl">open_in_new</span>
                 <span>🌐 دخول وتجربة المشروع الحي (Live Demo)</span>
             </a>
             {% else %}
-            <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-300 px-4 py-2.5 rounded-xl text-xs font-semibold">
+            <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-300 px-4 py-2.5 rounded-xl text-xs font-semibold">
                 <span class="material-symbols-outlined text-base">link_off</span>
                 <span>🔒 رابط المعاينة المباشرة غير متوفر حالياً</span>
             </div>
             {% endif %}
         </div>
 
-        <h1 class="text-2xl md:text-4xl font-extrabold text-white leading-tight">
+        <h1 class="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
             {{ project.title }}
         </h1>
 
@@ -63,9 +63,9 @@
         </p>
 
         <!-- Tech Badges -->
-        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-200 dark:border-white/10">
             {% for tech in project.technologies.all %}
-                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs font-mono text-secondary font-bold">
+                <span class="px-3 py-1 bg-surface-container border border-slate-200 dark:border-white/10 rounded-lg text-xs font-mono text-secondary font-bold">
                     {{ tech.name }}
                 </span>
             {% endfor %}
@@ -87,47 +87,27 @@
 
             <!-- Project Overview Section -->
             <div class="glass-card rounded-3xl p-6 md:p-8 space-y-4">
-                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-4">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-4">
                     <span class="material-symbols-outlined text-primary">description</span>
                     تفاصيل ونبذة عن المشروع
                 </h2>
-                <div class="text-sm md:text-base text-on-surface-variant leading-relaxed space-y-3">
+                <div class="text-sm md:text-base text-on-surface leading-relaxed space-y-3">
                     {{ project.overview|linebreaks }}
                 </div>
             </div>
 
-            <!-- Demo Video Section -->
-            {% if project.demo_video_url %}
-            <div class="glass-card rounded-3xl p-6 md:p-8 space-y-4">
-                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-4">
-                    <span class="material-symbols-outlined text-secondary">play_circle</span>
-                    عرض وتجربة النظام الحية
-                </h2>
-                <div class="aspect-video rounded-2xl overflow-hidden bg-black/40 border border-white/10">
-                    {% if "youtube.com" in project.demo_video_url or "youtu.be" in project.demo_video_url %}
-                        <iframe class="w-full h-full" src="{{ project.demo_video_url|youtube_embed }}" frameborder="0" allowfullscreen></iframe>
-                    {% else %}
-                        <video class="w-full h-full" controls>
-                            <source src="{{ project.demo_video_url }}" type="video/mp4">
-                            متصفحك لا يدعم تشغيل الفيديو المباشر.
-                        </video>
-                    {% endif %}
-                </div>
-            </div>
-            {% endif %}
-
             <!-- Technical Stack Details -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div class="glass-card rounded-2xl p-6 space-y-4">
-                    <h3 class="text-base font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3">
                         <span class="material-symbols-outlined text-secondary">memory</span>
                         التقنيات المستخدمة
                     </h3>
                     <ul class="space-y-2.5 text-xs md:text-sm">
                         {% for tech in project.technologies.all %}
                         <li class="flex items-center gap-2 text-on-surface">
-                            <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
-                            <span class="font-bold text-white">{{ tech.name }}</span>
+                            <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                            <span class="font-bold text-slate-900 dark:text-white">{{ tech.name }}</span>
                             <span class="text-on-surface-variant text-xs">({{ tech.category.name }})</span>
                         </li>
                         {% empty %}
@@ -137,32 +117,32 @@
                 </div>
 
                 <div class="glass-card rounded-2xl p-6 space-y-4">
-                    <h3 class="text-base font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3">
                         <span class="material-symbols-outlined text-primary">info</span>
                         بيانات العميل والإضافة
                     </h3>
                     <ul class="space-y-3 text-xs md:text-sm text-on-surface">
-                        <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <li class="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-2">
                             <span class="text-on-surface-variant">الجهة / الجامعة:</span>
-                            <span class="font-bold text-white">{{ project.client_name }}</span>
+                            <span class="font-bold text-slate-900 dark:text-white">{{ project.client_name }}</span>
                         </li>
-                        <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <li class="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-2">
                             <span class="text-on-surface-variant">الدولة:</span>
-                            <span class="font-bold text-white">{{ project.country }}</span>
+                            <span class="font-bold text-slate-900 dark:text-white">{{ project.country }}</span>
                         </li>
-                        <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <li class="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-2">
                             <span class="text-on-surface-variant">رابط المعاينة:</span>
                             {% if project.project_url %}
                             <a href="{{ project.project_url }}" target="_blank" class="text-secondary font-bold hover:underline flex items-center gap-1">
                                 فتح الرابط <span class="material-symbols-outlined text-xs">open_in_new</span>
                             </a>
                             {% else %}
-                            <span class="text-amber-400 font-semibold text-xs">غير متوفر</span>
+                            <span class="text-amber-500 font-semibold text-xs">غير متوفر</span>
                             {% endif %}
                         </li>
                         <li class="flex items-center justify-between">
                             <span class="text-on-surface-variant">تاريخ الإضافة:</span>
-                            <span class="font-bold text-white">{{ project.created_at|date:"M Y" }}</span>
+                            <span class="font-bold text-slate-900 dark:text-white">{{ project.created_at|date:"M Y" }}</span>
                         </li>
                     </ul>
                 </div>
@@ -175,7 +155,7 @@
             
             <!-- LIVE DEMO CARD IN SIDEBAR -->
             <div class="glass-card rounded-3xl p-6 space-y-4 border border-primary/30">
-                <h3 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3">
                     <span class="material-symbols-outlined text-primary">language</span>
                     رابط التجربة والمعاينة
                 </h3>
@@ -185,13 +165,13 @@
                     <p class="text-xs text-on-surface-variant leading-relaxed">
                         يمكنك الانتقال فوراً لرابط المعاينة الحي واختبار وتجربة أداء النظام:
                     </p>
-                    <a href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer" class="w-full bg-gradient-to-r from-primary via-secondary to-emerald-400 hover:opacity-90 text-slate-950 py-3.5 rounded-xl font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95">
+                    <a href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer" class="w-full bg-gradient-to-r from-primary via-secondary to-emerald-500 hover:opacity-90 text-white py-3.5 rounded-xl font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95">
                         <span class="material-symbols-outlined text-base">open_in_new</span>
                         دخول موقع المشروع الحي (Live Demo)
                     </a>
                 </div>
                 {% else %}
-                <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs space-y-2">
+                <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-300 text-xs space-y-2">
                     <div class="font-bold flex items-center gap-1">
                         <span class="material-symbols-outlined text-base">info</span>
                         رابط المعاينة غير متوفر حالياً
@@ -205,14 +185,14 @@
 
             <!-- Deliverables List Card -->
             <div class="glass-card rounded-3xl p-6 space-y-4">
-                <h3 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
-                    <span class="material-symbols-outlined text-emerald-400">inventory</span>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3">
+                    <span class="material-symbols-outlined text-emerald-500">inventory</span>
                     مخرجات وتسليمات المشروع
                 </h3>
                 
                 <div class="space-y-3">
                     {% for del in project.deliverables %}
-                    <div class="p-3.5 rounded-xl bg-surface-container border border-white/5 flex items-center justify-between">
+                    <div class="p-3.5 rounded-xl bg-surface-container border border-slate-200 dark:border-white/5 flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <div class="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                                 <span class="material-symbols-outlined text-lg">
@@ -223,11 +203,11 @@
                                 </span>
                             </div>
                             <div>
-                                <div class="text-xs font-bold text-white">{{ del }}</div>
+                                <div class="text-xs font-bold text-slate-900 dark:text-white">{{ del }}</div>
                                 <div class="text-[10px] text-on-surface-variant">ملف مكتمل وجاهز</div>
                             </div>
                         </div>
-                        <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
+                        <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
                     </div>
                     {% empty %}
                     <div class="text-xs text-on-surface-variant italic">الكود المصدري كاملاً والتوثيق.</div>
@@ -236,11 +216,11 @@
             </div>
 
             <!-- WhatsApp Action Callout Card -->
-            <div class="bg-gradient-to-br from-surface-container via-surface-container-high to-primary/20 border border-white/10 rounded-3xl p-6 text-center space-y-4 relative overflow-hidden">
-                <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mx-auto">
+            <div class="bg-gradient-to-br from-surface-container via-surface-container to-primary/10 border border-slate-200 dark:border-white/10 rounded-3xl p-6 text-center space-y-4 relative overflow-hidden">
+                <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-500 mx-auto">
                     <span class="material-symbols-outlined text-3xl">chat</span>
                 </div>
-                <h4 class="text-lg font-bold text-white">هل تود تنفيذ نظام مشابه؟</h4>
+                <h4 class="text-lg font-bold text-slate-900 dark:text-white">هل تود تنفيذ نظام مشابه؟</h4>
                 <p class="text-xs text-on-surface-variant leading-relaxed">
                     تواصل مباشرة مع المهندسين المختصين لمناقشة التفاصيل البرمجية والتكلفة وخطة الإنجاز.
                 </p>

@@ -1,100 +1,102 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}تواصل معنا | استوديو مشاريع التخرج{% endblock %}
+{% block title %}تواصل معنا | Contact Us{% endblock %}
 
 {% block content %}
-<main class="w-full max-w-[1440px] mx-auto px-4 md:px-8 py-12 space-y-12">
+<main class="w-full max-w-[1440px] mx-auto px-4 md:px-8 py-8 md:py-12 space-y-12">
     
-    <!-- Header Section -->
-    <section class="text-center max-w-2xl mx-auto space-y-3">
-        <span class="text-xs font-bold text-primary uppercase tracking-wider">التواصل المباشر</span>
-        <h1 class="text-3xl md:text-5xl font-extrabold text-white">نحن هنا لمساعدتك في مشروع تخرجك</h1>
+    <div class="text-center max-w-2xl mx-auto space-y-4">
+        <span class="px-4 py-1.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 inline-block">
+            التواصل المباشر والاستشارات
+        </span>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
+            نحن هنا لمساعدتك في بناء مشروعك
+        </h1>
         <p class="text-on-surface-variant text-sm md:text-base leading-relaxed">
-            اختر طريقة التواصل المناسبة لك، وسيرد عليك الفريق المختص خلال وقت قياسي.
+            تحدث معنا مباشرة لمناقشة الفكرة والتكلفة والجدول الزمني لتطبيقك أو مشروع تخرجك.
         </p>
-    </section>
+    </div>
 
-    <!-- Direct Contact Cards -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        <!-- WhatsApp Direct Card -->
-        <div class="glass-card rounded-2xl p-8 space-y-6 flex flex-col justify-between hover:border-emerald-400/40 transition-all">
-            <div class="space-y-4">
-                <div class="flex items-center gap-3 text-emerald-400">
-                    <span class="material-symbols-outlined text-4xl">chat</span>
+        <!-- Direct Channels (Left 5 Cols) -->
+        <div class="lg:col-span-5 space-y-6">
+            <div class="glass-card p-6 md:p-8 rounded-3xl space-y-6">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-4">
+                    <span class="material-symbols-outlined text-primary">contact_support</span>
+                    قنوات التواصل المباشر
+                </h2>
+
+                <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي" target="_blank" class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-4 hover:border-emerald-500/40 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-2xl font-bold">
+                        <span class="material-symbols-outlined">chat</span>
+                    </div>
                     <div>
-                        <h2 class="text-xl font-bold text-white">المحادثة المباشرة عبر واتساب</h2>
-                        <span class="text-xs text-emerald-400 font-semibold">رد سريع في أقل من ساعتين</span>
+                        <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400">تحدث عبر الواتساب (تجاوب سريع)</div>
+                        <div class="text-sm font-extrabold text-slate-900 dark:text-white dir-ltr text-end">+20 15 54397407</div>
+                    </div>
+                </a>
+
+                <div class="p-4 rounded-2xl bg-surface-container border border-slate-200 dark:border-white/10 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center text-2xl font-bold">
+                        <span class="material-symbols-outlined">schedule</span>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-slate-900 dark:text-white">ساعات العمل والرد</div>
+                        <div class="text-xs text-on-surface-variant">متاحون يومياً من 9:00 صباحاً وحتى 12:00 منتصف الليل</div>
                     </div>
                 </div>
-                <p class="text-xs md:text-sm text-on-surface-variant leading-relaxed">
-                    الطريقة الأسرع لمناقشة تفاصيل مشروعك، الاستفسار عن التكلفة والمواعيد، أو متابعة التعديلات.
-                </p>
-                <ul class="space-y-2 text-xs text-on-surface">
-                    <li class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
-                        استشارة فنية وأكاديمية مجانية
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
-                        مراجعة خطة العمل والجدول الزمني
-                    </li>
-                </ul>
             </div>
-
-            <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تفاصيل%20المشروع" target="_blank" class="w-full bg-[#10B981] hover:bg-[#059669] text-white py-3.5 rounded-xl font-bold text-sm text-center flex items-center justify-center gap-2 whatsapp-glow transition-all active:scale-95">
-                <span class="material-symbols-outlined">chat</span>
-                تواصل عبر واتساب: 01554397407
-            </a>
         </div>
 
-        <!-- Direct Inquiry Form -->
-        <div class="glass-card rounded-2xl p-8 space-y-6">
-            <div class="space-y-2">
-                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <!-- Contact Form (Right 7 Cols) -->
+        <div class="lg:col-span-7">
+            <div class="glass-card p-6 md:p-8 rounded-3xl space-y-6">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-4">
                     <span class="material-symbols-outlined text-primary">mail</span>
                     إرسال طلب استفسار
                 </h2>
-                <p class="text-xs text-on-surface-variant">أدخل بياناتك وسنتواصل معك فوراً.</p>
+
+                {% if success %}
+                <div class="p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-xl">check_circle</span>
+                    <span>تم استلام رسالتك بنجاح، شكراً لك يا {{ client_name }}! سيتواصل معك فريقنا في أقرب وقت.</span>
+                </div>
+                {% endif %}
+
+                <form method="post" class="space-y-4">
+                    {% csrf_token %}
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1">الاسم الكريم *</label>
+                            <input type="text" name="name" required class="w-full bg-background border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary"/>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1">البريد الإلكتروني / رقم الهاتف *</label>
+                            <input type="text" name="email" required class="w-full bg-background border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary"/>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1">موضوع الاستفسار / الكلية *</label>
+                        <input type="text" name="subject" required class="w-full bg-background border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary"/>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1">تفاصيل الفكرة أو المشكلة *</label>
+                        <textarea name="message" rows="4" required class="w-full bg-background border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary"></textarea>
+                    </div>
+
+                    <button type="submit" class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-xl font-bold text-xs transition-colors flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">send</span>
+                        إرسال الطلب الآن
+                    </button>
+                </form>
             </div>
-
-            {% if success %}
-            <div class="p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-bold space-y-1">
-                <div>تم استلام رسالتك بنجاح، شكراً لك يا {{ client_name }}!</div>
-                <div class="text-on-surface-variant font-normal">سيتواصل معك فريقنا في أقرب وقت.</div>
-            </div>
-            {% else %}
-            <form method="post" action="." class="space-y-4">
-                {% csrf_token %}
-                <div>
-                    <label class="block text-xs font-bold text-white mb-1">الاسم الكريم</label>
-                    <input type="text" name="name" required class="w-full bg-surface-container border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="أدخل اسمك..."/>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-white mb-1">رقم الهاتف / الواتساب أو البريد</label>
-                    <input type="text" name="email" required class="w-full bg-surface-container border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="010xxxxxxx / example@gmail.com"/>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-white mb-1">موضوع الاستفسار / الكلية</label>
-                    <input type="text" name="subject" required class="w-full bg-surface-container border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="مثال: مشروع حاسبات ذكاء اصطناعي"/>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-white mb-1">تفاصيل الفكرة أو المشروع</label>
-                    <textarea name="message" rows="3" required class="w-full bg-surface-container border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="اكتب نبذة مختصرة عما تحتاجه..."></textarea>
-                </div>
-
-                <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-white py-3 rounded-xl font-bold text-xs transition-colors">
-                    إرسال الطلب
-                </button>
-            </form>
-            {% endif %}
         </div>
 
-    </section>
+    </div>
 
 </main>
 {% endblock %}
