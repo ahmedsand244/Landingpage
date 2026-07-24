@@ -32,12 +32,15 @@ class Project(models.Model):
     summary = models.TextField(help_text="A brief short summary of the project.")
     overview = models.TextField(help_text="Detailed overview of architecture and features.")
     
-    # Many-to-many relationship with Technology (resolved via string path)
+    # Live Project Link / Demo URL
+    project_url = models.URLField(blank=True, null=True, help_text="رابط المعاينة المباشرة أو التجربة الحية للمشروع (Live Demo / Project URL)")
+    
+    # Many-to-many relationship with Technology
     technologies = models.ManyToManyField('services.Technology', related_name='projects', blank=True)
     
     demo_video_url = models.URLField(blank=True, null=True, help_text="YouTube/Vimeo embed or MP4 video URL")
     
-    # Store deliverables as a JSON list (e.g. ['Source Code', 'IEEE Thesis PDF', 'Presentation Slide', 'Live Demo'])
+    # Store deliverables as a JSON list
     deliverables = models.JSONField(default=list, blank=True, help_text="List of deliverables included (e.g., source code, PDF, presentation)")
     
     is_featured = models.BooleanField(default=False, db_index=True)

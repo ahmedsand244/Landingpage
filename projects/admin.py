@@ -13,9 +13,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'project_type', 'client_name', 'country', 'is_featured', 'created_at')
+    list_display = ('title', 'project_type', 'client_name', 'project_url', 'is_featured', 'created_at')
     list_filter = ('project_type', 'is_featured', 'country', 'created_at')
-    search_fields = ('title', 'client_name', 'summary', 'overview')
+    search_fields = ('title', 'client_name', 'summary', 'overview', 'project_url')
     prepopulated_fields = {'slug': ('title',)}
     inlines = [ProjectGalleryInline]
     filter_horizontal = ('technologies',)

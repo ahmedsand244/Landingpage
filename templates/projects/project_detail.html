@@ -25,18 +25,33 @@
 
     <!-- Project Header Banner -->
     <div class="glass-card rounded-3xl p-6 md:p-10 space-y-6 relative overflow-hidden">
-        <div class="flex flex-wrap items-center gap-3">
-            <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-primary/20 text-primary border border-primary/40">
-                {{ project.get_project_type_display }}
-            </span>
-            <span class="text-xs font-mono text-on-surface-variant flex items-center gap-1">
-                <span class="material-symbols-outlined text-sm">location_on</span>
-                {{ project.country }}
-            </span>
-            <span class="text-xs font-mono text-on-surface-variant flex items-center gap-1">
-                <span class="material-symbols-outlined text-sm">domain</span>
-                {{ project.client_name }}
-            </span>
+        <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-primary/20 text-primary border border-primary/40">
+                    {{ project.get_project_type_display }}
+                </span>
+                <span class="text-xs font-mono text-on-surface-variant flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">location_on</span>
+                    {{ project.country }}
+                </span>
+                <span class="text-xs font-mono text-on-surface-variant flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">domain</span>
+                    {{ project.client_name }}
+                </span>
+            </div>
+
+            <!-- PROMINENT LIVE DEMO LINK BUTTON IN HEADER -->
+            {% if project.project_url %}
+            <a href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-primary via-secondary to-emerald-400 hover:opacity-90 text-slate-950 px-6 py-3 rounded-2xl font-extrabold text-sm shadow-lg shadow-primary/20 transition-all active:scale-95">
+                <span class="material-symbols-outlined text-xl">open_in_new</span>
+                <span>🌐 دخول وتجربة المشروع الحي (Live Demo)</span>
+            </a>
+            {% else %}
+            <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-300 px-4 py-2.5 rounded-xl text-xs font-semibold">
+                <span class="material-symbols-outlined text-base">link_off</span>
+                <span>🔒 رابط المعاينة المباشرة غير متوفر حالياً</span>
+            </div>
+            {% endif %}
         </div>
 
         <h1 class="text-2xl md:text-4xl font-extrabold text-white leading-tight">
@@ -101,28 +116,6 @@
             </div>
             {% endif %}
 
-            <!-- Additional Gallery Screenshots -->
-            {% if project.gallery.all|length > 1 %}
-            <div class="glass-card rounded-3xl p-6 md:p-8 space-y-4">
-                <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-4">
-                    <span class="material-symbols-outlined text-emerald-400">collections</span>
-                    معرض صور النظام والواجهات
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {% for item in project.gallery.all|slice:"1:" %}
-                    <div class="glass-card rounded-2xl overflow-hidden aspect-video relative group">
-                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ item.image.url }}" alt="{{ item.caption|default:project.title }}"/>
-                        {% if item.caption %}
-                            <div class="absolute bottom-0 inset-x-0 p-2 bg-black/70 text-white text-center text-xs">
-                                {{ item.caption }}
-                            </div>
-                        {% endif %}
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-
             <!-- Technical Stack Details -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div class="glass-card rounded-2xl p-6 space-y-4">
@@ -157,6 +150,16 @@
                             <span class="text-on-surface-variant">الدولة:</span>
                             <span class="font-bold text-white">{{ project.country }}</span>
                         </li>
+                        <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                            <span class="text-on-surface-variant">رابط المعاينة:</span>
+                            {% if project.project_url %}
+                            <a href="{{ project.project_url }}" target="_blank" class="text-secondary font-bold hover:underline flex items-center gap-1">
+                                فتح الرابط <span class="material-symbols-outlined text-xs">open_in_new</span>
+                            </a>
+                            {% else %}
+                            <span class="text-amber-400 font-semibold text-xs">غير متوفر</span>
+                            {% endif %}
+                        </li>
                         <li class="flex items-center justify-between">
                             <span class="text-on-surface-variant">تاريخ الإضافة:</span>
                             <span class="font-bold text-white">{{ project.created_at|date:"M Y" }}</span>
@@ -170,6 +173,36 @@
         <!-- Right 4 Columns: Sticky Sidebar -->
         <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
             
+            <!-- LIVE DEMO CARD IN SIDEBAR -->
+            <div class="glass-card rounded-3xl p-6 space-y-4 border border-primary/30">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+                    <span class="material-symbols-outlined text-primary">language</span>
+                    رابط التجربة والمعاينة
+                </h3>
+
+                {% if project.project_url %}
+                <div class="space-y-3">
+                    <p class="text-xs text-on-surface-variant leading-relaxed">
+                        يمكنك الانتقال فوراً لرابط المعاينة الحي واختبار وتجربة أداء النظام:
+                    </p>
+                    <a href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer" class="w-full bg-gradient-to-r from-primary via-secondary to-emerald-400 hover:opacity-90 text-slate-950 py-3.5 rounded-xl font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-base">open_in_new</span>
+                        دخول موقع المشروع الحي (Live Demo)
+                    </a>
+                </div>
+                {% else %}
+                <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs space-y-2">
+                    <div class="font-bold flex items-center gap-1">
+                        <span class="material-symbols-outlined text-base">info</span>
+                        رابط المعاينة غير متوفر حالياً
+                    </div>
+                    <p class="text-[11px] text-on-surface-variant leading-relaxed">
+                        هذا المشروع مغلق أو مخصص لمعاينة الكود المباشرة. تواصل معنا لمشاهدة عرض حي للنظام.
+                    </p>
+                </div>
+                {% endif %}
+            </div>
+
             <!-- Deliverables List Card -->
             <div class="glass-card rounded-3xl p-6 space-y-4">
                 <h3 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">

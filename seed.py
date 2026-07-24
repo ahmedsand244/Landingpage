@@ -43,18 +43,6 @@ def seed_data():
         category="general",
         order=2
     )
-    FAQ.objects.create(
-        question="من يملك الملكية الفكرية والكود المصدري للمشروع؟",
-        answer="أنت تملك 100% من الكود المصدري (Source Code) والملكية الفكرية والتسليم الكامل فور انتهاء المشروع دون أي رسوم خفية.",
-        category="technical",
-        order=1
-    )
-    FAQ.objects.create(
-        question="ما هي آلية السداد والتعاقد للمشاريع؟",
-        answer="يتم تقسيم المدفوعات على مراحل منطقية مرنبة حسب الإنجاز (دُفعة بدء، دُفعة بعد معاينة النسخة الأولية، والدُفعة النهائية عند التسليم النهائي).",
-        category="pricing",
-        order=1
-    )
 
     print("Creating Testimonials...")
     Testimonial.objects.create(
@@ -69,12 +57,6 @@ def seed_data():
         review_text="مشروع التخرج في الذكاء الاصطناعي كان مبنياً باحترافية شديدة، وحصلت على تقدير امتياز في المناقشة بفضل الشرح والتوثيق الممتاز.",
         rating=5
     )
-    Testimonial.objects.create(
-        name="خالد العتيبي",
-        role_university="مدير عمليات شركة تجارية - السعودية",
-        review_text="نظام أتمتة المبيعات والمخازن يعمل لدينا بكفاءة عالية وبدون أي مشاكل، أنصح بالتعامل معهم بشدة.",
-        rating=5
-    )
 
     print("Creating Business & Academic Projects...")
     proj1 = Project.objects.create(
@@ -84,6 +66,7 @@ def seed_data():
         country="UAE",
         summary="منصة بزنس متكاملة لإدارة الأسطول، تتبع الشحنات بالذكاء الاصطناعي، ولوحة تحكم حية للمبيعات والعمليات.",
         overview="نظام إدارة لوجستيات متكامل يعتمد على Django backend و React frontend. يربط بين السائقين والعملاء والإدارة عبر خرائط حية وتنبيهات لحظية لحالة الشحنات.",
+        project_url="https://demo.expresslogistics.example.com",
         deliverables=["Full Source Code", "Web Admin Dashboard", "Mobile Apps (iOS/Android)", "Cloud Hosting Setup"],
         is_featured=True
     )
@@ -96,6 +79,7 @@ def seed_data():
         country="KSA",
         summary="تطبيق موبايل تجاري متكامل للبيع والتسوق الإلكتروني مع دعم الدفع عبر البوابة وتنبيهات العروض.",
         overview="تطبيق هواتف ذكية تم تطويره بلغة Flutter ليخدم أصحاب المتاجر والشركات التجارية مع دعم وسائل الدفع الإلكتروني المباشرة وإدارة المخزون والتوصيل.",
+        project_url="https://retailplus-app.example.com",
         deliverables=["Flutter Source Code", "REST APIs", "Payment Gateway Integration"],
         is_featured=True
     )
@@ -108,6 +92,7 @@ def seed_data():
         country="Egypt",
         summary="مشروع تخرج أكاديمي متقدم يستخدم الشبكات العصبية العميقة للتشخيص المبكر للأمراض من الأشعة والتحاليل بنسبة دقة 95%.",
         overview="نظام ذكاء اصطناعي طبي متكامل يشمل واجهة RESTful API ونموذج Deep Learning مع التوثيق الأكاديمي الكامل والأبحاث المعتمدة للمناقشة.",
+        project_url="https://ai-medical-demo.example.com",
         deliverables=["Source Code", "IEEE Thesis Paper PDF", "Presentation Deck", "Docker Setup"],
         is_featured=True
     )
