@@ -22,14 +22,16 @@ class FAQ(models.Model):
 
 class Testimonial(models.Model):
     name = models.CharField(max_length=150)
+    email = models.EmailField(blank=True, null=True, help_text="Optional email for notification")
     role_university = models.CharField(max_length=200, help_text="Role or University/Company name")
     review_text = models.TextField()
-    video_url = models.URLField(blank=True, null=True, help_text="YouTube/Vimeo demo url from testimonial")
-    rating = models.IntegerField(default=5, choices=[(i, str(i)) for i in range(1, 6)])
-    avatar = models.ImageField(upload_to='testimonials/avatars/', blank=True, null=True)
+    rating = models.IntegerField(default=5, choices=[(i, f"{i} Stars") for i in range(1, 6)])
+    is_approved = models.BooleanField(default=True, help_text="Approved to show publicly")
+    admin_reply = models.TextField(blank=True, null=True, help_text="Official admin reply to this comment")
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     class Meta:
-        ordering = ['name']
+        ordering = ['-created_at', '-id']
 
     def __str__(self):
-        return f"{self.name} - {self.role_university}"
+        return f"{self.name} ({self.rating}★) - {self.role_university}"

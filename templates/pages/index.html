@@ -191,34 +191,137 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    {% if testimonials %}
-    <section class="max-w-[1440px] mx-auto px-4 md:px-8">
-        <div class="glass-card p-8 md:p-12 rounded-3xl relative overflow-hidden">
-            <div class="text-center max-w-xl mx-auto mb-10">
-                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">ثقة العملاء والشركات</span>
-                <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">ماذا يقول عملاؤنا وشركاؤنا؟</h2>
+    <!-- REAL INTERACTIVE COMMENTS & REVIEWS SECTION -->
+    <section class="max-w-[1440px] mx-auto px-4 md:px-8 space-y-8" id="comments-section">
+        <div class="glass-card p-8 md:p-12 rounded-3xl space-y-12">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">آراء وتعليقات الزوار والعملاء</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white">شاركنا رأيك أو استفسارك الحقيقي</h2>
+                <p class="text-xs md:text-sm text-on-surface-variant">يمكنك كتابة تعليقك وتقييمك وتلقي الرد المباشر من فريق وإدارة الاستوديو.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Comment Submission Form -->
+            <div class="max-w-3xl mx-auto bg-surface-container p-6 md:p-8 rounded-2xl border border-white/10 space-y-6">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+                    <span class="material-symbols-outlined text-primary">rate_review</span>
+                    إضافة تعليق / تقييم جديد
+                </h3>
+
+                {% if comment_success %}
+                <div class="p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs md:text-sm font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-xl">check_circle</span>
+                    شكراً لك يا {{ commenter_name }}! تم نشر تعليقك بنجاح وسنقوم بالرد عليه قريباً.
+                </div>
+                {% endif %}
+
+                <form method="post" action="#comments-section" class="space-y-4">
+                    {% csrf_token %}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-white mb-1">الاسم الكريم <span class="text-red-400">*</span></label>
+                            <input type="text" name="name" required class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="أدخل اسمك..."/>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-white mb-1">الصفة / الشركة أو الجامعة</label>
+                            <input type="text" name="role_university" class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="مثال: صاحب شركة ناشئة / طالب حاسبات"/>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-white mb-1">البريد الإلكتروني (اختياري)</label>
+                            <input type="email" name="email" class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="example@gmail.com"/>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-white mb-1">التقييم بالنجوم</label>
+                            <select name="rating" class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-amber-400 focus:outline-none focus:border-primary">
+                                <option value="5" selected>⭐⭐⭐⭐⭐ (5 نجوم - ممتاز)</option>
+                                <option value="4">⭐⭐⭐⭐ (4 نجوم - جيد جداً)</option>
+                                <option value="3">⭐⭐⭐ (3 نجوم - جيد)</option>
+                                <option value="2">⭐⭐ (نجمتان)</option>
+                                <option value="1">⭐ (نجمة واحدة)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-white mb-1">تفاصيل التعليق أو الاستفسار <span class="text-red-400">*</span></label>
+                        <textarea name="review_text" rows="3" required class="w-full bg-background border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary" placeholder="اكتب رأيك أو سؤالك هنا..."></textarea>
+                    </div>
+
+                    <button type="submit" class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-xl font-bold text-xs transition-colors flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">send</span>
+                        نشر التعليق الآن
+                    </button>
+                </form>
+            </div>
+
+            <!-- Comments List Display -->
+            <div class="space-y-6 max-w-4xl mx-auto">
+                <h3 class="text-lg font-bold text-white border-b border-white/10 pb-3 flex items-center justify-between">
+                    <span>جميع التعليقات والآراء ({{ testimonials|length }})</span>
+                    <span class="text-xs text-on-surface-variant font-normal">تعليقات حقيقية ومحدثة</span>
+                </h3>
+
                 {% for t in testimonials %}
-                <div class="bg-surface-container p-6 rounded-2xl border border-white/5 space-y-4">
-                    <div class="flex items-center text-amber-400 gap-1 text-sm">
-                        {% for i in "12345" %}
-                        <span class="material-symbols-outlined text-base">star</span>
-                        {% endfor %}
+                <div class="bg-surface-container p-6 rounded-2xl border border-white/10 space-y-4">
+                    
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary font-bold text-base">
+                                {{ t.name|slice:":1" }}
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm md:text-base">{{ t.name }}</h4>
+                                <span class="text-xs text-on-surface-variant">{{ t.role_university }}</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center text-amber-400 gap-0.5 text-xs">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= t.rating %}
+                                    <span class="material-symbols-outlined text-base">star</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
-                    <p class="text-xs md:text-sm text-on-surface leading-relaxed italic">"{{ t.review_text }}"</p>
-                    <div class="border-t border-white/10 pt-3 flex justify-between items-center text-xs">
-                        <span class="font-bold text-white">{{ t.name }}</span>
-                        <span class="text-on-surface-variant">{{ t.role_university }}</span>
+
+                    <p class="text-xs md:text-sm text-on-surface leading-relaxed pr-2 border-r-2 border-primary/40">
+                        {{ t.review_text }}
+                    </p>
+
+                    <!-- Official Admin Reply Display -->
+                    {% if t.admin_reply %}
+                    <div class="mr-4 mt-3 p-4 rounded-xl bg-primary/10 border border-primary/30 space-y-1">
+                        <div class="flex items-center gap-2 text-xs font-bold text-primary">
+                            <span class="material-symbols-outlined text-base">verified</span>
+                            رد إدارة الاستوديو:
+                        </div>
+                        <p class="text-xs text-on-surface leading-relaxed">
+                            {{ t.admin_reply }}
+                        </p>
                     </div>
+                    {% endif %}
+
+                    {% if t.created_at %}
+                    <div class="text-[10px] text-on-surface-variant text-left pt-1 font-mono">
+                        {{ t.created_at|date:"Y-m-d H:i" }}
+                    </div>
+                    {% endif %}
+
+                </div>
+                {% empty %}
+                <div class="text-center py-8 text-on-surface-variant italic">
+                    لا توجد تعليقات حتى الآن. كن أول من يضيف تعليقاً!
                 </div>
                 {% endfor %}
             </div>
+
         </div>
     </section>
-    {% endif %}
 
     <!-- FAQ Section -->
     {% if faqs %}
