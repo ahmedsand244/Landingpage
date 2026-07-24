@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Testimonials | Graduation Projects Studio{% endblock %}
+
+{% block content %}
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-safe-margin py-3xl flex flex-col gap-3xl">
+    <!-- Header -->
+    <header class="text-center max-w-2xl mx-auto space-y-md">
+        <span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">TESTIMONIALS & TRUST</span>
+        <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary">Excellence Proven</h1>
+        <p class="font-body-base text-body-base text-on-surface-variant">Hear from elite students who achieved distinction and enterprise partners who found innovative solutions through our studio.</p>
+    </header>
+
+    <!-- Video Testimonials Bento -->
+    <section class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter">
+        {% if testimonials %}
+            <!-- Featured Video Large (First Testimonial) -->
+            {% with featured=testimonials.0 %}
+            <div class="md:col-span-8 glass-panel rounded-xl overflow-hidden relative group glow-hover transition-all duration-300 min-h-[400px] flex flex-col justify-end p-xl">
+                <div class="absolute inset-0 z-0">
+                    <img class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" data-alt="Featured presentation still" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARImFxxzTKR6cTVG2hcDUHG-Yu8VA6dHmBxKveMdhbvsvqeaCkUDYKtX06FBamT6pyaajxEJrph8LJ97WlA3qrhnl6v5i38RHVvntHwZpThOuZzzI2da0ki7BL-Xl8ufnteQ08Pipxk9UA37MlLyRoIZhxh4LHan2ZoF-QbPL4Qj8A8pAzowv34f_DpQKW48sAUd1HRDjwmN0GoXAKkAeWTfdybyAWExEWcPN6JzjKEReYl1eKlzE0ReeAZ1wWD6z7vCAOB9mf"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+                </div>
+                <div class="relative z-10 flex flex-col gap-md">
+                    {% if featured.video_url %}
+                        <a href="{{ featured.video_url }}" target="_blank" class="w-16 h-16 rounded-full bg-primary/20 backdrop-blur flex items-center justify-center border border-primary/50 text-primary hover:bg-primary/40 hover:scale-110 transition-all self-start">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                        </a>
+                    {% endif %}
+                    <div>
+                        <h3 class="font-headline-md text-headline-md text-on-surface">"{{ featured.review_text }}"</h3>
+                        <p class="font-body-base text-body-base text-primary mt-xs">{{ featured.name }} — {{ featured.role_university }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endwith %}
+
+            <!-- Side Video List (Remaining Testimonials) -->
+            <div class="md:col-span-4 flex flex-col gap-grid-gutter overflow-y-auto max-h-[450px] custom-scrollbar pr-2">
+                {% for test in testimonials|slice:"1:" %}
+                <div class="glass-panel rounded-xl p-md flex gap-md items-center cursor-pointer glow-hover transition-all relative overflow-hidden group">
+                    <div class="absolute inset-0 z-0">
+                        <img class="w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity" data-alt="Student workspace still" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb61KLL2VCQVwvg43ccp2vgFxqnJJnxgDu95BSb9Q8aYP5piOoSPNJz5r_mxAqijzM7sZEWVvOoX6uHXW-LFjCe5T3Ru42KPfJHT775i69Qe1atiY931SeZXhohC6GHiaUCD_NvyjNuDhSAVehRWJ_3-NQet7gAfjnDQ46rxEwOXKQpOeP6TDWw4hKakK2PH1Ww-uUtQ9ucx26--zcj55pVOaM7imcFVoi74pUCnq6b9jgV5ZGFJPOafWRx4sD95EEK1KRDtMj"/>
+                    </div>
+                    {% if test.video_url %}
+                        <a href="{{ test.video_url }}" target="_blank" class="relative z-10 w-12 h-12 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-white/10 hover:bg-primary/20">
+                            <span class="material-symbols-outlined text-secondary">play_arrow</span>
+                        </a>
+                    {% else %}
+                        <div class="relative z-10 w-12 h-12 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-white/10">
+                            <span class="material-symbols-outlined text-primary">chat</span>
+                        </div>
+                    {% endif %}
+                    <div class="relative z-10 flex-1">
+                        <p class="font-label-caps text-label-caps text-secondary mb-1">{{ test.role_university }}</p>
+                        <h4 class="font-body-base text-body-base text-on-surface line-clamp-2">{{ test.review_text }}</h4>
+                        <p class="text-body-sm text-on-surface-variant font-semibold mt-1">— {{ test.name }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="col-span-12 glass-panel rounded-xl p-xl text-center">
+                <p class="text-on-surface-variant italic">No testimonials available at this moment.</p>
+            </div>
+        {% endif %}
+    </section>
+
+    <!-- Detailed Written Testimonials (Full Grid) -->
+    {% if testimonials %}
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter mt-lg">
+        {% for test in testimonials %}
+        <div class="glass-card rounded-xl p-lg flex flex-col justify-between gap-md relative">
+            <div class="flex items-center gap-xs text-secondary">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= test.rating %}
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    {% else %}
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">star</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <p class="font-body-base text-body-base text-on-surface-variant flex-grow">
+                "{{ test.review_text }}"
+            </p>
+            <div class="flex items-center gap-md border-t border-white/5 pt-md mt-sm">
+                {% if test.avatar %}
+                    <img class="w-10 h-10 rounded-full object-cover border border-primary/30" src="{{ test.avatar.url }}" alt="{{ test.name }} avatar"/>
+                {% else %}
+                    <div class="w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary font-bold">
+                        {{ test.name|slice:":1" }}
+                    </div>
+                {% endif %}
+                <div>
+                    <h5 class="font-body-base text-body-base text-on-surface font-semibold">{{ test.name }}</h5>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">{{ test.role_university }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- Stats / Badges Banner -->
+    <section class="glass-panel rounded-xl p-xl flex flex-wrap justify-center md:justify-between items-center gap-xl border-t border-b-0 border-r-0 border-l-0 border-white/10" style="background: linear-gradient(to right, rgba(14,19,31,0.5), rgba(76,215,246,0.05), rgba(14,19,31,0.5));">
+        <div class="text-center">
+            <p class="font-display-lg text-display-lg text-primary">500+</p>
+            <p class="font-label-caps text-label-caps text-on-surface-variant">Projects Defended</p>
+        </div>
+        <div class="text-center">
+            <div class="flex items-center justify-center text-secondary mb-xs">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
+            <p class="font-display-lg text-headline-md text-on-surface">4.9/5</p>
+            <p class="font-label-caps text-label-caps text-on-surface-variant">Average Rating</p>
+        </div>
+        <div class="text-center">
+            <p class="font-display-lg text-display-lg text-secondary">98%</p>
+            <p class="font-label-caps text-label-caps text-on-surface-variant">Distinction Rate</p>
+        </div>
+    </section>
+</main>
+{% endblock %}

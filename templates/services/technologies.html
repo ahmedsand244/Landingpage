@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Technologies Stack | Graduation Projects Studio{% endblock %}
+
+{% block content %}
+<main class="flex-grow pt-2xl pb-3xl px-safe-margin max-w-[1440px] mx-auto w-full flex gap-xl relative">
+    <!-- Background Accents -->
+    <div class="absolute top-0 left-1/4 w-1/2 h-64 bg-primary/10 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+    <div class="absolute bottom-1/4 right-0 w-1/3 h-96 bg-secondary/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    
+    <div class="w-full">
+        <header class="mb-2xl text-center max-w-3xl mx-auto">
+            <span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">CURATED TOOLKITS</span>
+            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">Elite Technology Stack</h1>
+            <p class="font-body-base text-body-base text-on-surface-variant">Powering academic excellence and enterprise-grade solutions through a meticulously curated selection of modern frameworks and tools.</p>
+        </header>
+
+        {% if categories %}
+            {% for category in categories %}
+                {% if category.technologies.all %}
+                    <div class="mb-2xl">
+                        <h2 class="font-headline-md text-headline-md text-primary border-b border-white/5 pb-xs mb-lg flex items-center gap-sm">
+                            <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+                            {{ category.name }}
+                        </h2>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-grid-gutter">
+                            {% for tech in category.technologies.all %}
+                            <div class="glass-panel rounded-xl p-lg flex flex-col items-center justify-center gap-md aspect-square glow-hover transition-all duration-300 group cursor-pointer">
+                                <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center border border-white/5 group-hover:border-secondary/30 transition-colors">
+                                    {% if tech.icon_svg %}
+                                        <div class="w-8 h-8 text-on-surface-variant group-hover:text-secondary flex items-center justify-center">
+                                            {{ tech.icon_svg|safe }}
+                                        </div>
+                                    {% else %}
+                                        <span class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-secondary transition-colors">code</span>
+                                    {% endif %}
+                                </div>
+                                <h3 class="font-headline-md text-headline-md text-on-surface text-center font-bold">{{ tech.name }}</h3>
+                                <p class="font-body-sm text-[12px] text-on-surface-variant text-center line-clamp-2 px-xs">{{ tech.description }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="glass-panel rounded-xl p-xl text-center">
+                <p class="text-on-surface-variant italic">No technologies registered in the database yet.</p>
+            </div>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

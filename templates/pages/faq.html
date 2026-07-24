@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}FAQ | Graduation Projects Studio{% endblock %}
+
+{% block content %}
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-md md:px-safe-margin py-2xl lg:py-3xl flex flex-col relative z-10" x-data="{ activeCategory: 'academic' }">
+    <div class="flex flex-col gap-sm text-center mb-huge">
+        <span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">FAQ & ANSWER MATRIX</span>
+        <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface tracking-tight leading-tight">
+            Clear Answers for <br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">High-Stakes Projects</span>
+        </h1>
+        <p class="font-body-base text-body-base text-on-surface-variant max-w-xl mx-auto">
+            Everything you need to know about intellectual property, milestone deliveries, academic report preparation, and post-graduation startup pathways.
+        </p>
+    </div>
+
+    <!-- Bento Grid / Accordion Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-grid-gutter items-start max-w-6xl mx-auto w-full">
+        <!-- Sidebar Navigation for Categories (Desktop) -->
+        <aside class="hidden lg:flex flex-col col-span-3 sticky top-[120px] glass-card rounded-xl p-md">
+            <nav class="flex flex-col space-y-sm" id="category-nav">
+                <button class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-left font-body-base text-body-base transition-all"
+                        :class="activeCategory === 'academic' ? 'text-primary bg-primary/10 border border-primary/20' : 'text-on-surface-variant hover:bg-white/5'"
+                        @click="activeCategory = 'academic'">
+                    <span class="material-symbols-outlined text-[20px]">school</span> Academic
+                </button>
+                <button class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-left font-body-base text-body-base transition-all"
+                        :class="activeCategory === 'ownership' ? 'text-primary bg-primary/10 border border-primary/20' : 'text-on-surface-variant hover:bg-white/5'"
+                        @click="activeCategory = 'ownership'">
+                    <span class="material-symbols-outlined text-[20px]">code_blocks</span> Ownership
+                </button>
+                <button class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-left font-body-base text-body-base transition-all"
+                        :class="activeCategory === 'payment' ? 'text-primary bg-primary/10 border border-primary/20' : 'text-on-surface-variant hover:bg-white/5'"
+                        @click="activeCategory = 'payment'">
+                    <span class="material-symbols-outlined text-[20px]">credit_card</span> Payment
+                </button>
+                <button class="flex items-center gap-sm px-md py-sm rounded-DEFAULT text-left font-body-base text-body-base transition-all"
+                        :class="activeCategory === 'commercial' ? 'text-primary bg-primary/10 border border-primary/20' : 'text-on-surface-variant hover:bg-white/5'"
+                        @click="activeCategory = 'commercial'">
+                    <span class="material-symbols-outlined text-[20px]">business</span> Commercial
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main FAQ Accordions -->
+        <div class="col-span-1 lg:col-span-9 flex flex-col space-y-2xl" id="faq-container">
+            
+            <!-- Category: Academic Guarantees -->
+            <section class="faq-section" x-show="activeCategory === 'academic'" x-transition>
+                <h2 class="font-headline-md text-headline-md text-on-surface mb-lg flex items-center gap-sm border-b border-white/5 pb-sm">
+                    <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">school</span>
+                    Academic Guarantees
+                </h2>
+                <div class="flex flex-col space-y-md">
+                    {% for faq in faqs %}
+                        {% if faq.category == 'general' %}
+                            <div class="glass-card rounded-xl p-lg cursor-pointer group" x-data="{ open: false }" @click="open = !open">
+                                <div class="flex justify-between items-center w-full">
+                                    <h3 class="font-headline-md text-[18px] text-on-surface group-hover:text-primary transition-colors">{{ faq.question }}</h3>
+                                    <span class="material-symbols-outlined text-outline-variant transition-transform duration-300" :class="open ? 'rotate-180' : ''">expand_more</span>
+                                </div>
+                                <div x-show="open" x-transition.opacity class="mt-sm border-t border-white/10 pt-md">
+                                    <p class="font-body-base text-body-base text-on-surface-variant">
+                                        {{ faq.answer }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% empty %}
+                        <p class="text-on-surface-variant italic">No FAQs available for this category.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Category: Code Ownership -->
+            <section class="faq-section" x-show="activeCategory === 'ownership'" x-transition>
+                <h2 class="font-headline-md text-headline-md text-on-surface mb-lg flex items-center gap-sm border-b border-white/5 pb-sm">
+                    <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">code_blocks</span>
+                    Code &amp; IP Ownership
+                </h2>
+                <div class="flex flex-col space-y-md">
+                    {% for faq in faqs %}
+                        {% if faq.category == 'technical' %}
+                            <div class="glass-card rounded-xl p-lg cursor-pointer group" x-data="{ open: false }" @click="open = !open">
+                                <div class="flex justify-between items-center w-full">
+                                    <h3 class="font-headline-md text-[18px] text-on-surface group-hover:text-primary transition-colors">{{ faq.question }}</h3>
+                                    <span class="material-symbols-outlined text-outline-variant transition-transform duration-300" :class="open ? 'rotate-180' : ''">expand_more</span>
+                                </div>
+                                <div x-show="open" x-transition.opacity class="mt-sm border-t border-white/10 pt-md">
+                                    <p class="font-body-base text-body-base text-on-surface-variant">
+                                        {{ faq.answer }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% empty %}
+                        <p class="text-on-surface-variant italic">No FAQs available for this category.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Category: Payment Plans -->
+            <section class="faq-section" x-show="activeCategory === 'payment'" x-transition>
+                <h2 class="font-headline-md text-headline-md text-on-surface mb-lg flex items-center gap-sm border-b border-white/5 pb-sm">
+                    <span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">credit_card</span>
+                    Payment Plans
+                </h2>
+                <div class="flex flex-col space-y-md">
+                    {% for faq in faqs %}
+                        {% if faq.category == 'pricing' %}
+                            <div class="glass-card rounded-xl p-lg cursor-pointer group" x-data="{ open: false }" @click="open = !open">
+                                <div class="flex justify-between items-center w-full">
+                                    <h3 class="font-headline-md text-[18px] text-on-surface group-hover:text-primary transition-colors">{{ faq.question }}</h3>
+                                    <span class="material-symbols-outlined text-outline-variant transition-transform duration-300" :class="open ? 'rotate-180' : ''">expand_more</span>
+                                </div>
+                                <div x-show="open" x-transition.opacity class="mt-sm border-t border-white/10 pt-md">
+                                    <p class="font-body-base text-body-base text-on-surface-variant">
+                                        {{ faq.answer }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% empty %}
+                        <p class="text-on-surface-variant italic">No FAQs available for this category.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Category: Commercial Transition -->
+            <section class="faq-section" x-show="activeCategory === 'commercial'" x-transition>
+                <h2 class="font-headline-md text-headline-md text-on-surface mb-lg flex items-center gap-sm border-b border-white/5 pb-sm">
+                    <span class="material-symbols-outlined text-[#10B981]" style="font-variation-settings: 'FILL' 1;">business</span>
+                    Commercial Transition
+                </h2>
+                <div class="flex flex-col space-y-md">
+                    {% for faq in faqs %}
+                        {% if faq.category == 'support' %}
+                            <div class="glass-card rounded-xl p-lg cursor-pointer group" x-data="{ open: false }" @click="open = !open">
+                                <div class="flex justify-between items-center w-full">
+                                    <h3 class="font-headline-md text-[18px] text-on-surface group-hover:text-primary transition-colors">{{ faq.question }}</h3>
+                                    <span class="material-symbols-outlined text-outline-variant transition-transform duration-300" :class="open ? 'rotate-180' : ''">expand_more</span>
+                                </div>
+                                <div x-show="open" x-transition.opacity class="mt-sm border-t border-white/10 pt-md">
+                                    <p class="font-body-base text-body-base text-on-surface-variant">
+                                        {{ faq.answer }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% empty %}
+                        <p class="text-on-surface-variant italic">No FAQs available for this category.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

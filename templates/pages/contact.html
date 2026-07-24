@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact | Graduation Projects Studio{% endblock %}
+
+{% block content %}
+<main class="flex-grow flex flex-col items-center py-3xl px-safe-margin w-full max-w-[1440px] mx-auto space-y-3xl">
+<!-- Hero Section -->
+<section class="text-center space-y-md max-w-2xl">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary">Direct Elite Support</h1>
+<p class="font-body-base text-body-base text-on-surface-variant">
+                We eschew slow forms. Connect directly with our engineering and academic teams via WhatsApp for immediate, high-bandwidth consultation.
+            </p>
+</section>
+<!-- Bento Grid: Contact Options -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-grid-gutter w-full max-w-5xl">
+<!-- Academic Support Card -->
+<div class="bg-surface-container-low/80 backdrop-blur-xl border border-white/10 rounded-xl p-xl flex flex-col justify-between group hover:bg-white/5 hover:border-white/20 transition-all duration-300 shadow-[0_0_0_rgba(192,193,255,0)] hover:shadow-[0_0_30px_rgba(192,193,255,0.1)] relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
+<div class="space-y-lg relative z-10">
+<div class="flex items-center gap-sm text-primary">
+<span class="material-symbols-outlined text-headline-md" style="font-variation-settings: 'FILL' 1;">school</span>
+<h2 class="font-headline-md text-headline-md">Academic Consultation</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        For students requiring deep architectural guidance, defense preparation, or milestone unblocking. Response SLA: &lt; 2 Hours.
+                    </p>
+<ul class="space-y-sm font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Code Review &amp; Debugging</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Defense Strategy Simulation</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Documentation Structuring</li>
+</ul>
+</div>
+<button class="mt-xl w-full bg-[#10B981] hover:bg-[#059669] text-white px-md py-md rounded-lg font-label-caps text-label-caps transition-all flex items-center justify-center gap-sm shadow-[0_0_15px_rgba(16,185,129,0.2)] hover:shadow-[0_0_25px_rgba(16,185,129,0.4)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forum</span>
+                    WhatsApp Academic Team
+                </button>
+</div>
+<!-- Commercial Support Card -->
+<div class="bg-surface-container-low/80 backdrop-blur-xl border border-white/10 rounded-xl p-xl flex flex-col justify-between group hover:bg-white/5 hover:border-white/20 transition-all duration-300 shadow-[0_0_0_rgba(76,215,246,0)] hover:shadow-[0_0_30px_rgba(76,215,246,0.1)] relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent pointer-events-none"></div>
+<div class="space-y-lg relative z-10">
+<div class="flex items-center gap-sm text-secondary">
+<span class="material-symbols-outlined text-headline-md" style="font-variation-settings: 'FILL' 1;">business_center</span>
+<h2 class="font-headline-md text-headline-md">Enterprise &amp; Commercial</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        For B2B partners, prototype scaling, and commercial licensing inquiries. Direct access to lead architects.
+                    </p>
+<ul class="space-y-sm font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Prototype to MVP Scaling</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Custom Infrastructure Setup</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Partner Tier Inquiries</li>
+</ul>
+</div>
+<button class="mt-xl w-full bg-surface-container-highest border border-white/20 hover:bg-white/10 text-on-surface px-md py-md rounded-lg font-label-caps text-label-caps transition-all flex items-center justify-center gap-sm hover:border-secondary">
+<span class="material-symbols-outlined">work</span>
+                    WhatsApp Enterprise Desk
+                </button>
+</div>
+</section>
+<!-- Coverage Map Area -->
+<section class="w-full max-w-5xl bg-surface-container-lowest border border-white/5 rounded-2xl overflow-hidden relative min-h-[400px] flex items-center justify-center">
+<!-- Map Placeholder -->
+<div class="absolute inset-0 bg-cover bg-center opacity-40" data-alt="A stylized, highly technical dark-mode geographic map of the MENA (Middle East and North Africa) region. The map should look like a glowing hologram from a sci-fi command center, rendered in deep indigo and stark blacks, with pinpoint glowing cyan nodes representing active network hubs or project locations. Precise, sleek, and minimalist glassmorphic aesthetic." data-location="MENA Region" style="background-image: url('https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg')"></div>
+<div class="relative z-10 text-center p-xl bg-background/60 backdrop-blur-md border border-white/10 rounded-xl m-lg">
+<span class="material-symbols-outlined text-primary text-display-lg-mobile mb-sm block">public</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">MENA Region Coverage</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Operating across major academic and tech hubs.</p>
+</div>
+</section>
+</main>
+{% endblock %}

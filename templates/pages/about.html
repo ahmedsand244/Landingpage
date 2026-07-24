@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Us | Graduation Projects Studio{% endblock %}
+
+{% block content %}
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-safe-margin py-3xl flex flex-col gap-3xl">
+<!-- Hero Section: Mission Statement -->
+<section class="glass-panel rounded-xl p-2xl md:p-3xl relative overflow-hidden flex flex-col md:flex-row items-center gap-2xl">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/5 z-0"></div>
+<div class="relative z-10 w-full md:w-1/2 flex flex-col gap-lg">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">Architecting Academic Excellence</h1>
+<p class="font-body-base text-body-base text-on-surface-variant max-w-2xl">
+                    Graduation Projects Studio bridges the gap between theoretical academic requirements and robust, commercial-grade software engineering. We engineer solutions that not only guarantee defense success but serve as foundational portfolios for elite careers.
+                </p>
+<div class="flex gap-md mt-sm">
+<span class="inline-flex items-center gap-xs px-md py-xs rounded-full bg-primary/10 border border-primary/20 text-primary font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[16px]">military_tech</span> Elite Tier
+                    </span>
+<span class="inline-flex items-center gap-xs px-md py-xs rounded-full bg-secondary/10 border border-secondary/20 text-secondary font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[16px]">precision_manufacturing</span> Commercial Grade
+                    </span>
+</div>
+</div>
+<div class="relative z-10 w-full md:w-1/2 h-64 md:h-96 rounded-lg border border-white/10 overflow-hidden bg-surface-container">
+<img alt="Architecture Visualization" class="w-full h-full object-cover" data-alt="A highly complex, glowing abstract representation of software architecture. Connecting nodes, glowing lines in deep indigo and cyan. Dark, sleek, high-tech command center aesthetic. Isometric perspective, cinematic lighting, extreme detail, 8k." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCfLZzDwzILIGPQbhEWE764BHdVRDtKiduuVIT10kBkppWTimjExaebIeZhBI5BMIOYKlZbgTRY_3m2lKwwI8D5J7nSN6w16yiL8S7utIMOoowiD7lGoyzFSe-vocljLiLss5incR66CpnTZemybrvffLoGeAmTwL6QuGZ1wBfu20a509jnRYF-TaTpP0n7fA2Voh1mZOPFSD8EN70pIoavC-t_5KfW9gSm_lpppG_-56jorMYRvPHYJy2SYT4C6QwlZgI9ny_"/>
+</div>
+</section>
+<!-- Stats Counter -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter">
+<div class="glass-panel rounded-xl p-lg flex flex-col items-center justify-center text-center gap-sm transition-all duration-300">
+<span class="material-symbols-outlined text-display-lg text-primary mb-sm">task_alt</span>
+<h3 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">+150</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Projects Delivered</p>
+</div>
+<div class="glass-panel rounded-xl p-lg flex flex-col items-center justify-center text-center gap-sm transition-all duration-300">
+<span class="material-symbols-outlined text-display-lg text-secondary mb-sm">shield</span>
+<h3 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">100%</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Defense Success Rate</p>
+</div>
+<div class="glass-panel rounded-xl p-lg flex flex-col items-center justify-center text-center gap-sm transition-all duration-300">
+<span class="material-symbols-outlined text-display-lg text-tertiary mb-sm">group</span>
+<h3 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">50+</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Elite Engineers</p>
+</div>
+</section>
+<!-- Studio Values (Bento Grid) -->
+<section class="flex flex-col gap-xl">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-md">Studio Values</h2>
+<div class="grid grid-cols-1 md:grid-cols-12 auto-rows-[240px] gap-grid-gutter">
+<div class="glass-panel rounded-xl p-lg md:col-span-8 flex flex-col justify-end relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent z-10 opacity-80"></div>
+<div class="absolute inset-0 z-0">
+<img alt="Precision Engineering" class="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-500" data-alt="A dark, moody macro shot of high-end computer hardware components, glowing with a soft indigo light. Clean, sharp lines, circuit board details visible, cinematic depth of field, conveying technical precision and robust engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAegGYxM3ihkQWJo67hTyqR2cP67mBv-viVRC7RbHFjB4W6-yQ8-zZdGT-um6gd5OYBXRGis5Z894z705Oy9Siuu2CvBzSfWNXkcN9SzZnx8Ca1YUjUOzKFGqJUmnXaiAdLOXeYVovAArUVZ7Gj0MA17phWhnI56uZ5hEzrBpLy1optE1eMbfW0x0fidAPumU4hE-FyawWxxivS9czbyIRnS_ju9j9LaQBPJz2amcK260N0CTl7prfecJzYtdG3yL2imBXw5Yoy"/>
+</div>
+<div class="relative z-20">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Precision Engineering</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">We do not compromise on code quality. Every project is built on solid architectural patterns, ensuring scalability and maintainability.</p>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-lg md:col-span-4 flex flex-col items-start gap-md hover:glow-accent transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Defense Ready</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">We prepare you not just with code, but with comprehensive documentation and technical briefing to ace your defense.</p>
+</div>
+<div class="glass-panel rounded-xl p-lg md:col-span-4 flex flex-col items-start gap-md hover:glow-accent transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Career Launchpad</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The projects we build serve as prime portfolio pieces, demonstrating commercial-level competency to future employers.</p>
+</div>
+<div class="glass-panel rounded-xl p-lg md:col-span-8 flex items-center justify-center overflow-hidden relative">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-surface-container to-surface-dim z-0"></div>
+<div class="relative z-10 text-center flex flex-col items-center gap-sm">
+<span class="material-symbols-outlined text-[48px] text-primary/50">code_blocks</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Modern Stack Focus</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">React, Node.js, Python, AWS. We build with the tools the industry demands.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Mentor/Engineer Team Grid -->
+<section class="flex flex-col gap-xl">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-md">Core Engineering Team</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-grid-gutter">
+<!-- Team Member Card 1 -->
+<div class="glass-panel rounded-xl overflow-hidden group flex flex-col">
+<div class="h-48 w-full relative overflow-hidden bg-surface-container border-b border-white/10">
+<img alt="Lead Architect" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional portrait of a software engineer, dark moody studio lighting, cool indigo tones, looking directly at the camera with confidence. Modern, sleek aesthetic, high resolution, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQrAoGxMAG44u487I-uD8Rs_w2gK1AcApPJJbud50jIVQAmi_Th5M0L_cm1-cpN_vyFqg8oVDupaZqittUGQI_UVn6HZ-oKxvIRDtjZkaj6tt4HL9jkvhSFS4cFgXxr7Pc94CTPr1ENjntqCPkEvtxCIjvOCUpMSZPHxJINOz1UadJAFTOqToITqWsDajpoGscYK8lhgoRdxlKlofIOox30LffWnVT1-svfgl5Og65qB2TKt2BZs-1x2YY4dRUEPwDsR27bpWu"/>
+</div>
+<div class="p-lg flex flex-col flex-grow">
+<h4 class="font-body-base text-body-base text-on-surface font-semibold mb-xs">Dr. Elias Vance</h4>
+<p class="font-label-caps text-label-caps text-secondary mb-md">Lead Systems Architect</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-auto">Specializes in distributed systems and cloud infrastructure. Former Senior SRE at top tier tech firm.</p>
+</div>
+</div>
+<!-- Team Member Card 2 -->
+<div class="glass-panel rounded-xl overflow-hidden group flex flex-col">
+<div class="h-48 w-full relative overflow-hidden bg-surface-container border-b border-white/10">
+<img alt="Frontend Lead" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional portrait of a female software engineer, dramatic lighting highlighting her profile, cyan accent lights in the background. Modern, tech-focused environment, high resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5QqM_cNIbkqEeTvLeDVvTSkCR4a9VRDIumID1OenEH-PEtu5tpdSc1zQQxrlXWLSoTCv-K6_MwuKMKGlneesDPk42K6G2U_3WY_BJmXtsQc3yUGGn6haqgP0mMU0prfGcFPe3SjSNoJSU7CQr-JjdC3Uc7T4J-DEC5nREcG5n7GQi31p6E-6PG386xf-6sZL9gLylTID_mCv9RHAFHV9zcLlQY3zVux81EYZFuys-QE6ArB2tNKcFv7R2qV1P8ExIr5jQlgp-"/>
+</div>
+<div class="p-lg flex flex-col flex-grow">
+<h4 class="font-body-base text-body-base text-on-surface font-semibold mb-xs">Sarah Chen</h4>
+<p class="font-label-caps text-label-caps text-secondary mb-md">Principal Frontend Engineer</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-auto">Expert in React ecosystem and WebGL. Crafts high-performance, pixel-perfect user interfaces.</p>
+</div>
+</div>
+<!-- Team Member Card 3 -->
+<div class="glass-panel rounded-xl overflow-hidden group flex flex-col">
+<div class="h-48 w-full relative overflow-hidden bg-surface-container border-b border-white/10">
+<img alt="Data Scientist" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional portrait of a data scientist, illuminated by the glow of monitors out of frame. Deep shadows, high contrast, professional and intense expression. 8k resolution, photorealistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcOcKZSqFHSRCrjhmT9Eb0kipmp6JGPdf8qO_pJFX2VXPao0NOk_XrMV4OPW0e2lcqcPn4vpNs6ZliIxy6NmYEq6DLq4O7zzkenLKSc4QJgm9pLtEN7aH_xzTaAak-Mqas7zy1NW0mC50migeLaL1C00jyUx5_coARbthh8j_ZyybRhaXoMF6A9L5bH0T0J1qfk6-ETJ9PPbDgOt-vHQG6XkUZ_jh6KQfdy2TPzOc2SS1o0FY6538qPxNG-7EiB8pDhTAg1Bvi"/>
+</div>
+<div class="p-lg flex flex-col flex-grow">
+<h4 class="font-body-base text-body-base text-on-surface font-semibold mb-xs">Marcus Thorne</h4>
+<p class="font-label-caps text-label-caps text-secondary mb-md">AI &amp; Data Lead</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-auto">Leads all machine learning and data engineering projects. Ph.D. in Computer Vision.</p>
+</div>
+</div>
+<!-- Team Member Card 4 -->
+<div class="glass-panel rounded-xl overflow-hidden group flex flex-col">
+<div class="h-48 w-full relative overflow-hidden bg-surface-container border-b border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[64px] text-surface-variant group-hover:text-primary transition-colors duration-300">group_add</span>
+</div>
+<div class="p-lg flex flex-col flex-grow justify-center items-center text-center">
+<h4 class="font-body-base text-body-base text-on-surface font-semibold mb-xs">Join the Studio</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-md">We are hiring</p>
+<button class="px-md py-sm rounded border border-primary/30 text-primary hover:bg-primary/10 transition-colors font-body-sm text-body-sm w-full">View Roles</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+{% endblock %}

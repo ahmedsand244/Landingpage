@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% load static %}
+{% load whatsapp_filters %}
+
+{% block title %}{{ project.title }} | Graduation Projects Studio{% endblock %}
+
+{% block content %}
+<main class="max-w-[1440px] mx-auto px-safe-margin py-xl grid grid-cols-1 lg:grid-cols-12 gap-grid-gutter relative">
+    
+    <!-- Left Column: Content Canvas -->
+    <div class="col-span-1 lg:col-span-8 space-y-2xl">
+        <!-- 16:9 Showcase Media Header -->
+        <section>
+            <div class="w-full aspect-video rounded-xl overflow-hidden glass-panel relative group">
+                {% if project.gallery.first %}
+                    <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" src="{{ project.gallery.first.image.url }}" alt="{{ project.title }}"/>
+                {% else %}
+                    <div class="w-full h-full bg-gradient-to-tr from-primary/10 via-background to-secondary/10 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-[64px]">terminal</span>
+                    </div>
+                {% endif %}
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent flex flex-col justify-end p-xl">
+                    <div class="inline-flex items-center gap-sm bg-primary-container/20 border border-primary/30 px-sm py-xs rounded-full mb-md w-fit">
+                        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        <span class="font-label-caps text-label-caps text-primary">{{ project.get_project_type_display }}</span>
+                    </div>
+                    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-sm tracking-tight font-bold">{{ project.title }}</h1>
+                    <p class="font-body-base text-body-base text-on-surface-variant max-w-2xl">{{ project.summary }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview -->
+        <section class="glass-panel p-xl rounded-xl">
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-md font-bold">Overview</h2>
+            <div class="font-body-base text-body-base text-on-surface-variant space-y-md">
+                {{ project.overview|linebreaks }}
+            </div>
+        </section>
+
+        <!-- Demo Video (if available) -->
+        {% if project.demo_video_url %}
+        <section class="space-y-md">
+            <h2 class="font-headline-md text-headline-md text-on-surface font-bold">System Architecture Demo</h2>
+            <div class="glass-panel p-md rounded-xl aspect-video relative flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#4cd7f6 1px, transparent 1px); background-size: 24px 24px;"></div>
+                
+                {% if "youtube.com" in project.demo_video_url or "youtu.be" in project.demo_video_url %}
+                    <!-- Embed youtube -->
+                    <iframe class="w-full h-full rounded-lg relative z-10" src="{{ project.demo_video_url|youtube_embed }}" frameborder="0" allowfullscreen></iframe>
+                {% else %}
+                    <!-- Standard video player -->
+                    <video class="w-full h-full rounded-lg relative z-10" controls>
+                        <source src="{{ project.demo_video_url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% endif %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Image Gallery Screenshots -->
+        {% if project.gallery.all|length > 1 %}
+        <section class="space-y-md">
+            <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Project Gallery</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-md">
+                {% for item in project.gallery.all|slice:"1:" %}
+                <div class="glass-panel rounded-xl overflow-hidden aspect-video relative group cursor-pointer">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" src="{{ item.image.url }}" alt="{{ item.caption|default:project.title }}"/>
+                    {% if item.caption %}
+                        <div class="absolute bottom-0 left-0 right-0 p-xs bg-black/60 text-white text-center text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                            {{ item.caption }}
+                        </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Key Features & Technologies -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-grid-gutter">
+            <div class="glass-panel p-xl rounded-xl">
+                <div class="flex items-center gap-sm mb-md text-secondary">
+                    <span class="material-symbols-outlined">bolt</span>
+                    <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Key Technologies</h3>
+                </div>
+                <ul class="space-y-md font-body-base text-body-base text-on-surface-variant">
+                    {% for tech in project.technologies.all %}
+                    <li class="flex items-center gap-sm">
+                        <span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+                        <span class="font-semibold text-on-surface">{{ tech.name }}</span>
+                        <span class="text-xs text-on-surface-variant">({{ tech.category.name }})</span>
+                    </li>
+                    {% empty %}
+                        <li class="text-on-surface-variant italic">No listed technologies.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="glass-panel p-xl rounded-xl">
+                <div class="flex items-center gap-sm mb-md text-secondary">
+                    <span class="material-symbols-outlined">info</span>
+                    <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Details &amp; Client</h3>
+                </div>
+                <ul class="space-y-md font-body-base text-body-base text-on-surface-variant">
+                    <li class="flex items-start gap-sm">
+                        <span class="material-symbols-outlined text-outline text-[20px] mt-xs">school</span>
+                        <span><strong>Client/University:</strong> {{ project.client_name }}</span>
+                    </li>
+                    <li class="flex items-start gap-sm">
+                        <span class="material-symbols-outlined text-outline text-[20px] mt-xs">location_on</span>
+                        <span><strong>Country:</strong> {{ project.country }}</span>
+                    </li>
+                    <li class="flex items-start gap-sm">
+                        <span class="material-symbols-outlined text-outline text-[20px] mt-xs">calendar_today</span>
+                        <span><strong>Date added:</strong> {{ project.created_at|date:"M Y" }}</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Right Column: Sticky Sidebar -->
+    <aside class="col-span-1 lg:col-span-4 relative">
+        <div class="sticky top-[100px] space-y-grid-gutter">
+            
+            <!-- Deliverables Card -->
+            <div class="glass-panel p-lg rounded-xl">
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-lg font-bold">Deliverables</h3>
+                <div class="space-y-md">
+                    {% for del in project.deliverables %}
+                        <div class="flex items-center justify-between p-md rounded-lg bg-white/5 border border-white/5 group">
+                            <div class="flex items-center gap-md">
+                                <div class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center text-primary">
+                                    <span class="material-symbols-outlined">
+                                        {% if "code" in del|lower %}code
+                                        {% elif "thesis" in del|lower or "pdf" in del|lower %}picture_as_pdf
+                                        {% elif "presentation" in del|lower or "slide" in del|lower %}co_present
+                                        {% else %}verified{% endif %}
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="font-body-base text-body-base font-semibold text-on-surface">{{ del }}</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Milestone Asset</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-on-surface-variant">check_circle</span>
+                        </div>
+                    {% empty %}
+                        <p class="text-on-surface-variant italic">No deliverables declared.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Action Card -->
+            <div class="glass-panel p-lg rounded-xl bg-gradient-to-br from-surface-container-high to-surface-container text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                <div class="relative z-10">
+                    <span class="material-symbols-outlined text-[48px] text-primary mb-md">rocket_launch</span>
+                    <h4 class="font-headline-md text-headline-md text-on-surface mb-sm font-bold">Ready to deploy?</h4>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mb-lg">Contact our elite engineering team to discuss licensing or custom implementation of this architecture.</p>
+                    <a href="{{ project.title|whatsapp_link }}" target="_blank" class="w-full bg-[#10B981] text-white py-md rounded-lg font-label-caps text-label-caps hover:brightness-110 transition-all flex items-center justify-center gap-sm shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]">
+                        <span class="material-symbols-outlined">chat</span> Request Technical Review
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+</main>
+{% endblock %}
