@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FAQ, Testimonial
+from .models import FAQ, Testimonial, ContactMessage
 
 @admin.register(FAQ)
 class FAQAdmin(admin.ModelAdmin):
@@ -30,3 +30,12 @@ class TestimonialAdmin(admin.ModelAdmin):
         return bool(obj.admin_reply)
     has_admin_reply.boolean = True
     has_admin_reply.short_description = "تم الرد"
+
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'subject', 'email', 'is_read', 'created_at')
+    list_filter = ('is_read', 'created_at')
+    search_fields = ('name', 'email', 'subject', 'message')
+    list_editable = ('is_read',)
+    readonly_fields = ('created_at',)

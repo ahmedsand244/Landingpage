@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView
 from projects.models import Project
 from services.models import Technology
-from .models import FAQ, Testimonial
+from .models import FAQ, Testimonial, ContactMessage
 
 class HomeView(TemplateView):
     template_name = "pages/index.html"
@@ -58,6 +58,14 @@ class ContactView(TemplateView):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
         
+        if name and (email or message):
+            ContactMessage.objects.create(
+                name=name,
+                email=email or "غير مدخل",
+                subject=subject or "استفسار جديد",
+                message=message or "لا تتوفر تفاصيل إضافية"
+            )
+
         context = {
             'success': True,
             'client_name': name,
