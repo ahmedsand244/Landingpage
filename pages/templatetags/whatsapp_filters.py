@@ -4,7 +4,7 @@ from django import template
 register = template.Library()
 
 @register.filter
-def whatsapp_link(project_title, number="201099632832"):
+def whatsapp_link(project_title, number="201554397407"):
     message = f"أهلاً بكم، أود الاستفسار عن تفاصيل مشروع: {project_title}"
     encoded_message = urllib.parse.quote(message)
     return f"https://wa.me/{number}?text={encoded_message}"
