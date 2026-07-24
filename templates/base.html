@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html class="dark" lang="ar" dir="rtl">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>{% block title %}Graduation Projects Studio{% endblock %}</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+    <title>{% block title %}استوديو مشاريع التخرج | Graduation Projects Studio{% endblock %}</title>
     
-    <!-- Alpine.js for lightweight frontend interactivity -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Geist:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Alpine.js for mobile navbar & interactions -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script id="tailwind-config">
@@ -18,87 +17,20 @@
             darkMode: "class",
             theme: {
                 extend: {
-                    "colors": {
+                    colors: {
                         "background": "#0e131f",
-                        "on-secondary-fixed-variant": "#004e5c",
-                        "on-tertiary-fixed-variant": "#6900b3",
-                        "surface-container-high": "#242a36",
-                        "secondary-fixed": "#acedff",
-                        "surface-dim": "#0e131f",
-                        "error-container": "#93000a",
-                        "error": "#ffb4ab",
-                        "secondary": "#4cd7f6",
-                        "surface-bright": "#343946",
-                        "on-tertiary": "#490080",
-                        "on-tertiary-fixed": "#2c0051",
-                        "primary-fixed-dim": "#c0c1ff",
-                        "on-primary-container": "#0d0096",
-                        "on-primary-fixed": "#07006c",
-                        "on-background": "#dde2f3",
-                        "on-surface": "#dde2f3",
-                        "on-primary-fixed-variant": "#2f2ebe",
-                        "outline-variant": "#464554",
-                        "surface-tint": "#c0c1ff",
-                        "on-primary": "#1000a9",
-                        "on-secondary-container": "#00424e",
-                        "surface-container-highest": "#2f3542",
-                        "secondary-container": "#03b5d3",
-                        "primary-fixed": "#e1e0ff",
                         "surface": "#0e131f",
-                        "on-secondary": "#003640",
-                        "primary-container": "#8083ff",
-                        "inverse-surface": "#dde2f3",
-                        "tertiary": "#ddb7ff",
-                        "tertiary-container": "#b76dff",
-                        "secondary-fixed-dim": "#4cd7f6",
-                        "on-tertiary-container": "#400071",
-                        "on-surface-variant": "#c7c4d7",
-                        "on-error-container": "#ffdad6",
-                        "tertiary-fixed-dim": "#ddb7ff",
-                        "surface-container-lowest": "#080e1a",
                         "surface-container": "#1a202c",
-                        "outline": "#908fa0",
-                        "on-error": "#690005",
-                        "surface-container-low": "#161c28",
-                        "inverse-on-surface": "#2b303d",
-                        "surface-variant": "#2f3542",
-                        "tertiary-fixed": "#f0dbff",
-                        "on-secondary-fixed": "#001f26",
-                        "primary": "#c0c1ff",
-                        "inverse-primary": "#494bd6"
+                        "surface-container-high": "#242a36",
+                        "surface-container-lowest": "#080e1a",
+                        "primary": "#8083ff",
+                        "primary-hover": "#a2a5ff",
+                        "secondary": "#4cd7f6",
+                        "on-surface": "#dde2f3",
+                        "on-surface-variant": "#9ca3af",
                     },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "safe-margin": "32px",
-                        "sm": "8px",
-                        "grid-gutter": "24px",
-                        "md": "16px",
-                        "xl": "32px",
-                        "lg": "24px",
-                        "xs": "4px",
-                        "2xl": "48px",
-                        "3xl": "64px"
-                    },
-                    "fontFamily": {
-                        "display-lg": ["Geist"],
-                        "body-sm": ["Geist"],
-                        "headline-md": ["Geist"],
-                        "display-lg-mobile": ["Geist"],
-                        "body-base": ["Geist"],
-                        "label-caps": ["Geist"]
-                    },
-                    "fontSize": {
-                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
-                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "body-base": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    fontFamily: {
+                        sans: ['Cairo', 'Geist', 'sans-serif'],
                     }
                 }
             }
@@ -111,22 +43,9 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .glass-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            padding: 1px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
         .glow-hover:hover {
-            box-shadow: 0 0 20px rgba(192, 193, 255, 0.15);
+            box-shadow: 0 0 20px rgba(128, 131, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.05);
         }
         .whatsapp-glow {
             box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
@@ -139,65 +58,92 @@
         }
     </style>
 </head>
-<body class="bg-background text-on-surface font-body-base min-h-screen flex flex-col antialiased selection:bg-primary/30 selection:text-primary">
+<body class="bg-background text-on-surface font-sans min-h-screen flex flex-col antialiased" x-data="{ mobileMenuOpen: false }">
 
     <!-- TopNavBar -->
-    <nav class="bg-surface/60 backdrop-blur-md dark:bg-surface/60 font-display-lg text-display-lg-mobile md:text-display-lg docked full-width top-0 sticky border-b border-white/10 shadow-[0_0_20px_rgba(192,193,255,0.1)] z-50">
-        <div class="flex justify-between items-center w-full px-safe-margin h-20 max-w-[1440px] mx-auto">
-            <a href="/" class="font-display-lg text-headline-md tracking-tighter text-on-surface dark:text-on-surface flex items-center gap-2 hover:opacity-80 transition-opacity">
-                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">terminal</span>
-                Studio
+    <nav class="bg-surface/80 backdrop-blur-md sticky top-0 border-b border-white/10 shadow-lg z-50">
+        <div class="flex justify-between items-center w-full px-4 md:px-8 h-20 max-w-[1440px] mx-auto">
+            <!-- Brand Logo -->
+            <a href="/" class="text-xl md:text-2xl font-bold tracking-tight text-white flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
+                <span>Studio <span class="text-primary">مشاريع التخرج</span></span>
             </a>
             
-            <div class="hidden md:flex items-center gap-grid-gutter font-body-base text-body-base">
-                <a class="{% if request.path == '/' or '/portfolio' in request.path %}text-primary border-b-2 border-primary pb-1{% else %}text-on-surface-variant hover:text-on-surface hover:bg-white/5 px-3 py-2 rounded-md{% endif %} transition-all duration-300 active:scale-95" href="/portfolio/">Portfolio</a>
-                <a class="{% if '/services' in request.path %}text-primary border-b-2 border-primary pb-1{% else %}text-on-surface-variant hover:text-on-surface hover:bg-white/5 px-3 py-2 rounded-md{% endif %} transition-all duration-300 active:scale-95" href="/services/">Services</a>
-                <a class="{% if '/technologies' in request.path %}text-primary border-b-2 border-primary pb-1{% else %}text-on-surface-variant hover:text-on-surface hover:bg-white/5 px-3 py-2 rounded-md{% endif %} transition-all duration-300 active:scale-95" href="/technologies/">Technologies</a>
-                <a class="{% if '/about' in request.path %}text-primary border-b-2 border-primary pb-1{% else %}text-on-surface-variant hover:text-on-surface hover:bg-white/5 px-3 py-2 rounded-md{% endif %} transition-all duration-300 active:scale-95" href="/about/">About</a>
-                <a class="{% if '/faq' in request.path %}text-primary border-b-2 border-primary pb-1{% else %}text-on-surface-variant hover:text-on-surface hover:bg-white/5 px-3 py-2 rounded-md{% endif %} transition-all duration-300 active:scale-95" href="/faq/">FAQ</a>
-                <a class="{% if '/testimonials' in request.path %}text-primary border-b-2 border-primary pb-1{% else %}text-on-surface-variant hover:text-on-surface hover:bg-white/5 px-3 py-2 rounded-md{% endif %} transition-all duration-300 active:scale-95" href="/testimonials/">Testimonials</a>
-                <a class="{% if '/contact' in request.path %}text-primary border-b-2 border-primary pb-1{% else %}text-on-surface-variant hover:text-on-surface hover:bg-white/5 px-3 py-2 rounded-md{% endif %} transition-all duration-300 active:scale-95" href="/contact/">Contact</a>
+            <!-- Simplified Desktop Menu (4 Links only) -->
+            <div class="hidden md:flex items-center gap-6 font-semibold text-sm">
+                <a class="px-3 py-2 rounded-lg transition-colors {% if request.path == '/' %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white hover:bg-white/5{% endif %}" href="/">الرئيسية</a>
+                <a class="px-3 py-2 rounded-lg transition-colors {% if '/portfolio' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white hover:bg-white/5{% endif %}" href="/portfolio/">معرض الأعمال</a>
+                <a class="px-3 py-2 rounded-lg transition-colors {% if '/services' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white hover:bg-white/5{% endif %}" href="/services/">الخدمات والتقنيات</a>
+                <a class="px-3 py-2 rounded-lg transition-colors {% if '/contact' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white hover:bg-white/5{% endif %}" href="/contact/">تواصل معنا</a>
             </div>
 
-            <a href="https://wa.me/201099632832?text=Hello,%20I'm%20interested%20in%20inquiring%20about%20your%20graduation%20projects!" target="_blank" class="bg-[#10B981] text-white px-md py-sm rounded-full font-body-base text-body-sm font-semibold flex items-center gap-2 whatsapp-glow hover:bg-[#0ea5e9] transition-colors active:scale-95 duration-200">
-                <span class="material-symbols-outlined" style="font-size: 18px;">chat</span>
-                Chat on WhatsApp
+            <!-- WhatsApp Action Button -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="https://wa.me/201099632832?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تفاصيل%20مشاريع%20التخرج" target="_blank" class="bg-[#10B981] hover:bg-[#059669] text-white px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 whatsapp-glow transition-all active:scale-95">
+                    <span class="material-symbols-outlined text-lg">chat</span>
+                    تحدث معنا واتساب
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10">
+                <span class="material-symbols-outlined text-3xl" x-text="mobileMenuOpen ? 'close' : 'menu'">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div x-show="mobileMenuOpen" x-transition class="md:hidden border-b border-white/10 bg-surface-container px-4 py-4 space-y-3">
+            <a class="block px-4 py-2.5 rounded-lg font-semibold {% if request.path == '/' %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white{% endif %}" href="/">الرئيسية</a>
+            <a class="block px-4 py-2.5 rounded-lg font-semibold {% if '/portfolio' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white{% endif %}" href="/portfolio/">معرض الأعمال</a>
+            <a class="block px-4 py-2.5 rounded-lg font-semibold {% if '/services' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white{% endif %}" href="/services/">الخدمات والتقنيات</a>
+            <a class="block px-4 py-2.5 rounded-lg font-semibold {% if '/contact' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-white{% endif %}" href="/contact/">تواصل معنا</a>
+            <a href="https://wa.me/201099632832?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تفاصيل%20مشاريع%20التخرج" target="_blank" class="block w-full text-center bg-[#10B981] text-white py-3 rounded-xl font-bold mt-2">
+                تحدث معنا واتساب مباشرة
             </a>
         </div>
     </nav>
 
-    <main class="flex-grow flex flex-col">
+    <!-- Main Content -->
+    <main class="flex-grow">
         {% block content %}
         {% endblock %}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-surface-container-lowest full-width bottom-0 border-t border-white/5 w-full py-xl px-safe-margin grid grid-cols-1 md:grid-cols-4 gap-grid-gutter z-10 relative">
-        <div class="md:col-span-1 flex flex-col gap-sm">
-            <div class="font-display-lg text-headline-md text-primary flex items-center gap-2">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">terminal</span>
-                Studio
+    <footer class="bg-surface-container-lowest border-t border-white/10 py-12 px-4 md:px-8 mt-16">
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <div class="text-xl font-bold text-white flex items-center gap-2 mb-3">
+                    <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
+                    Studio مشاريع التخرج
+                </div>
+                <p class="text-on-surface-variant text-sm leading-relaxed">
+                    نرافقك من الفكرة وحتى اليوم الأخير في المناقشة. كود نظيف، توثيق كامل، وضمان النجاح بأعلى الدرجات.
+                </p>
             </div>
-            <p class="font-body-sm text-body-sm text-on-surface-variant mt-sm">
-                © 2026 Graduation Projects Studio. All rights reserved.
-            </p>
+            
+            <div>
+                <h4 class="text-white font-bold mb-3 text-base">روابط سريعة</h4>
+                <div class="flex flex-col space-y-2 text-sm text-on-surface-variant">
+                    <a href="/" class="hover:text-primary transition-colors">الرئيسية</a>
+                    <a href="/portfolio/" class="hover:text-primary transition-colors">معرض الأعمال والمشاريع</a>
+                    <a href="/services/" class="hover:text-primary transition-colors">الخدمات المتاحة</a>
+                    <a href="/contact/" class="hover:text-primary transition-colors">تواصل معنا</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-3 text-base">الدعم والتواصل المباشر</h4>
+                <p class="text-sm text-on-surface-variant mb-4">هل لديك استفسار أو تود مناقشة مشروع تخرجك؟ تواصل معنا مباشرة:</p>
+                <a href="https://wa.me/201099632832?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تفاصيل%20مشاريع%20التخرج" target="_blank" class="inline-flex items-center gap-2 bg-[#10B981] text-white px-4 py-2 rounded-lg font-bold text-sm hover:bg-[#059669] transition-colors">
+                    <span class="material-symbols-outlined text-lg">chat</span>
+                    واتساب: 01099632832
+                </a>
+            </div>
         </div>
-        <div class="flex flex-col gap-sm">
-            <h4 class="font-label-caps text-label-caps text-on-surface mb-xs">Legal</h4>
-            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
-            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
-        </div>
-        <div class="flex flex-col gap-sm">
-            <h4 class="font-label-caps text-label-caps text-on-surface mb-xs">Resources</h4>
-            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="/faq/">Defense Guarantee</a>
-            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="/portfolio/">Documentation Hub</a>
-        </div>
-        <div class="flex flex-col gap-sm">
-            <h4 class="font-label-caps text-label-caps text-on-surface mb-xs">Connect</h4>
-            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" href="/contact/">
-                <span class="material-symbols-outlined text-sm">support_agent</span>
-                 Support Inquiries
-             </a>
+
+        <div class="max-w-[1440px] mx-auto border-t border-white/5 mt-8 pt-6 text-center text-xs text-on-surface-variant">
+            © 2026 Graduation Projects Studio. جميع الحقوق محفوظة.
         </div>
     </footer>
 

@@ -1,181 +1,121 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Studio Portfolio | Graduation Projects Studio{% endblock %}
+{% block title %}معرض الأعمال والمشاريع | استوديو مشاريع التخرج{% endblock %}
 
 {% block content %}
-<!-- Main Content Layout -->
-<div class="flex flex-1 w-full max-w-[1440px] mx-auto relative">
+<main class="w-full max-w-[1440px] mx-auto px-4 md:px-8 py-12 space-y-12">
     
-    <!-- SideNavBar (Hidden on Mobile) -->
-    <aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full w-64 docked left-0 bg-surface-container-low/80 backdrop-blur-xl border-r border-white/10 z-30 pt-24">
-        <div class="px-md pb-xl flex items-center gap-md border-b border-white/5 mb-md">
-            <div class="w-12 h-12 rounded-xl border border-white/10 bg-black/50 flex items-center justify-center">
-                <span class="material-symbols-outlined text-primary text-2xl">school</span>
-            </div>
-            <div>
-                <h2 class="font-display-lg text-on-surface text-body-base font-bold">Project Command</h2>
-                <p class="font-body-sm text-body-sm text-on-surface-variant">Elite Academic Tier</p>
+    <!-- Header Section -->
+    <section class="space-y-4">
+        <span class="text-xs font-bold text-primary uppercase tracking-wider">الأرشيف والمستودع الأكاديمي</span>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-white">
+            معرض المشاريع المنفذة
+        </h1>
+        <p class="text-on-surface-variant text-base md:text-lg max-w-3xl leading-relaxed">
+            استعرض أحدث الأعمال ومشاريع التخرج التي قمنا بتنفيذها وتجهيزها بأعلى معايير البرمجة والتوثيق الأكاديمي.
+        </p>
+
+        <!-- Search & Category Filters -->
+        <div class="space-y-4 pt-4">
+            <!-- Search Bar -->
+            <form method="get" action="." class="glass-card rounded-2xl p-2 flex items-center relative max-w-2xl">
+                <span class="material-symbols-outlined absolute right-4 text-on-surface-variant">search</span>
+                <input name="q" value="{{ search_query }}" class="w-full bg-transparent border-none text-white pr-12 pl-4 py-3 focus:outline-none placeholder:text-on-surface-variant text-sm" placeholder="ابحث باسم التقنية، الفكرة، أو نوع المشروع..." type="text"/>
+                {% if active_category %}
+                    <input type="hidden" name="category" value="{{ active_category }}">
+                {% endif %}
+                {% if active_type %}
+                    <input type="hidden" name="type" value="{{ active_type }}">
+                {% endif %}
+                <button type="submit" class="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-xl font-bold text-xs transition-colors">
+                    بحث
+                </button>
+            </form>
+
+            <!-- Category Badges -->
+            <div class="flex flex-wrap items-center gap-2 pt-2">
+                <a href="?{% if active_type %}type={{ active_type }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+                   class="px-4 py-2 rounded-xl text-xs font-bold transition-all {% if not active_category %}bg-primary text-white shadow-md{% else %}glass-card text-on-surface-variant hover:text-white{% endif %}">
+                    الكل
+                </a>
+                {% for cat in categories %}
+                    <a href="?category={{ cat.slug }}{% if active_type %}&type={{ active_type }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+                       class="px-4 py-2 rounded-xl text-xs font-bold transition-all {% if active_category == cat.slug %}bg-primary text-white shadow-md{% else %}glass-card text-on-surface-variant hover:text-white{% endif %}">
+                        {{ cat.name }}
+                    </a>
+                {% endfor %}
             </div>
         </div>
-        <nav class="flex-1 px-sm flex flex-col gap-xs">
-            <a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="/">
-                <span class="material-symbols-outlined">dashboard</span>
-                <span class="font-body-base text-body-base">Dashboard</span>
-            </a>
-            <a class="flex items-center gap-md px-md py-3 rounded-lg bg-primary-container/20 text-primary border-r-4 border-primary transition-all" href="/portfolio/">
-                <span class="material-symbols-outlined text-primary">folder_open</span>
-                <span class="font-body-base text-body-base">Project Repo</span>
-            </a>
-            <a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="/services/">
-                <span class="material-symbols-outlined">description</span>
-                <span class="font-body-base text-body-base">Services</span>
-            </a>
-            <a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="/faq/">
-                <span class="material-symbols-outlined">account_tree</span>
-                <span class="font-body-base text-body-base">FAQ</span>
-            </a>
-            <a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="/contact/">
-                <span class="material-symbols-outlined">contact_support</span>
-                <span class="font-body-base text-body-base">Support</span>
-            </a>
-        </nav>
-        <div class="p-md mt-auto mb-20">
-            <a href="https://wa.me/201099632832?text=Hello,%20I'm%20inquiring%20about%20your%20graduation%20projects!" target="_blank" class="w-full bg-surface-container-highest border border-white/10 text-on-surface py-3 rounded-lg font-label-caps text-label-caps hover:bg-white/5 transition-colors flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined">forum</span>
-                WhatsApp Support
-            </a>
-        </div>
-    </aside>
+    </section>
 
-    <!-- Main Canvas -->
-    <main class="flex-1 w-full lg:ml-64 p-md md:p-xl lg:p-safe-margin pt-24 md:pt-safe-margin min-h-screen">
-        <!-- Header Section -->
-        <section class="mb-3xl">
-            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-md text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Portfolio Repository</h1>
-            <p class="font-body-base text-body-base text-on-surface-variant max-w-2xl mb-xl">Explore our archive of top-tier academic projects. Engineered with production-grade tech stacks and rigorously defended.</p>
-            
-            <!-- Search & Filters Bento -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter">
-                <!-- Search Bar -->
-                <form method="get" action="." class="md:col-span-12 lg:col-span-8 bg-surface-container-low/50 backdrop-blur-md rounded-xl border border-white/5 p-1 flex items-center relative group">
-                    <span class="material-symbols-outlined absolute left-4 text-on-surface-variant">search</span>
-                    <input name="q" value="{{ search_query }}" class="w-full bg-transparent border-none text-on-surface font-body-base text-body-base pl-12 pr-4 py-3 focus:ring-0 focus:outline-none placeholder:text-on-surface-variant/50" placeholder="Search technologies, topics, or client tags..." type="text"/>
-                    {% if active_category %}
-                        <input type="hidden" name="category" value="{{ active_category }}">
-                    {% endif %}
-                    {% if active_type %}
-                        <input type="hidden" name="type" value="{{ active_type }}">
-                    {% endif %}
-                    <button type="submit" class="hidden"></button>
-                </form>
-
-                <!-- Project Type Switcher -->
-                <div class="md:col-span-12 lg:col-span-4 flex items-center gap-sm">
-                    <a href="?type=graduation{% if active_category %}&category={{ active_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
-                       class="flex-1 px-4 py-3 text-center rounded-xl font-label-caps text-label-caps border transition-all {% if active_type == 'graduation' %}bg-primary-container/20 border-primary/30 text-primary{% else %}bg-surface-container border-white/5 text-on-surface-variant{% endif %}">
-                        Academic
-                    </a>
-                    <a href="?type=commercial{% if active_category %}&category={{ active_category }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
-                       class="flex-1 px-4 py-3 text-center rounded-xl font-label-caps text-label-caps border transition-all {% if active_type == 'commercial' %}bg-primary-container/20 border-primary/30 text-primary{% else %}bg-surface-container border-white/5 text-on-surface-variant{% endif %}">
-                        Commercial
-                    </a>
-                    {% if active_type or active_category or search_query %}
-                        <a href="." class="px-3 py-3 rounded-xl border border-white/5 bg-surface-container text-on-surface-variant hover:text-on-surface" title="Clear Filters">
-                            <span class="material-symbols-outlined text-[20px] align-middle">close</span>
-                        </a>
-                    {% endif %}
-                </div>
-                
-                <!-- Categories -->
-                <div class="md:col-span-12 lg:col-span-12 flex flex-wrap gap-sm mt-sm">
-                    <a href="?{% if active_type %}type={{ active_type }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
-                       class="px-4 py-2 rounded-lg font-label-caps text-label-caps border transition-all {% if not active_category %}bg-primary-container/20 border-primary/30 text-primary shadow-[0_0_10px_rgba(192,193,255,0.15)]{% else %}bg-surface-container border-white/10 text-on-surface-variant{% endif %}">
-                        All Categories
-                    </a>
-                    {% for cat in categories %}
-                        <a href="?category={{ cat.slug }}{% if active_type %}&type={{ active_type }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
-                           class="px-4 py-2 rounded-lg font-label-caps text-label-caps border transition-all {% if active_category == cat.slug %}bg-primary-container/20 border-primary/30 text-primary shadow-[0_0_10px_rgba(192,193,255,0.15)]{% else %}bg-surface-container border-white/10 text-on-surface-variant{% endif %}">
-                            {{ cat.name }}
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Grid -->
-        <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-grid-gutter pb-3xl">
-            {% for project in projects %}
-            <article class="group relative bg-surface-container-low/40 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden hover:bg-white/5 hover:border-white/20 transition-all duration-500 hover:shadow-[0_0_30px_rgba(192,193,255,0.1)] flex flex-col">
-                <!-- Thumbnail -->
-                <div class="relative h-48 w-full overflow-hidden border-b border-white/10">
-                    {% if project.gallery.first %}
-                        <img alt="{{ project.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="{{ project.gallery.first.image.url }}"/>
-                    {% else %}
-                        <div class="w-full h-full bg-gradient-to-tr from-primary/10 via-background to-secondary/10 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-4xl">terminal</span>
-                        </div>
-                    {% endif %}
-                    <div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent"></div>
-                    {% if project.demo_video_url %}
-                        <div class="absolute bottom-3 left-3 flex gap-2">
-                            <span class="bg-black/60 backdrop-blur-sm border border-white/10 text-white px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[12px]">play_circle</span> Video
-                            </span>
-                        </div>
-                    {% endif %}
-                    <div class="absolute top-3 right-3">
-                        <span class="bg-primary/20 backdrop-blur-sm border border-primary/50 text-primary px-2 py-1 rounded font-label-caps text-label-caps shadow-[0_0_10px_rgba(192,193,255,0.3)]">
-                            {{ project.get_project_type_display }}
-                        </span>
+    <!-- Projects Grid -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for project in projects %}
+        <article class="glass-card rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-300 flex flex-col justify-between group">
+            <!-- Thumbnail -->
+            <div class="relative h-48 w-full overflow-hidden bg-surface-container flex items-center justify-center border-b border-white/10">
+                {% if project.gallery.first %}
+                    <img alt="{{ project.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ project.gallery.first.image.url }}"/>
+                {% else %}
+                    <div class="flex flex-col items-center gap-2 text-primary/60">
+                        <span class="material-symbols-outlined text-5xl">folder_special</span>
+                        <span class="text-xs font-bold">مشروع مكتمل</span>
                     </div>
+                {% endif %}
+                <div class="absolute top-3 right-3">
+                    <span class="bg-primary/20 backdrop-blur-md border border-primary/40 text-primary px-3 py-1 rounded-full text-xs font-bold">
+                        {{ project.get_project_type_display }}
+                    </span>
                 </div>
-                <!-- Content -->
-                <div class="p-lg flex-1 flex flex-col">
-                    <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors font-bold">{{ project.title }}</h3>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant mb-4 line-clamp-2">{{ project.summary }}</p>
-                    <div class="flex flex-wrap gap-2 mb-xl mt-auto">
-                        {% for tech in project.technologies.all|slice:":3" %}
-                            <span class="px-2 py-1 bg-surface-container-high rounded text-xs font-mono text-secondary">{{ tech.name }}</span>
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-6 flex-grow flex flex-col justify-between gap-4">
+                <div>
+                    <h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">{{ project.title }}</h3>
+                    <p class="text-xs text-on-surface-variant line-clamp-2 mt-2 leading-relaxed">{{ project.summary }}</p>
+                    
+                    <div class="flex flex-wrap gap-1.5 mt-4">
+                        {% for tech in project.technologies.all %}
+                            <span class="px-2 py-0.5 bg-white/5 rounded text-[11px] font-mono text-secondary border border-white/5">{{ tech.name }}</span>
                         {% endfor %}
                     </div>
-                    <div class="flex items-center justify-between pt-4 border-t border-white/5">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-on-surface-variant text-sm">school</span>
-                            <span class="font-body-sm text-xs text-on-surface-variant">{{ project.client_name }}</span>
-                        </div>
-                        <a href="{% url 'projects:project_detail' slug=project.slug %}" class="text-primary font-label-caps text-label-caps hover:text-secondary transition-colors flex items-center gap-1 group-hover:translate-x-1 duration-300">
-                            View Case Study <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                        </a>
-                    </div>
                 </div>
-            </article>
-            {% empty %}
-                <div class="col-span-full glass-panel rounded-xl p-xl text-center">
-                    <p class="text-on-surface-variant italic">No projects found in this selection.</p>
-                </div>
-            {% endfor %}
-        </section>
 
-        <!-- Pagination -->
-        {% if is_paginated %}
-        <div class="flex justify-center items-center gap-md pb-huge">
-            {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}{% if active_category %}&category={{ active_category }}{% endif %}{% if active_type %}&type={{ active_type }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
-                   class="px-4 py-2 rounded-lg border border-white/10 bg-surface-container text-on-surface hover:bg-white/5 transition-colors">
-                    Previous
-                </a>
-            {% endif %}
-            <span class="text-on-surface-variant">Page {{ page_obj.number }} of {{ paginator.num_pages }}</span>
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}{% if active_category %}&category={{ active_category }}{% endif %}{% if active_type %}&type={{ active_type }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
-                   class="px-4 py-2 rounded-lg border border-white/10 bg-surface-container text-on-surface hover:bg-white/5 transition-colors">
-                    Next
-                </a>
-            {% endif %}
+                <div class="flex items-center justify-between pt-4 border-t border-white/10 text-xs mt-2">
+                    <span class="text-on-surface-variant font-mono">{{ project.client_name }}</span>
+                    <a href="{% url 'projects:project_detail' slug=project.slug %}" class="text-primary font-bold flex items-center gap-1 hover:underline">
+                        عرض التفاصيل <span class="material-symbols-outlined text-sm">arrow_back</span>
+                    </a>
+                </div>
+            </div>
+        </article>
+        {% empty %}
+        <div class="col-span-full glass-card rounded-2xl p-12 text-center text-on-surface-variant">
+            لا توجد مشاريع تطابق البحث الحالي.
         </div>
-        {% endif %}
+        {% endfor %}
+    </section>
 
-    </main>
-</div>
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <div class="flex justify-center items-center gap-4 pt-4">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}{% if active_category %}&category={{ active_category }}{% endif %}{% if active_type %}&type={{ active_type }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+               class="px-4 py-2 rounded-xl border border-white/10 glass-card text-white text-xs font-bold hover:bg-white/10 transition-colors">
+                السابق
+            </a>
+        {% endif %}
+        <span class="text-xs text-on-surface-variant">صفحة {{ page_obj.number }} من {{ paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if active_category %}&category={{ active_category }}{% endif %}{% if active_type %}&type={{ active_type }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+               class="px-4 py-2 rounded-xl border border-white/10 glass-card text-white text-xs font-bold hover:bg-white/10 transition-colors">
+                التالي
+            </a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</main>
 {% endblock %}

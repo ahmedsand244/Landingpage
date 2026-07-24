@@ -7,8 +7,8 @@ class ServicesView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # We can pass categories or specific services metrics
-        context['categories'] = Category.objects.all()
+        context['categories'] = Category.objects.prefetch_related('technologies').all()
+        context['technologies'] = Technology.objects.all()
         return context
 
 

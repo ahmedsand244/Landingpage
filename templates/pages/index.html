@@ -1,103 +1,254 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Graduation Projects Studio{% endblock %}
+{% block title %}استوديو مشاريع التخرج | الصفحة الرئيسية{% endblock %}
 
 {% block content %}
-<main class="flex-grow flex flex-col">
+<div class="space-y-20 pb-16">
+
     <!-- Hero Section -->
-    <section class="relative min-h-[921px] flex items-center justify-center px-safe-margin py-3xl overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-primary/10 via-background to-background pointer-events-none"></div>
-        </div>
-        <div class="relative z-10 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-grid-gutter items-center">
-            <div class="lg:col-span-6 flex flex-col gap-lg">
-                <div class="inline-flex items-center gap-2 px-sm py-xs rounded-full bg-primary/10 border border-primary/20 w-max">
-                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-                    <span class="font-label-caps text-label-caps text-secondary">Elite Academic Tier Now Open</span>
+    <section class="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden border-b border-white/5">
+        <div class="max-w-[1440px] mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Text Content -->
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-xs md:text-sm font-semibold text-primary">استوديو متخصص لطلاب الجامعات</span>
                 </div>
-                <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface tracking-tight leading-tight">
-                    Engineer Your <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Future.</span>
+
+                <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+                    انجز مشروع تخرجك <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-emerald-400">بأعلى جودة وضمان كامل للمناقشة</span>
                 </h1>
-                <p class="font-body-base text-body-base text-on-surface-variant max-w-md">
-                    High-stakes bridge between academic excellence and commercial production. We build visionary graduation projects and B2B solutions.
+
+                <p class="text-on-surface-variant text-base md:text-lg max-w-2xl leading-relaxed">
+                    نرافقك من تحديد الفكرة وحتى تجهيز الكود والتوثيق والملفات الكاملة (Thesis & Presentation). كود برمجي نظيف، حلول الذكاء الاصطناعي، تطبيقات الموبايل، والويب.
                 </p>
-                <div class="flex items-center gap-md pt-sm">
-                    <a href="/portfolio/" class="bg-primary text-on-primary px-xl py-md rounded-lg font-body-base text-body-base font-semibold hover:bg-primary-fixed transition-colors active:scale-95 duration-200 text-center">
-                        Start Project
+
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <a href="https://wa.me/201099632832?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تفاصيل%20مشاريع%20التخرج" target="_blank" class="bg-[#10B981] hover:bg-[#059669] text-white px-8 py-3.5 rounded-xl font-bold text-base flex items-center gap-2 shadow-lg hover:shadow-emerald-500/20 transition-all active:scale-95">
+                        <span class="material-symbols-outlined">chat</span>
+                        تحدث معنا الآن على واتساب
                     </a>
-                    <a href="/portfolio/" class="glass-card px-xl py-md rounded-lg font-body-base text-body-base text-on-surface hover:bg-white/5 transition-colors active:scale-95 duration-200 flex items-center gap-2">
-                        <span class="material-symbols-outlined">play_circle</span>
-                        Watch Demo
+
+                    <a href="/portfolio/" class="glass-card text-white px-6 py-3.5 rounded-xl font-bold text-base hover:bg-white/10 transition-colors flex items-center gap-2">
+                        <span>تصفح المشاريع السابقة</span>
+                        <span class="material-symbols-outlined text-sm">arrow_back</span>
                     </a>
                 </div>
-            </div>
-            <div class="lg:col-span-6 relative mt-xl lg:mt-0">
-                <div class="glass-card rounded-xl overflow-hidden relative aspect-video group">
-                    <img class="w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:opacity-100 transition-opacity duration-700" data-alt="Code IDE interface mockup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeg2XW55Wrs0gL7YYMn5ZxiT-koe0VXRDnTBEYj6mbDwpa1UkPlM859a5OqvYsQV9LRywk22OWDRNwZLua4kmQziP9DHElQQebsmekvGi-qBw6rdLEIbbIaaGJTRpWb5-sDSEje9Rqdu7JxUqW8Nm-1AEE_F_EHbxL21wln_JQMod_TdHwp_h7cwkQEaVRWlWfdGZOpDTLTT8ba1la-J2qQpOeRUJnCgOF0B4X0hhEAOlnAymawmUR_37OQFdqvqV6OyAvPdJd"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
-                    <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-primary/20 backdrop-blur-md flex items-center justify-center border border-primary/30 group-hover:scale-110 transition-transform duration-300">
-                        <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                    </button>
-                    <div class="absolute bottom-md left-md right-md flex justify-between items-end">
-                        <div class="font-label-caps text-label-caps text-on-surface bg-background/50 backdrop-blur-sm px-2 py-1 rounded">System Architecture Demo</div>
-                        <div class="flex items-center gap-2 bg-secondary/10 border border-secondary/20 px-3 py-1.5 rounded-full backdrop-blur-md">
-                            <span class="material-symbols-outlined text-secondary text-sm">speed</span>
-                            <span class="font-body-sm text-body-sm text-secondary font-mono">99.9% Uptime</span>
-                        </div>
+
+                <!-- Stats / Value Highlights -->
+                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 max-w-lg">
+                    <div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-white">+50</div>
+                        <div class="text-xs text-on-surface-variant">مشروع مكتمل</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-emerald-400">100%</div>
+                        <div class="text-xs text-on-surface-variant">نسبة قبول المناقشة</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-secondary">24/7</div>
+                        <div class="text-xs text-on-surface-variant">دعم ومتابعة مستمرة</div>
                     </div>
                 </div>
-                <!-- Decorative elements -->
-                <div class="absolute -top-xl -right-xl w-32 h-32 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -bottom-xl -left-xl w-40 h-40 bg-secondary/20 rounded-full blur-3xl pointer-events-none"></div>
             </div>
+
+            <!-- Right Visual Graphic -->
+            <div class="lg:col-span-5">
+                <div class="glass-card p-6 rounded-2xl relative space-y-6 glow-hover">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+                            <div>
+                                <h3 class="text-white font-bold text-base">باقة المشروع الشاملة</h3>
+                                <p class="text-xs text-on-surface-variant">كل ما تحتاجه للنجاح بامتياز</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 text-xs font-bold">جاهز للمناقشة</span>
+                    </div>
+
+                    <ul class="space-y-3.5 text-sm">
+                        <li class="flex items-center gap-3 text-on-surface">
+                            <span class="material-symbols-outlined text-emerald-400 text-xl">check_circle</span>
+                            <span>كود برمجي كامل ومنظم (Source Code)</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-on-surface">
+                            <span class="material-symbols-outlined text-emerald-400 text-xl">check_circle</span>
+                            <span>توثيق وتقرير أكاديمي كامل (Documentation & Thesis)</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-on-surface">
+                            <span class="material-symbols-outlined text-emerald-400 text-xl">check_circle</span>
+                            <span>عرض تقديمي احترافي (PowerPoint / Presentation)</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-on-surface">
+                            <span class="material-symbols-outlined text-emerald-400 text-xl">check_circle</span>
+                            <span>شرح وتدريب على الكود قبل يوم المناقشة</span>
+                        </li>
+                    </ul>
+
+                    <div class="p-4 rounded-xl bg-primary/10 border border-primary/20 text-xs text-primary font-semibold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">support</span>
+                        <span>متابعة وتعديلات مستمرة حسب ملاحظات الدكتور أو اللجنة</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- Featured Projects Section -->
-    <section class="max-w-[1440px] mx-auto px-safe-margin py-2xl border-t border-white/5">
-        <div class="flex justify-between items-end mb-xl">
+    <section class="max-w-[1440px] mx-auto px-4 md:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
-                <span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">PROJECT SHOWCASE</span>
-                <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mt-xs font-bold">Visionary Implementations</h2>
+                <span class="text-xs font-bold text-primary uppercase tracking-wider">معرض الأعمال</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white mt-1">نماذج من مشاريعنا السابقة</h2>
             </div>
-            <a href="/portfolio/" class="text-primary font-label-caps text-label-caps hover:text-secondary flex items-center gap-1 transition-colors">
-                Browse Full Repository <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            <a href="/portfolio/" class="text-primary hover:text-white text-sm font-bold flex items-center gap-1 transition-colors">
+                عرض جميع المشاريع <span class="material-symbols-outlined text-base">arrow_back</span>
             </a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             {% for project in featured_projects %}
-            <div class="glass-card rounded-xl overflow-hidden group hover:border-white/20 transition-all duration-300 flex flex-col justify-between">
-                <div class="h-48 overflow-hidden relative border-b border-white/10">
+            <div class="glass-card rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-300 flex flex-col justify-between group">
+                <div class="h-48 overflow-hidden relative bg-surface-container flex items-center justify-center">
                     {% if project.gallery.first %}
                         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ project.gallery.first.image.url }}" alt="{{ project.title }}"/>
                     {% else %}
-                        <div class="w-full h-full bg-gradient-to-tr from-primary/10 to-secondary/10 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-primary text-4xl">terminal</span>
+                        <div class="flex flex-col items-center gap-2 text-primary/60">
+                            <span class="material-symbols-outlined text-5xl">folder_special</span>
+                            <span class="text-xs font-bold">مشروع تخرج مكتمل</span>
                         </div>
                     {% endif %}
-                    <div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
                 </div>
-                <div class="p-lg flex-grow flex flex-col justify-between gap-md">
+
+                <div class="p-6 flex-grow flex flex-col justify-between gap-4">
                     <div>
-                        <h3 class="font-headline-md text-headline-md text-on-surface font-bold">{{ project.title }}</h3>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-xs">{{ project.summary }}</p>
+                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                            {{ project.get_project_type_display }}
+                        </span>
+                        <h3 class="text-lg font-bold text-white mt-3 group-hover:text-primary transition-colors">{{ project.title }}</h3>
+                        <p class="text-xs text-on-surface-variant line-clamp-2 mt-2 leading-relaxed">{{ project.summary }}</p>
                     </div>
-                    <div class="flex justify-between items-center border-t border-white/5 pt-md mt-sm">
-                        <span class="text-xs text-on-surface-variant font-mono">{{ project.client_name }}</span>
-                        <a href="{% url 'projects:project_detail' slug=project.slug %}" class="text-primary font-label-caps text-label-caps flex items-center gap-1">
-                            Case Study <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+
+                    <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-2 text-xs">
+                        <span class="text-on-surface-variant font-mono">{{ project.client_name }}</span>
+                        <a href="{% url 'projects:project_detail' slug=project.slug %}" class="text-primary font-bold flex items-center gap-1 hover:underline">
+                            التفاصيل الكاملة <span class="material-symbols-outlined text-sm">arrow_back</span>
                         </a>
                     </div>
                 </div>
             </div>
             {% empty %}
-                <div class="col-span-3 text-center text-on-surface-variant italic py-lg">
-                    No featured projects listed yet. Run database seed or admin setup.
-                </div>
+            <div class="col-span-3 text-center py-12 text-on-surface-variant glass-card rounded-2xl">
+                لا توجد مشاريع مضافة حالياً.
+            </div>
             {% endfor %}
         </div>
     </section>
-</main>
+
+    <!-- Services Quick Overview -->
+    <section class="max-w-[1440px] mx-auto px-4 md:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs font-bold text-secondary uppercase tracking-wider">مجالات العمل</span>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white mt-1">تخصصات المشاريع التي ننفذها</h2>
+            <p class="text-on-surface-variant text-sm mt-2">نغطي مختلف التخصصات البرمجية والأكاديمية لأعلى كليات الحاسبات والهندسة.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-secondary/40 transition-all">
+                <span class="material-symbols-outlined text-secondary text-4xl">psychology</span>
+                <h3 class="text-lg font-bold text-white">الذكاء الاصطناعي و AI</h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed">تطبيقات Machine Learning, Deep Learning, Computer Vision, و NLP برمجياً بـ Python.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-primary/40 transition-all">
+                <span class="material-symbols-outlined text-primary text-4xl">language</span>
+                <h3 class="text-lg font-bold text-white">مواقع الويب المتكاملة</h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed">تطوير تطبيقات Web متكاملة باستخدام Django, React, و Node.js بقواعد بيانات قوية.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-emerald-400/40 transition-all">
+                <span class="material-symbols-outlined text-emerald-400 text-4xl">smartphone</span>
+                <h3 class="text-lg font-bold text-white">تطبيقات الموبايل</h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed">تطبيقات الهواتف الذكية لنظامي Android و iOS باستخدام Flutter و React Native.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-amber-400/40 transition-all">
+                <span class="material-symbols-outlined text-amber-400 text-4xl">cloud_sync</span>
+                <h3 class="text-lg font-bold text-white">السحابة والـ DevOps</h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed">ربط واستضافة المشاريع على منصات AWS / Docker وتجهيز المخدمات للعرض الحي.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    {% if testimonials %}
+    <section class="max-w-[1440px] mx-auto px-4 md:px-8">
+        <div class="glass-card p-8 md:p-12 rounded-3xl relative overflow-hidden">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">آراء الطلاب</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">ماذا يقول الطلاب عن تجربتهم معنا؟</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {% for t in testimonials %}
+                <div class="bg-surface-container p-6 rounded-2xl border border-white/5 space-y-4">
+                    <div class="flex items-center text-amber-400 gap-1 text-sm">
+                        {% for i in "12345" %}
+                        <span class="material-symbols-outlined text-base">star</span>
+                        {% endfor %}
+                    </div>
+                    <p class="text-xs md:text-sm text-on-surface leading-relaxed italic">"{{ t.review_text }}"</p>
+                    <div class="border-t border-white/10 pt-3 flex justify-between items-center text-xs">
+                        <span class="font-bold text-white">{{ t.name }}</span>
+                        <span class="text-on-surface-variant">{{ t.role_university }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- FAQ Section -->
+    {% if faqs %}
+    <section class="max-w-4xl mx-auto px-4 md:px-8 space-y-6">
+        <div class="text-center">
+            <span class="text-xs font-bold text-primary uppercase tracking-wider">الأسئلة الشائعة</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">إجابات على أهم الاستفسارات</h2>
+        </div>
+
+        <div class="space-y-4">
+            {% for faq in faqs %}
+            <div class="glass-card p-6 rounded-2xl space-y-2">
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-xl">help_outline</span>
+                    {{ faq.question }}
+                </h3>
+                <p class="text-xs md:text-sm text-on-surface-variant leading-relaxed pr-7">
+                    {{ faq.answer }}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Call to Action Banner -->
+    <section class="max-w-[1440px] mx-auto px-4 md:px-8">
+        <div class="bg-gradient-to-r from-primary/20 via-surface-container to-emerald-500/20 border border-white/10 p-8 md:p-12 rounded-3xl text-center space-y-6">
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white">هل أنت جاهز للبدء في مشروع تخرجك؟</h2>
+            <p class="text-on-surface-variant text-sm md:text-base max-w-xl mx-auto">
+                تواصل معنا الآن وسنقوم بمساعدتك في اختيار أو تنفيذ فكرة مشروعك وتجهيز كافة المستلزمات البرمجية والأكاديمية.
+            </p>
+            <div>
+                <a href="https://wa.me/201099632832?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تفاصيل%20مشاريع%20التخرج" target="_blank" class="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#059669] text-white px-8 py-3.5 rounded-xl font-bold text-base whatsapp-glow transition-all active:scale-95">
+                    <span class="material-symbols-outlined">chat</span>
+                    تحدث معنا الآن عبر واتساب
+                </a>
+            </div>
+        </div>
+    </section>
+
+</div>
 {% endblock %}

@@ -14,6 +14,7 @@ class HomeView(TemplateView):
         # Load testimonials & FAQs for quick preview sections
         context['testimonials'] = Testimonial.objects.all()[:3]
         context['faqs'] = FAQ.objects.all()[:4]
+        context['technologies'] = Technology.objects.all()[:6]
         return context
 
 
