@@ -10,7 +10,6 @@
               this.applyTheme(this.themeMode);
               await this.loadLang(this.lang);
               
-              // Listen to OS theme changes if mode is system
               window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
                   if (this.themeMode === 'system') {
                       this.applyTheme('system');
@@ -53,7 +52,7 @@
       }">
 <head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
     <title>{% block title %}استوديو البرمجيات وحلول الأعمال | Business Software Studio{% endblock %}</title>
     
     <!-- Anti-FOUC (Flash of Unstyled Content) Instant Theme Script -->
@@ -120,6 +119,10 @@
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
         }
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
@@ -144,26 +147,30 @@
             70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
             100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-background text-on-surface min-h-screen flex flex-col antialiased">
+<body class="bg-background text-on-surface min-h-screen flex flex-col antialiased overflow-x-hidden max-w-full">
 
     <!-- TopNavBar -->
     <nav class="bg-surface/80 backdrop-blur-md sticky top-0 border-b border-white/10 dark:border-white/10 border-black/10 shadow-lg z-50 transition-all">
         <div class="flex justify-between items-center w-full px-4 md:px-8 h-20 max-w-[1440px] mx-auto">
             <!-- Brand Logo -->
-            <a href="/" class="text-lg md:text-xl font-bold tracking-tight text-on-surface flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <a href="/" class="text-lg md:text-xl font-bold tracking-tight text-on-surface flex items-center gap-2 hover:opacity-80 transition-opacity min-h-[44px]">
                 <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
                 <span x-text="t('nav_brand', 'Studio | حلول البرمجيات والأعمال')"></span>
             </a>
             
             <!-- Desktop Navigation Menu (4 Links) -->
             <div class="hidden md:flex items-center gap-6 font-semibold text-sm">
-                <a class="px-3 py-2 rounded-lg transition-colors {% if request.path == '/' %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface hover:bg-black/5 dark:hover:bg-white/5{% endif %}" href="/" x-text="t('nav_home', 'الرئيسية')"></a>
-                <a class="px-3 py-2 rounded-lg transition-colors {% if '/portfolio' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface hover:bg-black/5 dark:hover:bg-white/5{% endif %}" href="/portfolio/" x-text="t('nav_portfolio', 'المشاريع والأعمال')"></a>
-                <a class="px-3 py-2 rounded-lg transition-colors {% if '/services' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface hover:bg-black/5 dark:hover:bg-white/5{% endif %}" href="/services/" x-text="t('nav_services', 'الخدمات والتقنيات')"></a>
-                <a class="px-3 py-2 rounded-lg transition-colors {% if '/contact' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface hover:bg-black/5 dark:hover:bg-white/5{% endif %}" href="/contact/" x-text="t('nav_contact', 'تواصل معنا')"></a>
+                <a class="px-3 py-2 rounded-lg transition-colors min-h-[44px] flex items-center {% if request.path == '/' %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface hover:bg-black/5 dark:hover:bg-white/5{% endif %}" href="/" x-text="t('nav_home', 'الرئيسية')"></a>
+                <a class="px-3 py-2 rounded-lg transition-colors min-h-[44px] flex items-center {% if '/portfolio' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface hover:bg-black/5 dark:hover:bg-white/5{% endif %}" href="/portfolio/" x-text="t('nav_portfolio', 'المشاريع والأعمال')"></a>
+                <a class="px-3 py-2 rounded-lg transition-colors min-h-[44px] flex items-center {% if '/services' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface hover:bg-black/5 dark:hover:bg-white/5{% endif %}" href="/services/" x-text="t('nav_services', 'الخدمات والتقنيات')"></a>
+                <a class="px-3 py-2 rounded-lg transition-colors min-h-[44px] flex items-center {% if '/contact' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface hover:bg-black/5 dark:hover:bg-white/5{% endif %}" href="/contact/" x-text="t('nav_contact', 'تواصل معنا')"></a>
             </div>
 
             <!-- Action Buttons: WhatsApp CTA + Language Switcher + Theme Switcher -->
@@ -171,7 +178,7 @@
                 
                 <!-- Theme Switcher Dropdown Component -->
                 <div class="relative" @click.outside="themeMenuOpen = false">
-                    <button @click="themeMenuOpen = !themeMenuOpen" class="glass-card border border-primary/30 px-3 py-2 rounded-full text-xs font-bold text-on-surface hover:bg-black/5 dark:hover:bg-white/10 transition-all flex items-center gap-1.5 active:scale-95" title="تغيير المظهر / Theme">
+                    <button @click="themeMenuOpen = !themeMenuOpen" class="glass-card border border-primary/30 px-3 py-2 rounded-full text-xs font-bold text-on-surface hover:bg-black/5 dark:hover:bg-white/10 transition-all flex items-center gap-1.5 active:scale-95 min-h-[44px]" title="تغيير المظهر / Theme">
                         <span class="material-symbols-outlined text-base text-amber-400" x-show="themeMode === 'light'">light_mode</span>
                         <span class="material-symbols-outlined text-base text-primary" x-show="themeMode === 'dark'">dark_mode</span>
                         <span class="material-symbols-outlined text-base text-emerald-400" x-show="themeMode === 'system'">desktop_windows</span>
@@ -180,15 +187,15 @@
 
                     <!-- Theme Menu Dropdown -->
                     <div x-show="themeMenuOpen" x-transition class="absolute right-0 mt-2 w-36 glass-card rounded-2xl p-1.5 shadow-xl border border-black/10 dark:border-white/10 z-50 space-y-1">
-                        <button @click="setTheme('light')" class="w-full px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" :class="themeMode === 'light' ? 'text-primary bg-primary/10' : 'text-on-surface'">
+                        <button @click="setTheme('light')" class="w-full px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/10 transition-colors min-h-[40px]" :class="themeMode === 'light' ? 'text-primary bg-primary/10' : 'text-on-surface'">
                             <span class="material-symbols-outlined text-base text-amber-400">light_mode</span>
                             <span>نهار (Light)</span>
                         </button>
-                        <button @click="setTheme('dark')" class="w-full px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" :class="themeMode === 'dark' ? 'text-primary bg-primary/10' : 'text-on-surface'">
+                        <button @click="setTheme('dark')" class="w-full px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/10 transition-colors min-h-[40px]" :class="themeMode === 'dark' ? 'text-primary bg-primary/10' : 'text-on-surface'">
                             <span class="material-symbols-outlined text-base text-primary">dark_mode</span>
                             <span>ليل (Dark)</span>
                         </button>
-                        <button @click="setTheme('system')" class="w-full px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" :class="themeMode === 'system' ? 'text-primary bg-primary/10' : 'text-on-surface'">
+                        <button @click="setTheme('system')" class="w-full px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/10 transition-colors min-h-[40px]" :class="themeMode === 'system' ? 'text-primary bg-primary/10' : 'text-on-surface'">
                             <span class="material-symbols-outlined text-base text-emerald-400">desktop_windows</span>
                             <span>تلقائي (OS)</span>
                         </button>
@@ -196,12 +203,12 @@
                 </div>
 
                 <!-- Language Switcher Toggle Button -->
-                <button @click="toggleLang()" class="glass-card border border-primary/30 px-3.5 py-2 rounded-full text-xs font-bold text-on-surface hover:bg-black/5 dark:hover:bg-white/10 transition-all flex items-center gap-1.5 active:scale-95">
+                <button @click="toggleLang()" class="glass-card border border-primary/30 px-3.5 py-2 rounded-full text-xs font-bold text-on-surface hover:bg-black/5 dark:hover:bg-white/10 transition-all flex items-center gap-1.5 active:scale-95 min-h-[44px]">
                     <span class="material-symbols-outlined text-base text-primary">language</span>
                     <span x-text="lang === 'ar' ? 'English' : 'العربية'"></span>
                 </button>
 
-                <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="bg-[#10B981] hover:bg-[#059669] text-white px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 whatsapp-glow transition-all active:scale-95">
+                <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="bg-[#10B981] hover:bg-[#059669] text-white px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 whatsapp-glow transition-all active:scale-95 min-h-[44px]">
                     <span class="material-symbols-outlined text-lg">chat</span>
                     <span x-text="t('nav_whatsapp', 'تواصل معنا واتساب')"></span>
                 </a>
@@ -210,18 +217,18 @@
             <!-- Mobile Menu Toggle & Actions -->
             <div class="flex items-center gap-2 md:hidden">
                 <!-- Mobile Theme Toggle -->
-                <button @click="setTheme(themeMode === 'dark' ? 'light' : 'dark')" class="glass-card px-2.5 py-1.5 rounded-full text-xs font-bold text-on-surface flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm text-amber-400" x-show="themeMode !== 'dark'">light_mode</span>
-                    <span class="material-symbols-outlined text-sm text-primary" x-show="themeMode === 'dark'">dark_mode</span>
+                <button @click="setTheme(themeMode === 'dark' ? 'light' : 'dark')" class="glass-card px-3 py-2 rounded-full text-xs font-bold text-on-surface flex items-center gap-1 min-h-[44px]">
+                    <span class="material-symbols-outlined text-base text-amber-400" x-show="themeMode !== 'dark'">light_mode</span>
+                    <span class="material-symbols-outlined text-base text-primary" x-show="themeMode === 'dark'">dark_mode</span>
                 </button>
 
                 <!-- Mobile Lang Toggle -->
-                <button @click="toggleLang()" class="glass-card px-2.5 py-1.5 rounded-full text-xs font-bold text-on-surface flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm text-primary">language</span>
+                <button @click="toggleLang()" class="glass-card px-3 py-2 rounded-full text-xs font-bold text-on-surface flex items-center gap-1 min-h-[44px]">
+                    <span class="material-symbols-outlined text-base text-primary">language</span>
                     <span x-text="lang === 'ar' ? 'EN' : 'عربي'"></span>
                 </button>
 
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-on-surface p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-on-surface p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 min-h-[44px] min-w-[44px] flex items-center justify-center">
                     <span class="material-symbols-outlined text-3xl" x-text="mobileMenuOpen ? 'close' : 'menu'">menu</span>
                 </button>
             </div>
@@ -229,22 +236,22 @@
 
         <!-- Mobile Menu Dropdown -->
         <div x-show="mobileMenuOpen" x-transition class="md:hidden border-b border-black/10 dark:border-white/10 bg-surface-container px-4 py-4 space-y-3">
-            <a class="block px-4 py-2.5 rounded-lg font-semibold {% if request.path == '/' %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface{% endif %}" href="/" x-text="t('nav_home', 'الرئيسية')"></a>
-            <a class="block px-4 py-2.5 rounded-lg font-semibold {% if '/portfolio' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface{% endif %}" href="/portfolio/" x-text="t('nav_portfolio', 'المشاريع والأعمال')"></a>
-            <a class="block px-4 py-2.5 rounded-lg font-semibold {% if '/services' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface{% endif %}" href="/services/" x-text="t('nav_services', 'الخدمات والتقنيات')"></a>
-            <a class="block px-4 py-2.5 rounded-lg font-semibold {% if '/contact' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface{% endif %}" href="/contact/" x-text="t('nav_contact', 'تواصل معنا')"></a>
-            <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="block w-full text-center bg-[#10B981] text-white py-3 rounded-xl font-bold mt-2" x-text="t('nav_whatsapp', 'تحدث معنا واتساب مباشرة')"></a>
+            <a class="block px-4 py-3 rounded-lg font-semibold min-h-[44px] flex items-center {% if request.path == '/' %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface{% endif %}" href="/" x-text="t('nav_home', 'الرئيسية')"></a>
+            <a class="block px-4 py-3 rounded-lg font-semibold min-h-[44px] flex items-center {% if '/portfolio' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface{% endif %}" href="/portfolio/" x-text="t('nav_portfolio', 'المشاريع والأعمال')"></a>
+            <a class="block px-4 py-3 rounded-lg font-semibold min-h-[44px] flex items-center {% if '/services' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface{% endif %}" href="/services/" x-text="t('nav_services', 'الخدمات والتقنيات')"></a>
+            <a class="block px-4 py-3 rounded-lg font-semibold min-h-[44px] flex items-center {% if '/contact' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface{% endif %}" href="/contact/" x-text="t('nav_contact', 'تواصل معنا')"></a>
+            <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="block w-full text-center bg-[#10B981] text-white py-3 rounded-xl font-bold mt-2 min-h-[44px] flex items-center justify-center gap-2" x-text="t('nav_whatsapp', 'تحدث معنا واتساب مباشرة')"></a>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-grow">
+    <main class="flex-grow w-full max-w-full">
         {% block content %}
         {% endblock %}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-surface-container-lowest border-t border-black/10 dark:border-white/10 py-12 px-4 md:px-8 mt-16 transition-colors">
+    <footer class="bg-surface-container-lowest border-t border-black/10 dark:border-white/10 py-12 px-4 md:px-8 mt-16 transition-colors w-full">
         <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <div class="text-xl font-bold text-on-surface flex items-center gap-2 mb-3">
@@ -257,17 +264,17 @@
             <div>
                 <h4 class="text-on-surface font-bold mb-3 text-base" x-text="t('footer_quick_links', 'روابط سريعة')"></h4>
                 <div class="flex flex-col space-y-2 text-sm text-on-surface-variant">
-                    <a href="/" class="hover:text-primary transition-colors" x-text="t('nav_home', 'الرئيسية')"></a>
-                    <a href="/portfolio/" class="hover:text-primary transition-colors" x-text="t('nav_portfolio', 'معرض المشاريع والأعمال')"></a>
-                    <a href="/services/" class="hover:text-primary transition-colors" x-text="t('nav_services', 'خدمات البزنس والتطوير')"></a>
-                    <a href="/contact/" class="hover:text-primary transition-colors" x-text="t('nav_contact', 'تواصل معنا')"></a>
+                    <a href="/" class="hover:text-primary transition-colors py-1" x-text="t('nav_home', 'الرئيسية')"></a>
+                    <a href="/portfolio/" class="hover:text-primary transition-colors py-1" x-text="t('nav_portfolio', 'معرض المشاريع والأعمال')"></a>
+                    <a href="/services/" class="hover:text-primary transition-colors py-1" x-text="t('nav_services', 'خدمات البزنس والتطوير')"></a>
+                    <a href="/contact/" class="hover:text-primary transition-colors py-1" x-text="t('nav_contact', 'تواصل معنا')"></a>
                 </div>
             </div>
 
             <div>
                 <h4 class="text-on-surface font-bold mb-3 text-base" x-text="t('footer_support', 'الدعم والتواصل المباشر')"></h4>
                 <p class="text-sm text-on-surface-variant mb-4" x-text="t('cta_banner_desc', 'هل لديك فكرة تطبيق، نظام بزنس، أو مشروع تخرج؟ تواصل معنا مباشرة:')"></p>
-                <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="inline-flex items-center gap-2 bg-[#10B981] text-white px-4 py-2 rounded-lg font-bold text-sm hover:bg-[#059669] transition-colors">
+                <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="inline-flex items-center gap-2 bg-[#10B981] text-white px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-[#059669] transition-colors min-h-[44px]">
                     <span class="material-symbols-outlined text-lg">chat</span>
                     <span>WhatsApp: +20 15 54397407</span>
                 </a>
