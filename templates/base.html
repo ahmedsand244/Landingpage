@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html class="dark font-cairo" lang="ar" dir="rtl" 
       x-data="{
@@ -54,6 +55,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
     <title>{% block title %}Mashroo+ | استوديو البرمجيات وحلول الأعمال{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}"/>
     
     <!-- Anti-FOUC (Flash of Unstyled Content) Instant Theme Script -->
     <script>
@@ -162,10 +164,10 @@
     <!-- TopNavBar -->
     <nav class="bg-surface/90 backdrop-blur-md sticky top-0 border-b border-slate-200 dark:border-white/10 shadow-sm z-50 transition-all">
         <div class="flex justify-between items-center w-full px-4 md:px-8 h-20 max-w-[1440px] mx-auto">
-            <!-- Brand Logo -->
-            <a href="/" class="text-lg md:text-xl font-bold tracking-tight text-on-surface flex items-center gap-2 hover:opacity-80 transition-opacity min-h-[44px]">
-                <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
-                <span x-text="t('nav_brand', 'Mashroo+ | حلول البرمجيات والأعمال')"></span>
+            
+            <!-- Brand Logo Image Only -->
+            <a href="/" class="flex items-center hover:opacity-90 transition-opacity min-h-[44px] group">
+                <img src="{% static 'images/logo.png' %}" alt="مشروع+ Logo" class="h-12 w-auto object-contain rounded-full shadow-md shadow-primary/20 group-hover:scale-105 transition-transform duration-300"/>
             </a>
             
             <!-- Desktop Navigation Menu (4 Links) -->
@@ -257,10 +259,9 @@
     <footer class="bg-surface-container-lowest border-t border-slate-200 dark:border-white/10 py-12 px-4 md:px-8 mt-16 transition-colors w-full">
         <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-                <div class="text-xl font-bold text-on-surface flex items-center gap-2 mb-3">
-                    <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
-                    <span x-text="t('nav_brand', 'Studio | حلول البرمجيات والأعمال')"></span>
-                </div>
+                <a href="/" class="inline-flex items-center mb-4 hover:opacity-90 transition-opacity">
+                    <img src="{% static 'images/logo.png' %}" alt="مشروع+ Logo" class="h-11 w-auto object-contain rounded-full shadow-sm"/>
+                </a>
                 <p class="text-on-surface-variant text-sm leading-relaxed" x-text="t('hero_desc', 'نطور ونبني حلول البرمجيات وتطبيقات البزنس للشركات والأنشطة التجارية، إلى جانب المشاريع الأكاديمية.')"></p>
             </div>
             
@@ -284,7 +285,7 @@
             </div>
         </div>
 
-        <div class="max-w-[1440px] mx-auto border-t border-slate-200 dark:border-white/5 mt-8 pt-6 text-center text-xs text-on-surface-variant" x-text="t('footer_rights', '© 2026 Studio Software & Business Solutions. جميع الحقوق محفوظة.')"></div>
+        <div class="max-w-[1440px] mx-auto border-t border-slate-200 dark:border-white/5 mt-8 pt-6 text-center text-xs text-on-surface-variant" x-text="t('footer_rights', '© 2026 Mashroo+ Software & Business Solutions. جميع الحقوق محفوظة.')"></div>
     </footer>
 
 </body>
