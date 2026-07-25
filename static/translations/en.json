@@ -1,12 +1,12 @@
 {
-  "nav_brand": "Mashroo+ | Software & Business Studio",
+  "nav_brand": "Code+ | Software & Business Studio",
   "nav_home": "Home",
   "nav_portfolio": "Projects & Portfolio",
   "nav_services": "Services & Technologies",
   "nav_contact": "Contact Us",
   "nav_whatsapp": "Contact Us on WhatsApp",
 
-  "hero_badge": "Specialized Mashroo+ Studio for Business & Software Projects",
+  "hero_badge": "Specialized Code+ Studio for Business & Software Projects",
   "hero_title": "We turn business ideas & projects into market-ready apps and software systems",
   "hero_desc": "We design and develop full-stack Web apps, Mobile apps, and Startup MVPs & SaaS platforms, alongside advanced academic graduation thesis development.",
   "hero_cta_wa": "Talk to Us to Start Your Project",
@@ -19,7 +19,7 @@
   "stat_support_val": "24/7",
   "stat_support_label": "Continuous Support & Advice",
 
-  "tracks_title": "Mashroo+ Studio Development Tracks",
+  "tracks_title": "Code+ Studio Development Tracks",
   "tracks_sub": "Comprehensive solutions for Business & Academia",
   "track_biz_title": "💼 Business & Startup Track (Business & MVPs)",
   "track_biz_desc": "Smart mobile app development, enterprise dashboards, SaaS platforms, and e-commerce stores with payment gateways & cloud deployment.",
@@ -45,7 +45,7 @@
   "testimonials_badge": "Client & Business Trust",
 
   "comments_title": "Share Your Real Feedback or Inquiry",
-  "comments_desc": "You can post your comment, star rating, and receive direct replies from the Mashroo+ Studio team.",
+  "comments_desc": "You can post your comment, star rating, and receive direct replies from the Code+ Studio team.",
   "comments_form_title": "Add New Comment / Review",
   "form_name": "Full Name",
   "form_role": "Role / Company or University",
@@ -61,7 +61,7 @@
   "cta_banner_desc": "Contact us today to discuss your idea, roadmap, cost estimation, and delivery schedule.",
   "cta_banner_btn": "Talk to Us Now on WhatsApp",
 
-  "footer_rights": "© 2026 Mashroo+ Software & Business Solutions. All rights reserved.",
+  "footer_rights": "© 2026 Code+ Software & Business Solutions. All rights reserved.",
   "footer_quick_links": "Quick Links",
   "footer_support": "Direct Support & Contact"
 }
