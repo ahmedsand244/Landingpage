@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}الخدمات والتقنيات | Business & Academic Services{% endblock %}
+{% block title %}الخدمات وحاسبة التكلفة | Business & Academic Services{% endblock %}
 
 {% block content %}
 <main class="w-full max-w-[1440px] mx-auto px-4 md:px-8 py-8 md:py-12 space-y-12">
@@ -144,6 +144,231 @@
                 <span class="material-symbols-outlined text-base">chat</span>
                 استفسر عن مشروع التخرج
             </a>
+        </div>
+
+    </div>
+
+    <!-- INTERACTIVE COST ESTIMATOR & QUOTATION CALCULATOR -->
+    <div x-data="{
+            projectType: 'mvp',
+            platform: 'both',
+            needDocs: true,
+            needHosting: false,
+            needPayment: true,
+            urgency: 'normal',
+
+            get projectTypeName() {
+                const names = {
+                    'mvp': 'تطبيق بزنس / MVP',
+                    'saas': 'نظام SaaS / لوحة تحكم سحابية',
+                    'ai': 'ذكاء اصطناعي و Computer Vision',
+                    'academic': 'مشروع تخرج وتوثيق أكاديمي'
+                };
+                return names[this.projectType] || '';
+            },
+
+            get platformName() {
+                const names = {
+                    'web': 'تطبيق ويب فقط',
+                    'mobile': 'تطبيق موبايل (iOS & Android)',
+                    'both': 'تطبيق موبايل + لوحة ويب'
+                };
+                return names[this.platform] || '';
+            },
+
+            get estimatedDays() {
+                let days = 14;
+                if (this.projectType === 'saas') days += 7;
+                if (this.projectType === 'ai') days += 5;
+                if (this.platform === 'both') days += 7;
+                if (this.urgency === 'express') days = Math.max(7, Math.floor(days * 0.6));
+                return days + ' - ' + (days + 7) + ' يوماً';
+            },
+
+            get whatsappUrl() {
+                let extras = [];
+                if (this.needDocs) extras.push('التوثيق والتقرير');
+                if (this.needHosting) extras.push('الرفع والتهيئة السحابية');
+                if (this.needPayment) extras.push('ربط بوابات الدفع');
+
+                let msg = 'أهلاً بكم، أود الاستفسار وتأكيد طلب مشروع حسب الحسابات التفاعلية:\n' +
+                          '• نوع المشروع: ' + this.projectTypeName + '\n' +
+                          '• المنصة: ' + this.platformName + '\n' +
+                          '• السرعة: ' + (this.urgency === 'express' ? 'سريع مكثف' : 'قياسي') + '\n' +
+                          '• الإضافات: ' + (extras.join('، ') || 'لا يوجد') + '\n' +
+                          '• المدة المتوقعة: ' + this.estimatedDays + '\n' +
+                          'يرجى التواصل لمناقشة التفاصيل والبدء.';
+
+                return 'https://wa.me/201554397407?text=' + encodeURIComponent(msg);
+            }
+        }" 
+        class="glass-card rounded-3xl p-6 md:p-10 space-y-8 border-2 border-primary/30 relative overflow-hidden bg-gradient-to-br from-surface via-surface to-primary/5 shadow-2xl">
+        
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-6">
+            <div class="space-y-1">
+                <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-primary/20 text-primary border border-primary/40 inline-flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm">calculate</span>
+                    <span>حاسبة التكلفة المباشرة</span>
+                </span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">
+                    احسب التكلفة المبدئية والمدة المتوقعة لمشروعك
+                </h2>
+            </div>
+            <div class="text-xs text-on-surface-variant max-w-md">
+                اختر مواصفات مشروعك للحصول على تقدير فوري وإرساله مباشرة للمهندسين عبر الواتساب.
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Form Inputs (Left 8 Cols) -->
+            <div class="lg:col-span-8 space-y-6">
+                
+                <!-- 1. Select Project Type -->
+                <div class="space-y-3">
+                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">1. نوع المشروع المطلوب:</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <button type="button" @click="projectType = 'mvp'" 
+                                class="p-4 rounded-2xl border text-right transition-all flex items-center gap-3"
+                                :class="projectType === 'mvp' ? 'border-primary bg-primary/10 text-primary font-bold shadow-md' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
+                            <span class="material-symbols-outlined text-2xl text-primary">rocket_launch</span>
+                            <div>
+                                <div class="text-xs font-bold">تطبيق بزنس / MVP</div>
+                                <div class="text-[10px] text-on-surface-variant">للشركات والمتاجر والأنشطة الناشئة</div>
+                            </div>
+                        </button>
+
+                        <button type="button" @click="projectType = 'saas'" 
+                                class="p-4 rounded-2xl border text-right transition-all flex items-center gap-3"
+                                :class="projectType === 'saas' ? 'border-primary bg-primary/10 text-primary font-bold shadow-md' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
+                            <span class="material-symbols-outlined text-2xl text-secondary">dashboard</span>
+                            <div>
+                                <div class="text-xs font-bold">منصة SaaS سحابية</div>
+                                <div class="text-[10px] text-on-surface-variant">لوحات تحكم متقدمة وإدارة مبيعات</div>
+                            </div>
+                        </button>
+
+                        <button type="button" @click="projectType = 'ai'" 
+                                class="p-4 rounded-2xl border text-right transition-all flex items-center gap-3"
+                                :class="projectType === 'ai' ? 'border-primary bg-primary/10 text-primary font-bold shadow-md' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
+                            <span class="material-symbols-outlined text-2xl text-emerald-500">psychology</span>
+                            <div>
+                                <div class="text-xs font-bold">ذكاء اصطناعي و Vision</div>
+                                <div class="text-[10px] text-on-surface-variant">نماذج تعلم عميق وتحليل بيانات</div>
+                            </div>
+                        </button>
+
+                        <button type="button" @click="projectType = 'academic'" 
+                                class="p-4 rounded-2xl border text-right transition-all flex items-center gap-3"
+                                :class="projectType === 'academic' ? 'border-primary bg-primary/10 text-primary font-bold shadow-md' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
+                            <span class="material-symbols-outlined text-2xl text-amber-500">school</span>
+                            <div>
+                                <div class="text-xs font-bold">مشروع تخرج أكاديمي</div>
+                                <div class="text-[10px] text-on-surface-variant">كود مصدري + توثيق ومناقشة</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Select Platform -->
+                <div class="space-y-3">
+                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">2. المنصة المستهدفة:</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button type="button" @click="platform = 'web'" 
+                                class="p-3 rounded-xl border text-center transition-all text-xs font-bold"
+                                :class="platform === 'web' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
+                            موقع / منصة ويب
+                        </button>
+
+                        <button type="button" @click="platform = 'mobile'" 
+                                class="p-3 rounded-xl border text-center transition-all text-xs font-bold"
+                                :class="platform === 'mobile' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
+                            تطبيق موبايل
+                        </button>
+
+                        <button type="button" @click="platform = 'both'" 
+                                class="p-3 rounded-xl border text-center transition-all text-xs font-bold"
+                                :class="platform === 'both' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
+                            موبايل + ويب
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Add-ons & Options -->
+                <div class="space-y-3">
+                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">3. خدمات إضافية:</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-white/10 flex items-center gap-2 cursor-pointer text-xs font-semibold hover:bg-slate-100 dark:hover:bg-white/5">
+                            <input type="checkbox" x-model="needDocs" class="rounded border-slate-300 text-primary focus:ring-primary">
+                            <span>كتابة التوثيق والتقرير</span>
+                        </label>
+
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-white/10 flex items-center gap-2 cursor-pointer text-xs font-semibold hover:bg-slate-100 dark:hover:bg-white/5">
+                            <input type="checkbox" x-model="needHosting" class="rounded border-slate-300 text-primary focus:ring-primary">
+                            <span>الرفع على السيرفر (Hosting)</span>
+                        </label>
+
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-white/10 flex items-center gap-2 cursor-pointer text-xs font-semibold hover:bg-slate-100 dark:hover:bg-white/5">
+                            <input type="checkbox" x-model="needPayment" class="rounded border-slate-300 text-primary focus:ring-primary">
+                            <span>ربط بوابات الدفع الإلكتروني</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 4. Urgency -->
+                <div class="space-y-3">
+                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">4. سرعة التنفيذ المطلوب:</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" @click="urgency = 'normal'" 
+                                class="p-3 rounded-xl border text-center transition-all text-xs font-bold"
+                                :class="urgency === 'normal' ? 'border-emerald-500 bg-emerald-500/10 text-emerald-500' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
+                            قياسي (جدول زمني طبيعي)
+                        </button>
+
+                        <button type="button" @click="urgency = 'express'" 
+                                class="p-3 rounded-xl border text-center transition-all text-xs font-bold"
+                                :class="urgency === 'express' ? 'border-amber-500 bg-amber-500/10 text-amber-500' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
+                            ⚡ عاجل ومكثف (Speed Delivery)
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Calculated Summary Card (Right 4 Cols) -->
+            <div class="lg:col-span-4 glass-card rounded-2xl p-6 space-y-6 border border-primary/40 bg-surface-container/80 sticky top-24">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 pb-3 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">receipt_long</span>
+                    ملخص تقدير الطلب
+                </h3>
+
+                <ul class="space-y-3 text-xs text-on-surface">
+                    <li class="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-2">
+                        <span class="text-on-surface-variant">النوع:</span>
+                        <span class="font-bold text-slate-900 dark:text-white" x-text="projectTypeName"></span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-2">
+                        <span class="text-on-surface-variant">المنصة:</span>
+                        <span class="font-bold text-slate-900 dark:text-white" x-text="platformName"></span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-2">
+                        <span class="text-on-surface-variant">المدة المتوقعة:</span>
+                        <span class="font-bold text-emerald-500" x-text="estimatedDays"></span>
+                    </li>
+                </ul>
+
+                <div class="p-4 rounded-xl bg-primary/10 border border-primary/20 space-y-1 text-center">
+                    <div class="text-[10px] text-on-surface-variant uppercase font-bold">التقدير التنافسي المبدئي</div>
+                    <div class="text-xs font-bold text-primary">أفضل تكلفة مرنة تناسب ميزانيتك</div>
+                </div>
+
+                <a :href="whatsappUrl" target="_blank" 
+                   class="w-full bg-[#10B981] hover:bg-[#059669] text-white py-3.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2 whatsapp-glow transition-all active:scale-95">
+                    <span class="material-symbols-outlined">chat</span>
+                    إرسال الطلب والتأكيد عبر واتساب
+                </a>
+            </div>
+
         </div>
 
     </div>

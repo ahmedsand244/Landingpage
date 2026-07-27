@@ -4,9 +4,14 @@
       x-data="{
           lang: localStorage.getItem('app_lang') || 'ar',
           themeMode: localStorage.getItem('theme') || 'system',
+          showAnnouncement: localStorage.getItem('hide_banner_v1') !== 'true',
           translations: {},
           mobileMenuOpen: false,
           themeMenuOpen: false,
+          closeAnnouncement() {
+              this.showAnnouncement = false;
+              localStorage.setItem('hide_banner_v1', 'true');
+          },
           async init() {
               this.applyTheme(this.themeMode);
               await this.loadLang(this.lang);
@@ -157,17 +162,74 @@
             height: auto;
         }
         [x-cloak] { display: none !important; }
+
+        @media print {
+            nav, footer, #tech-bg-canvas, .print\:hidden {
+                display: none !important;
+            }
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+            .glass-card {
+                background: #ffffff !important;
+                border: 1px solid #e2e8f0 !important;
+                box-shadow: none !important;
+            }
+        }
     </style>
-</head>
-<body class="bg-background text-on-surface min-h-screen flex flex-col antialiased overflow-x-hidden max-w-full">
+<body class="relative bg-background text-on-surface min-h-screen flex flex-col antialiased overflow-x-hidden max-w-full">
+
+    <!-- TOP PROMOTIONAL ANNOUNCEMENT BANNER -->
+    <div x-show="showAnnouncement" 
+         x-transition:leave="transition ease-in duration-300 transform"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 -translate-y-full"
+         x-cloak
+         class="bg-gradient-to-r from-primary via-indigo-600 to-emerald-600 text-white text-xs md:text-sm py-2.5 px-4 relative z-50 shadow-md border-b border-white/10 print:hidden">
+        <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-2 overflow-hidden mx-auto sm:mx-0">
+                <span class="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-extrabold uppercase animate-pulse flex-shrink-0">
+                    عرض خاص 🔥
+                </span>
+                <span class="font-bold truncate">
+                    خصم 20% لفترة محدودة على تطوير تطبيقات الـ MVP وتوثيق مشاريع التخرج للموسم الحالي!
+                </span>
+            </div>
+
+            <div class="flex items-center gap-3 flex-shrink-0">
+                <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفادة%20من%20عرض%20الخصم%20المباشر%2020%" 
+                   target="_blank" 
+                   class="bg-white hover:bg-slate-100 text-slate-900 px-3.5 py-1 rounded-full text-xs font-extrabold shadow-sm transition-transform active:scale-95 flex items-center gap-1">
+                    <span>احجز عرضك الآن</span>
+                    <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_forward</span>
+                </a>
+
+                <button @click="closeAnnouncement()" class="text-white/80 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors" title="إغلاق الإعلان">
+                    <span class="material-symbols-outlined text-base">close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Constellation & Mesh Canvas Background -->
+    <canvas id="tech-bg-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-70 transition-opacity duration-500"></canvas>
 
     <!-- TopNavBar -->
     <nav class="bg-surface/90 backdrop-blur-md sticky top-0 border-b border-slate-200 dark:border-white/10 shadow-sm z-50 transition-all">
         <div class="flex justify-between items-center w-full px-4 md:px-8 h-28 max-w-[1440px] mx-auto">
             
             <!-- Brand Logo Image -->
-            <a href="/" class="flex items-center hover:opacity-90 transition-opacity min-h-[44px] group">
-                <img src="{% static 'images/logo.png' %}" alt="Code+ Logo" class="h-20 md:h-24 w-auto object-contain drop-shadow-[0_0_20px_rgba(16,185,129,0.3)] group-hover:scale-105 transition-transform duration-300"/>
+            <a href="/" class="flex items-center hover:opacity-95 transition-opacity min-h-[44px] group">
+                <!-- Light Mode Logo (Visible in Light Theme) -->
+                <img src="{% static 'images/logo_light.png' %}" 
+                     alt="Code+ Logo" 
+                     class="h-16 md:h-20 w-auto object-contain drop-shadow-sm dark:hidden group-hover:scale-105 transition-transform duration-300"/>
+                
+                <!-- Dark Mode Logo (Visible in Dark Theme) -->
+                <img src="{% static 'images/logo_dark.png' %}" 
+                     alt="Code+ Logo" 
+                     class="h-16 md:h-20 w-auto object-contain drop-shadow-[0_0_20px_rgba(16,185,129,0.4)] hidden dark:block group-hover:scale-105 transition-transform duration-300"/>
             </a>
             
             <!-- Desktop Navigation Menu (4 Links) -->
@@ -250,17 +312,25 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-grow w-full max-w-full">
+    <main class="flex-grow w-full max-w-full relative z-10">
         {% block content %}
         {% endblock %}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-surface-container-lowest border-t border-slate-200 dark:border-white/10 py-12 px-4 md:px-8 mt-16 transition-colors w-full">
+    <footer class="bg-surface-container-lowest border-t border-slate-200 dark:border-white/10 py-12 px-4 md:px-8 mt-16 transition-colors w-full relative z-10">
         <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-                <a href="/" class="inline-flex items-center mb-4 hover:opacity-90 transition-opacity">
-                    <img src="{% static 'images/logo.png' %}" alt="Code+ Logo" class="h-16 md:h-20 w-auto object-contain drop-shadow-sm"/>
+                <a href="/" class="inline-flex items-center mb-4 hover:opacity-95 transition-opacity">
+                    <!-- Light Mode Footer Logo -->
+                    <img src="{% static 'images/logo_light.png' %}" 
+                         alt="Code+ Logo" 
+                         class="h-12 md:h-16 w-auto object-contain drop-shadow-sm dark:hidden"/>
+                    
+                    <!-- Dark Mode Footer Logo -->
+                    <img src="{% static 'images/logo_dark.png' %}" 
+                         alt="Code+ Logo" 
+                         class="h-12 md:h-16 w-auto object-contain drop-shadow-sm hidden dark:block"/>
                 </a>
                 <p class="text-on-surface-variant text-sm leading-relaxed" x-text="t('hero_desc', 'نطور ونبني حلول البرمجيات وتطبيقات البزنس للشركات والأنشطة التجارية، إلى جانب المشاريع الأكاديمية.')"></p>
             </div>
@@ -288,5 +358,180 @@
         <div class="max-w-[1440px] mx-auto border-t border-slate-200 dark:border-white/5 mt-8 pt-6 text-center text-xs text-on-surface-variant" x-text="t('footer_rights', '© 2026 Mashroo+ Software & Business Solutions. جميع الحقوق محفوظة.')"></div>
     </footer>
 
+    <script>
+        (function() {
+            const canvas = document.getElementById('tech-bg-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+            
+            let mouse = { x: -1000, y: -1000, radius: 180 };
+            
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+            
+            window.addEventListener('mouseleave', () => {
+                mouse.x = -1000;
+                mouse.y = -1000;
+            });
+            
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+                initParticles();
+            });
+            
+            let particles = [];
+            let squares = [];
+            const particleCount = Math.min(Math.floor((width * height) / 18000), 70);
+            const squareCount = 14;
+            
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.7;
+                    this.vy = (Math.random() - 0.5) * 0.7;
+                    this.radius = Math.random() * 2 + 1.2;
+                    this.isGreen = Math.random() > 0.55;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                }
+                draw(isDark) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    if (isDark) {
+                        ctx.fillStyle = this.isGreen ? 'rgba(16, 185, 129, 0.85)' : 'rgba(99, 102, 241, 0.85)';
+                        ctx.shadowBlur = 8;
+                        ctx.shadowColor = this.isGreen ? '#10B981' : '#6366f1';
+                    } else {
+                        ctx.fillStyle = this.isGreen ? 'rgba(5, 150, 105, 0.65)' : 'rgba(79, 70, 229, 0.65)';
+                        ctx.shadowBlur = 0;
+                    }
+                    ctx.fill();
+                }
+            }
+
+            class FloatingSquare {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.size = Math.random() * 24 + 10;
+                    this.vx = (Math.random() - 0.5) * 0.45;
+                    this.vy = (Math.random() - 0.5) * 0.45;
+                    this.angle = Math.random() * Math.PI * 2;
+                    this.vAngle = (Math.random() - 0.5) * 0.012;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.angle += this.vAngle;
+                    if (this.x < -40 || this.x > width + 40) this.vx *= -1;
+                    if (this.y < -40 || this.y > height + 40) this.vy *= -1;
+                }
+                draw(isDark) {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.angle);
+                    ctx.beginPath();
+                    ctx.rect(-this.size / 2, -this.size / 2, this.size, this.size);
+                    ctx.lineWidth = 1;
+                    if (isDark) {
+                        ctx.strokeStyle = 'rgba(16, 185, 129, 0.22)';
+                        ctx.fillStyle = 'rgba(99, 102, 241, 0.03)';
+                    } else {
+                        ctx.strokeStyle = 'rgba(79, 70, 229, 0.16)';
+                        ctx.fillStyle = 'rgba(16, 185, 129, 0.02)';
+                    }
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                squares = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+                for (let i = 0; i < squareCount; i++) {
+                    squares.push(new FloatingSquare());
+                }
+            }
+
+            initParticles();
+
+            function animate() {
+                const isDark = document.documentElement.classList.contains('dark');
+                ctx.clearRect(0, 0, width, height);
+
+                // Draw Floating Squares
+                squares.forEach(s => {
+                    s.update();
+                    s.draw(isDark);
+                });
+
+                // Draw Connecting Threads
+                const maxDist = 135;
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.hypot(dx, dy);
+                        if (dist < maxDist) {
+                            const alpha = (1 - dist / maxDist) * (isDark ? 0.35 : 0.18);
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = isDark 
+                                ? `rgba(99, 102, 241, ${alpha})`
+                                : `rgba(79, 70, 229, ${alpha})`;
+                            ctx.lineWidth = 0.85;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                // Draw Mouse Constellation Connections
+                if (mouse.x > 0 && mouse.y > 0) {
+                    for (let p of particles) {
+                        const dx = p.x - mouse.x;
+                        const dy = p.y - mouse.y;
+                        const dist = Math.hypot(dx, dy);
+                        if (dist < mouse.radius) {
+                            const alpha = (1 - dist / mouse.radius) * (isDark ? 0.65 : 0.35);
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(mouse.x, mouse.y);
+                            ctx.strokeStyle = isDark 
+                                ? `rgba(16, 185, 129, ${alpha})` 
+                                : `rgba(5, 150, 105, ${alpha})`;
+                            ctx.lineWidth = 1.25;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                // Draw Particles (Stars/Nodes)
+                particles.forEach(p => {
+                    p.update();
+                    p.draw(isDark);
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        })();
+    </script>
 </body>
 </html>

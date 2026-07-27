@@ -47,9 +47,18 @@ class ProjectDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Suggest related projects (excluding current project)
         current_project = self.get_object()
+        # Suggest related projects (excluding current project)
         context['related_projects'] = Project.objects.filter(
             project_type=current_project.project_type
         ).exclude(id=current_project.id)[:3]
+        
+        # Previous & Next project navigation
+        context['previous_project'] = Project.objects.filter(
+            created_at__lt=current_project.created_at
+        ).order_by('-created_at').first()
+        
+        context['next_project'] = Project.objects.filter(
+            created_at__gt=current_project.created_at
+        ).order_by('created_at').first()
         return context
