@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FAQ, Testimonial, ContactMessage
+from .models import FAQ, Testimonial, ContactMessage, SiteSetting, StudioMetric
 
 @admin.register(FAQ)
 class FAQAdmin(admin.ModelAdmin):
@@ -39,3 +39,22 @@ class ContactMessageAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email', 'subject', 'message')
     list_editable = ('is_read',)
     readonly_fields = ('created_at',)
+
+
+@admin.register(SiteSetting)
+class SiteSettingAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'academic_site_url', 'academic_button_text')
+    
+    def has_add_permission(self, request):
+        if self.model.objects.exists():
+            return False
+        return super().has_add_permission(request)
+
+
+@admin.register(StudioMetric)
+class StudioMetricAdmin(admin.ModelAdmin):
+    list_display = ('title', 'value', 'color_theme', 'icon_name', 'order', 'is_active')
+    list_editable = ('value', 'order', 'is_active')
+    list_filter = ('is_active', 'color_theme')
+    search_fields = ('title', 'value', 'subtitle')
+

@@ -162,8 +162,10 @@
                         </div>
 
                         <div class="pt-3">
-                            <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20تخرج%20أكاديمي" target="_blank" class="w-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 py-2.5 px-4 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all min-h-[44px]">
-                                <span x-text="t('btn_acad_cta', 'تحدث معنا لمشروع التخرج')"></span>
+                            <a href="{% if site_settings.academic_site_url %}{{ site_settings.academic_site_url }}{% else %}https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20تخرج%20أكاديمي{% endif %}" 
+                               {% if site_settings.academic_site_url %}target="_blank" rel="noopener noreferrer"{% endif %} 
+                               class="w-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 py-2.5 px-4 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all min-h-[44px]">
+                                <span>{{ site_settings.academic_button_text|default:"تحدث معنا لمشروع التخرج" }}</span>
                                 <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_forward</span>
                             </a>
                         </div>
@@ -193,49 +195,20 @@
                 </p>
             </div>
 
-            <!-- 4 Glowing Metric Cards -->
+            <!-- Dynamic Metric Cards (Managed via Django Admin) -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                
-                <!-- Metric 1 -->
+                {% for metric in studio_metrics %}
                 <div class="p-6 rounded-2xl bg-surface-container/60 border border-slate-200 dark:border-white/10 text-center space-y-3 hover:border-primary/50 transition-all hover:scale-105 group">
-                    <div class="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mx-auto group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-2xl">rocket_launch</span>
+                    <div class="w-12 h-12 rounded-2xl {% if metric.color_theme == 'emerald' %}bg-emerald-500/10 border border-emerald-500/20 text-emerald-500{% elif metric.color_theme == 'secondary' %}bg-secondary/10 border border-secondary/20 text-secondary{% elif metric.color_theme == 'amber' %}bg-amber-500/10 border border-amber-500/20 text-amber-500{% else %}bg-primary/10 border border-primary/20 text-primary{% endif %} flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-2xl">{{ metric.icon_name }}</span>
                     </div>
-                    <div class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white font-mono tracking-tight">+50</div>
-                    <div class="text-xs font-bold text-slate-900 dark:text-white">مشروع بزنس و MVP مكتمل</div>
-                    <p class="text-[11px] text-on-surface-variant leading-relaxed">منصات سحابية وتطبيقات جوال حية</p>
+                    <div class="text-3xl md:text-4xl font-black {% if metric.color_theme == 'emerald' %}text-emerald-500{% elif metric.color_theme == 'secondary' %}text-secondary{% elif metric.color_theme == 'amber' %}text-amber-500{% else %}text-slate-900 dark:text-white{% endif %} font-mono tracking-tight">{{ metric.value }}</div>
+                    <div class="text-xs font-bold text-slate-900 dark:text-white">{{ metric.title }}</div>
+                    {% if metric.subtitle %}<p class="text-[11px] text-on-surface-variant leading-relaxed">{{ metric.subtitle }}</p>{% endif %}
                 </div>
-
-                <!-- Metric 2 -->
-                <div class="p-6 rounded-2xl bg-surface-container/60 border border-slate-200 dark:border-white/10 text-center space-y-3 hover:border-emerald-500/50 transition-all hover:scale-105 group">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 mx-auto group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-2xl">workspace_premium</span>
-                    </div>
-                    <div class="text-3xl md:text-4xl font-black text-emerald-500 font-mono tracking-tight">100%</div>
-                    <div class="text-xs font-bold text-slate-900 dark:text-white">نجاح مناقشات التخرج</div>
-                    <p class="text-[11px] text-on-surface-variant leading-relaxed">تقديرات امتياز وتوثيق أكاديمي كامل</p>
-                </div>
-
-                <!-- Metric 3 -->
-                <div class="p-6 rounded-2xl bg-surface-container/60 border border-slate-200 dark:border-white/10 text-center space-y-3 hover:border-secondary/50 transition-all hover:scale-105 group">
-                    <div class="w-12 h-12 rounded-2xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary mx-auto group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-2xl">public</span>
-                    </div>
-                    <div class="text-3xl md:text-4xl font-black text-secondary font-mono tracking-tight">+6</div>
-                    <div class="text-xs font-bold text-slate-900 dark:text-white">دول عربية وخليجية</div>
-                    <p class="text-[11px] text-on-surface-variant leading-relaxed">مشاريع مسلمة في السعودية، الإمارات، ومصر</p>
-                </div>
-
-                <!-- Metric 4 -->
-                <div class="p-6 rounded-2xl bg-surface-container/60 border border-slate-200 dark:border-white/10 text-center space-y-3 hover:border-amber-500/50 transition-all hover:scale-105 group">
-                    <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 mx-auto group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-2xl">code</span>
-                    </div>
-                    <div class="text-3xl md:text-4xl font-black text-amber-500 font-mono tracking-tight">100%</div>
-                    <div class="text-xs font-bold text-slate-900 dark:text-white">ملكية الكود المصدري</div>
-                    <p class="text-[11px] text-on-surface-variant leading-relaxed">تسليم كامل الملفات بدون اشتراكات خفية</p>
-                </div>
-
+                {% empty %}
+                <div class="col-span-4 text-center py-6 text-on-surface-variant text-xs italic">لا توجد إحصائيات مضافة حالياً. يمكنك إضافتها من لوحة التحكم.</div>
+                {% endfor %}
             </div>
         </div>
     </section>

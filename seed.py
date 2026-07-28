@@ -6,7 +6,7 @@ django.setup()
 
 from projects.models import Category, Project
 from services.models import Technology
-from pages.models import FAQ, Testimonial
+from pages.models import FAQ, Testimonial, SiteSetting, StudioMetric
 
 def seed_data():
     print("Deleting old records...")
@@ -15,6 +15,46 @@ def seed_data():
     Project.objects.all().delete()
     Technology.objects.all().delete()
     Category.objects.all().delete()
+    StudioMetric.objects.all().delete()
+
+    print("Creating Site Settings & Studio Metrics...")
+    SiteSetting.objects.get_or_create(id=1, defaults={
+        'academic_site_url': '',
+        'academic_button_text': 'تحدث معنا لمشروع التخرج'
+    })
+
+    StudioMetric.objects.create(
+        title="مشروع بزنس و MVP مكتمل",
+        value="+50",
+        subtitle="منصات سحابية وتطبيقات جوال حية",
+        icon_name="rocket_launch",
+        color_theme="primary",
+        order=1
+    )
+    StudioMetric.objects.create(
+        title="نجاح مناقشات التخرج",
+        value="100%",
+        subtitle="تقديرات امتياز وتوثيق أكاديمي كامل",
+        icon_name="workspace_premium",
+        color_theme="emerald",
+        order=2
+    )
+    StudioMetric.objects.create(
+        title="دول عربية وخليجية",
+        value="+6",
+        subtitle="مشاريع مسلمة في السعودية، الإمارات، ومصر",
+        icon_name="public",
+        color_theme="secondary",
+        order=3
+    )
+    StudioMetric.objects.create(
+        title="ملكية الكود المصدري",
+        value="100%",
+        subtitle="تسليم كامل الملفات بدون اشتراكات خفية",
+        icon_name="code",
+        color_theme="amber",
+        order=4
+    )
 
     print("Creating Categories...")
     cat_biz = Category.objects.create(name="Business & SaaS")

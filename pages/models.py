@@ -52,3 +52,49 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.subject}"
+
+
+class SiteSetting(models.Model):
+    academic_site_url = models.URLField(
+        blank=True, 
+        null=True, 
+        help_text="رابط موقع/منصة مشاريع التخرج المخصصة (مثال: https://academic-projects.com)"
+    )
+    academic_button_text = models.CharField(
+        max_length=150, 
+        default="الانتقال لمنصة مشاريع التخرج الأكاديمية",
+        help_text="نص الزر في مسار مشاريع التخرج"
+    )
+
+    class Meta:
+        verbose_name = "إعدادات الموقع"
+        verbose_name_plural = "إعدادات الموقع العامة"
+
+    def __str__(self):
+        return "إعدادات الموقع العامة"
+
+
+class StudioMetric(models.Model):
+    THEME_CHOICES = [
+        ('primary', 'بنفسجي / Primary'),
+        ('emerald', 'أخضر / Emerald'),
+        ('secondary', 'أزرق / Secondary'),
+        ('amber', 'ذهبي / Amber'),
+    ]
+
+    title = models.CharField(max_length=150, help_text="عنوان الإحصائية (مثال: مشروع بزنس و MVP مكتمل)")
+    value = models.CharField(max_length=50, help_text="القيمة الرقمية (مثال: +50 أو 100%)")
+    subtitle = models.CharField(max_length=200, blank=True, help_text="وصف مكمل (مثال: منصات سحابية وتطبيقات جوال حية)")
+    icon_name = models.CharField(max_length=50, default="rocket_launch", help_text="اسم أيقونة Material Symbols (مثل: rocket_launch, workspace_premium, public, code)")
+    color_theme = models.CharField(max_length=20, choices=THEME_CHOICES, default='primary')
+    order = models.IntegerField(default=0, help_text="ترتيب العرض")
+    is_active = models.BooleanField(default=True, help_text="إظهار في الصفحة الرئيسية")
+
+    class Meta:
+        ordering = ['order', 'id']
+        verbose_name = "إحصائية الاستوديو"
+        verbose_name_plural = "إحصائيات وإنجازات الاستوديو"
+
+    def __str__(self):
+        return f"{self.value} - {self.title}"
+
