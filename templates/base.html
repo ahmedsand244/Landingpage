@@ -163,6 +163,17 @@
         }
         [x-cloak] { display: none !important; }
 
+        @media (max-width: 768px) {
+            .glass-card {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--surface-color) !important;
+            }
+            #tech-bg-canvas {
+                display: none !important;
+            }
+        }
+
         @media print {
             nav, footer, #tech-bg-canvas, .print\:hidden {
                 display: none !important;
@@ -361,7 +372,7 @@
     <script>
         (function() {
             const canvas = document.getElementById('tech-bg-canvas');
-            if (!canvas) return;
+            if (!canvas || window.innerWidth < 768) return;
             const ctx = canvas.getContext('2d');
             
             let width = canvas.width = window.innerWidth;
@@ -380,6 +391,7 @@
             });
             
             window.addEventListener('resize', () => {
+                if (window.innerWidth < 768) return;
                 width = canvas.width = window.innerWidth;
                 height = canvas.height = window.innerHeight;
                 initParticles();
@@ -387,8 +399,8 @@
             
             let particles = [];
             let squares = [];
-            const particleCount = Math.min(Math.floor((width * height) / 18000), 70);
-            const squareCount = 14;
+            const particleCount = Math.min(Math.floor((width * height) / 18000), 50);
+            const squareCount = 10;
             
             class Particle {
                 constructor() {
@@ -410,11 +422,8 @@
                     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                     if (isDark) {
                         ctx.fillStyle = this.isGreen ? 'rgba(16, 185, 129, 0.85)' : 'rgba(99, 102, 241, 0.85)';
-                        ctx.shadowBlur = 8;
-                        ctx.shadowColor = this.isGreen ? '#10B981' : '#6366f1';
                     } else {
                         ctx.fillStyle = this.isGreen ? 'rgba(5, 150, 105, 0.65)' : 'rgba(79, 70, 229, 0.65)';
-                        ctx.shadowBlur = 0;
                     }
                     ctx.fill();
                 }
