@@ -79,6 +79,43 @@ class ProjectGallery(models.Model):
     image = models.ImageField(upload_to='projects/gallery/')
     caption = models.CharField(max_length=200, blank=True)
 
+    def save(self, *args, **kwargs):
+        if self.image:
+            try:
+                from PIL import Image, ImageOps
+                from io import BytesIO
+                from django.core.files.base import ContentFile
+                import os
+
+                img = Image.open(self.image)
+                img = ImageOps.exif_transpose(img)
+
+                # Max web resolution: 1600x1200
+                max_width, max_height = 1600, 1200
+                if img.width > max_width or img.height > max_height:
+                    img.thumbnail((max_width, max_height), Image.Resampling.LANCZOS)
+
+                # Convert to RGB if RGBA/P
+                if img.mode in ('RGBA', 'P', 'LA'):
+                    background = Image.new('RGB', img.size, (255, 255, 255))
+                    if img.mode == 'RGBA':
+                        background.paste(img, mask=img.split()[3])
+                    else:
+                        background.paste(img)
+                    img = background
+                elif img.mode != 'RGB':
+                    img = img.convert('RGB')
+
+                buffer = BytesIO()
+                img.save(buffer, format='JPEG', quality=82, optimize=True, progressive=True)
+                buffer.seek(0)
+
+                base_name = os.path.splitext(os.path.basename(self.image.name))[0]
+                self.image.save(f"{base_name}.jpg", ContentFile(buffer.getvalue()), save=False)
+            except Exception:
+                pass
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"Gallery image for {self.project.title}"
 

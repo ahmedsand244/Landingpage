@@ -285,7 +285,7 @@
                                 <button @click="activeSlide = idx" 
                                         class="relative flex-shrink-0 w-24 h-16 md:w-28 md:h-18 rounded-xl overflow-hidden transition-all duration-300 group border-2"
                                         :class="activeSlide === idx ? 'border-primary ring-2 ring-primary/40 scale-105 opacity-100 shadow-md shadow-primary/20' : 'border-transparent opacity-60 hover:opacity-100 hover:scale-100'">
-                                    <img :src="img.url" :alt="'Preview ' + (idx + 1)" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
+                                    <img :src="img.url" :alt="'Preview ' + (idx + 1)" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
                                     <div x-show="activeSlide === idx" class="absolute inset-0 bg-primary/10"></div>
                                 </button>
                             </template>
