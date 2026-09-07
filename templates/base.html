@@ -71,6 +71,31 @@
     <title>{% block title %}Code+ | استوديو البرمجيات وحلول الأعمال{% endblock %}</title>
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}"/>
     
+    <!-- Primary SEO & Meta Description -->
+    <meta name="description" content="Code+ Studio - استوديو متخصص في بناء وتطوير تطبيقات البزنس، منصات SaaS، وتطبيقات الذكاء الاصطناعي ومشاريع التخرج المتكاملة."/>
+    <meta name="keywords" content="تطوير تطبيقات, برمجة مواقع, مشاريع تخرج, منصات SaaS, برمجيات شركات, الذكاء الاصطناعي, Django, Flutter, Web Development"/>
+    <meta name="author" content="Code+ Studio"/>
+
+    <!-- Open Graph (WhatsApp, Facebook, LinkedIn, Telegram) -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://codepage.pythonanywhere.com/"/>
+    <meta property="og:title" content="Code+ Studio | حلول البرمجيات ومنصات الأعمال المتطورة"/>
+    <meta property="og:description" content="استوديو متخصص في تطوير تطبيقات البزنس، أنظمة الشركات، منصات SaaS، وحلول الذكاء الاصطناعي ومشاريع التخرج المتكاملة."/>
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/og_preview.png' %}"/>
+    <meta property="og:image:secure_url" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/og_preview.png' %}"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="Code+ Software Solutions Preview"/>
+    <meta property="og:site_name" content="Code+ Studio"/>
+    <meta property="og:locale" content="ar_AR"/>
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Code+ Studio | حلول البرمجيات وتطبيقات البزنس"/>
+    <meta name="twitter:description" content="استوديو متخصص في تطوير تطبيقات البزنس، منصات SaaS، ومشاريع التخرج والذكاء الاصطناعي."/>
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/og_preview.png' %}"/>
+    
     <!-- Anti-FOUC (Flash of Unstyled Content) Instant Theme Script -->
     <script>
         (function() {
