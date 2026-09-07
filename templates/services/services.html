@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}الخدمات وحاسبة التكلفة | Business & Academic Services{% endblock %}
+{% block title %}
+    {% if lang == 'en' %}Services & Cost Estimator | Code+ Studio{% else %}الخدمات وحاسبة التكلفة | استوديو Code+{% endif %}
+{% endblock %}
 
 {% block content %}
 <main class="w-full max-w-[1440px] mx-auto px-4 md:px-8 py-8 md:py-12 space-y-12">
@@ -9,13 +11,16 @@
     <!-- Hero / Header Section -->
     <div class="text-center max-w-3xl mx-auto space-y-4">
         <span class="px-4 py-1.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 inline-block">
-            استوديو البرمجيات المتقدمة
+            <span x-show="lang === 'ar'">استوديو البرمجيات المتقدمة</span>
+            <span x-show="lang === 'en'" x-cloak>Advanced Software Studio</span>
         </span>
         <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
-            خدمات برمجية متكاملة للشركات ومشاريع التخرج
+            <span x-show="lang === 'ar'">خدمات برمجية متكاملة للشركات ومشاريع التخرج</span>
+            <span x-show="lang === 'en'" x-cloak>End-to-End Software Solutions for Businesses & Academia</span>
         </h1>
         <p class="text-on-surface-variant text-sm md:text-base leading-relaxed">
-            نقدم حلول تطوير ويب وموبايل وأنظمة ذكاء اصطناعي مخصصة للبزنس، بجانب تنفيذ ومتابعة أبحاث ومشاريع التخرج الأكاديمية.
+            <span x-show="lang === 'ar'">نقدم حلول تطوير ويب وموبايل وأنظمة ذكاء اصطناعي مخصصة للبزنس، بجانب تنفيذ ومتابعة أبحاث ومشاريع التخرج الأكاديمية.</span>
+            <span x-show="lang === 'en'" x-cloak>We deliver bespoke web, mobile, and AI solutions for commercial enterprises, alongside thesis development and defense coaching for academic scholars.</span>
         </p>
     </div>
 
@@ -28,28 +33,36 @@
                 <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                     <span class="material-symbols-outlined text-3xl">rocket_launch</span>
                 </div>
-                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">تطوير تطبيقات البزنس والـ MVPs</h2>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+                    <span x-show="lang === 'ar'">تطوير تطبيقات البزنس والـ MVPs</span>
+                    <span x-show="lang === 'en'" x-cloak>Business MVPs & App Development</span>
+                </h2>
                 <p class="text-on-surface-variant text-sm leading-relaxed">
-                    تحويل الفكرة التجارية إلى منتج برمجي حقيقي (تطبيق موبايل / موقع ويب) جاهز لجمع أول العملاء والمستثمرين في أقل وقت وبأفضل تكلفة.
+                    <span x-show="lang === 'ar'">تحويل الفكرة التجارية إلى منتج برمجي حقيقي (تطبيق موبايل / موقع ويب) جاهز لجمع أول العملاء والمستثمرين في أقل وقت وبأفضل تكلفة.</span>
+                    <span x-show="lang === 'en'" x-cloak>Turning your business idea into a market-ready software product (Mobile & Web App) to acquire initial traction and investors fast.</span>
                 </p>
                 <ul class="space-y-2 text-xs md:text-sm text-on-surface">
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>بناء لوحات تحكم وحسابات مستخدمين</span>
+                        <span x-show="lang === 'ar'">بناء لوحات تحكم وحسابات مستخدمين</span>
+                        <span x-show="lang === 'en'" x-cloak>Comprehensive admin dashboards & user auth</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>ربط بوابات الدفع وشبكات السيرفرات</span>
+                        <span x-show="lang === 'ar'">ربط بوابات الدفع وشبكات السيرفرات</span>
+                        <span x-show="lang === 'en'" x-cloak>Payment gateways (Paymob/Stripe) & cloud infrastructure</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>تسليم الكود المصدري كاملاً الملكية 100%</span>
+                        <span x-show="lang === 'ar'">تسليم الكود المصدري كاملاً الملكية 100%</span>
+                        <span x-show="lang === 'en'" x-cloak>100% full source code IP ownership</span>
                     </li>
                 </ul>
             </div>
             <a href="https://wa.me/201554397407?text=استفسار%20عن%20خدمة%20تطوير%20تطبيق%20بزنس" target="_blank" class="w-full bg-primary hover:bg-primary-hover text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
                 <span class="material-symbols-outlined text-base">chat</span>
-                استفسر عن خدمة البزنس
+                <span x-show="lang === 'ar'">استفسر عن خدمة البزنس</span>
+                <span x-show="lang === 'en'" x-cloak>Inquire About Business Apps</span>
             </a>
         </div>
 
@@ -59,28 +72,36 @@
                 <div class="w-14 h-14 rounded-2xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary">
                     <span class="material-symbols-outlined text-3xl">dashboard</span>
                 </div>
-                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">أنظمة SaaS ولوحات الإدارة المتكاملة</h2>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+                    <span x-show="lang === 'ar'">أنظمة SaaS ولوحات الإدارة المتكاملة</span>
+                    <span x-show="lang === 'en'" x-cloak>SaaS Platforms & Enterprise Dashboards</span>
+                </h2>
                 <p class="text-on-surface-variant text-sm leading-relaxed">
-                    بناء منصات إدارة العمليات السحابية للشركات، المتاجر الإلكترونية، تتبع الشحنات، والمبيعات مع رسومات بيانية وتقارير حية.
+                    <span x-show="lang === 'ar'">بناء منصات إدارة العمليات السحابية للشركات، المتاجر الإلكترونية، تتبع الشحنات، والمبيعات مع رسومات بيانية وتقارير حية.</span>
+                    <span x-show="lang === 'en'" x-cloak>Architecting multi-tenant cloud SaaS systems for retail, logistics, inventory, and operations with real-time telemetry and reporting.</span>
                 </p>
                 <ul class="space-y-2 text-xs md:text-sm text-on-surface">
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>إدارة الصلاحيات والمستخدمين Multi-tenant</span>
+                        <span x-show="lang === 'ar'">إدارة الصلاحيات والمستخدمين Multi-tenant</span>
+                        <span x-show="lang === 'en'" x-cloak>Role-based access control & multi-tenant isolation</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>تصدير تقارير PDF ورسومات بيانية حية</span>
+                        <span x-show="lang === 'ar'">تصدير تقارير PDF ورسومات بيانية حية</span>
+                        <span x-show="lang === 'en'" x-cloak>PDF generation & interactive dynamic charts</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>تأمين البيانات وتوفير نسخ احتياطي تلقائي</span>
+                        <span x-show="lang === 'ar'">تأمين البيانات وتوفير نسخ احتياطي تلقائي</span>
+                        <span x-show="lang === 'en'" x-cloak>Data security, encryption & automated backups</span>
                     </li>
                 </ul>
             </div>
             <a href="https://wa.me/201554397407?text=استفسار%20عن%20تطوير%20نظام%20SaaS" target="_blank" class="w-full bg-secondary hover:opacity-90 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
                 <span class="material-symbols-outlined text-base">chat</span>
-                طلب استشارة SaaS
+                <span x-show="lang === 'ar'">طلب استشارة SaaS</span>
+                <span x-show="lang === 'en'" x-cloak>Request SaaS Consultation</span>
             </a>
         </div>
 
@@ -90,28 +111,36 @@
                 <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
                     <span class="material-symbols-outlined text-3xl">psychology</span>
                 </div>
-                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">حلول الذكاء الاصطناعي و Computer Vision</h2>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+                    <span x-show="lang === 'ar'">حلول الذكاء الاصطناعي و Computer Vision</span>
+                    <span x-show="lang === 'en'" x-cloak>AI, Machine Learning & Computer Vision</span>
+                </h2>
                 <p class="text-on-surface-variant text-sm leading-relaxed">
-                    دمج نماذج التعلم العميق وتحليل الصور والبيانات، الرؤية الحاسوبية (YOLO / OpenCV)، وتصنيف البيانات الطبية والأكاديمية.
+                    <span x-show="lang === 'ar'">دمج نماذج التعلم العميق وتحليل الصور والبيانات، الرؤية الحاسوبية (YOLO / OpenCV)، وتصنيف البيانات الطبية والأكاديمية.</span>
+                    <span x-show="lang === 'en'" x-cloak>Deploying deep learning pipelines, computer vision object detection (YOLO/OpenCV), NLP, and risk predictive modeling.</span>
                 </p>
                 <ul class="space-y-2 text-xs md:text-sm text-on-surface">
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>تدريب نماذج custom PyTorch / TensorFlow</span>
+                        <span x-show="lang === 'ar'">تدريب نماذج custom PyTorch / TensorFlow</span>
+                        <span x-show="lang === 'en'" x-cloak>Custom PyTorch & Scikit-learn model training</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>تحليل وتصنيف الصور الطبية والمستندات</span>
+                        <span x-show="lang === 'ar'">تحليل وتصنيف الصور الطبية والمستندات</span>
+                        <span x-show="lang === 'en'" x-cloak>Image segmentation, OCR & classification</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>ربط خوارزميات الذكاء الاصطناعي بواجهات API</span>
+                        <span x-show="lang === 'ar'">ربط خوارزميات الذكاء الاصطناعي بواجهات API</span>
+                        <span x-show="lang === 'en'" x-cloak>Production REST API integration with Django/FastAPI</span>
                     </li>
                 </ul>
             </div>
             <a href="https://wa.me/201554397407?text=استفسار%20عن%20تطوير%20مشروع%20ذكاء%20اصطناعي" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
                 <span class="material-symbols-outlined text-base">chat</span>
-                استفسر عن الذكاء الاصطناعي
+                <span x-show="lang === 'ar'">استفسر عن الذكاء الاصطناعي</span>
+                <span x-show="lang === 'en'" x-cloak>Inquire About AI Projects</span>
             </a>
         </div>
 
@@ -121,28 +150,36 @@
                 <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500">
                     <span class="material-symbols-outlined text-3xl">school</span>
                 </div>
-                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">مشاريع التخرج والتوثيق الأكاديمي</h2>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+                    <span x-show="lang === 'ar'">مشاريع التخرج والتوثيق الأكاديمي</span>
+                    <span x-show="lang === 'en'" x-cloak>Academic Graduation Projects & Thesis</span>
+                </h2>
                 <p class="text-on-surface-variant text-sm leading-relaxed">
-                    تطوير مشاريع التخرج الجامعية للكليات الحاسوبية والهندسية كاملة الكود المصدري، مع كتابة التوثيق وشرح النظام والتجهيز للمناقشة.
+                    <span x-show="lang === 'ar'">تطوير مشاريع التخرج الجامعية للكليات الحاسوبية والهندسية كاملة الكود المصدري، مع كتابة التوثيق وشرح النظام والتجهيز للمناقشة.</span>
+                    <span x-show="lang === 'en'" x-cloak>Comprehensive development for Computer Science & Engineering graduation projects, featuring complete IEEE thesis documentation and defense prep.</span>
                 </p>
                 <ul class="space-y-2 text-xs md:text-sm text-on-surface">
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>كتابة التوثيق الأكاديمي الشامل (Thesis Book)</span>
+                        <span x-show="lang === 'ar'">كتابة التوثيق الأكاديمي الشامل (Thesis Book)</span>
+                        <span x-show="lang === 'en'" x-cloak>Full accredited thesis documentation (IEEE Standards)</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>توفير عروض التقديم (PowerPoint Slides)</span>
+                        <span x-show="lang === 'ar'">توفير عروض التقديم (PowerPoint Slides)</span>
+                        <span x-show="lang === 'en'" x-cloak>Polished presentation slides & diagrams</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                        <span>جلسات شرح وتدريب فردية للمناقشة</span>
+                        <span x-show="lang === 'ar'">جلسات شرح وتدريب فردية للمناقشة</span>
+                        <span x-show="lang === 'en'" x-cloak>1-on-1 code walkthroughs & defense Q&A coaching</span>
                     </li>
                 </ul>
             </div>
             <a href="https://wa.me/201554397407?text=استفسار%20عن%20مشروع%20تخرج%20وتوثيق" target="_blank" class="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
                 <span class="material-symbols-outlined text-base">chat</span>
-                استفسر عن مشروع التخرج
+                <span x-show="lang === 'ar'">استفسر عن مشروع التخرج</span>
+                <span x-show="lang === 'en'" x-cloak>Inquire About Graduation Projects</span>
             </a>
         </div>
 
@@ -158,22 +195,33 @@
             urgency: 'normal',
 
             get projectTypeName() {
-                const names = {
+                const arNames = {
                     'mvp': 'تطبيق بزنس / MVP',
                     'saas': 'نظام SaaS / لوحة تحكم سحابية',
                     'ai': 'ذكاء اصطناعي و Computer Vision',
                     'academic': 'مشروع تخرج وتوثيق أكاديمي'
                 };
-                return names[this.projectType] || '';
+                const enNames = {
+                    'mvp': 'Business MVP & App',
+                    'saas': 'Cloud SaaS & Admin Portal',
+                    'ai': 'AI, ML & Computer Vision',
+                    'academic': 'Academic Thesis & Graduation'
+                };
+                return (this.lang === 'en') ? enNames[this.projectType] : arNames[this.projectType];
             },
 
             get platformName() {
-                const names = {
+                const arNames = {
                     'web': 'تطبيق ويب فقط',
                     'mobile': 'تطبيق موبايل (iOS & Android)',
                     'both': 'تطبيق موبايل + لوحة ويب'
                 };
-                return names[this.platform] || '';
+                const enNames = {
+                    'web': 'Web App / Platform Only',
+                    'mobile': 'Mobile App (iOS & Android)',
+                    'both': 'Web Dashboard + Mobile App'
+                };
+                return (this.lang === 'en') ? enNames[this.platform] : arNames[this.platform];
             },
 
             get estimatedDays() {
@@ -182,22 +230,30 @@
                 if (this.projectType === 'ai') days += 5;
                 if (this.platform === 'both') days += 7;
                 if (this.urgency === 'express') days = Math.max(7, Math.floor(days * 0.6));
-                return days + ' - ' + (days + 7) + ' يوماً';
+                return (this.lang === 'en') ? (days + ' - ' + (days + 7) + ' Days') : (days + ' - ' + (days + 7) + ' يوماً');
             },
 
             get whatsappUrl() {
                 let extras = [];
-                if (this.needDocs) extras.push('التوثيق والتقرير');
-                if (this.needHosting) extras.push('الرفع والتهيئة السحابية');
-                if (this.needPayment) extras.push('ربط بوابات الدفع');
+                if (this.needDocs) extras.push(this.lang === 'en' ? 'Documentation & Report' : 'التوثيق والتقرير');
+                if (this.needHosting) extras.push(this.lang === 'en' ? 'Cloud Server Deployment' : 'الرفع والتهيئة السحابية');
+                if (this.needPayment) extras.push(this.lang === 'en' ? 'Payment Gateway Setup' : 'ربط بوابات الدفع');
 
-                let msg = 'أهلاً بكم، أود الاستفسار وتأكيد طلب مشروع حسب الحسابات التفاعلية:\n' +
-                          '• نوع المشروع: ' + this.projectTypeName + '\n' +
-                          '• المنصة: ' + this.platformName + '\n' +
-                          '• السرعة: ' + (this.urgency === 'express' ? 'سريع مكثف' : 'قياسي') + '\n' +
-                          '• الإضافات: ' + (extras.join('، ') || 'لا يوجد') + '\n' +
-                          '• المدة المتوقعة: ' + this.estimatedDays + '\n' +
-                          'يرجى التواصل لمناقشة التفاصيل والبدء.';
+                let msg = (this.lang === 'en')
+                    ? 'Hello Code+ Team, I would like to inquire about a project based on the interactive calculator:\n' +
+                      '• Type: ' + this.projectTypeName + '\n' +
+                      '• Platform: ' + this.platformName + '\n' +
+                      '• Delivery: ' + (this.urgency === 'express' ? 'Express Speed' : 'Standard Sprint') + '\n' +
+                      '• Add-ons: ' + (extras.join(', ') || 'None') + '\n' +
+                      '• Est. Duration: ' + this.estimatedDays + '\n' +
+                      'Please let me know how we can proceed.'
+                    : 'أهلاً بكم، أود الاستفسار وتأكيد طلب مشروع حسب الحسابات التفاعلية:\n' +
+                      '• نوع المشروع: ' + this.projectTypeName + '\n' +
+                      '• المنصة: ' + this.platformName + '\n' +
+                      '• السرعة: ' + (this.urgency === 'express' ? 'سريع مكثف' : 'قياسي') + '\n' +
+                      '• الإضافات: ' + (extras.join('، ') || 'لا يوجد') + '\n' +
+                      '• المدة المتوقعة: ' + this.estimatedDays + '\n' +
+                      'يرجى التواصل لمناقشة التفاصيل والبدء.';
 
                 return 'https://wa.me/201554397407?text=' + encodeURIComponent(msg);
             }
@@ -208,14 +264,17 @@
             <div class="space-y-1">
                 <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-primary/20 text-primary border border-primary/40 inline-flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-sm">calculate</span>
-                    <span>حاسبة التكلفة المباشرة</span>
+                    <span x-show="lang === 'ar'">حاسبة التكلفة المباشرة</span>
+                    <span x-show="lang === 'en'" x-cloak>Interactive Cost Calculator</span>
                 </span>
                 <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">
-                    احسب التكلفة المبدئية والمدة المتوقعة لمشروعك
+                    <span x-show="lang === 'ar'">احسب التكلفة المبدئية والمدة المتوقعة لمشروعك</span>
+                    <span x-show="lang === 'en'" x-cloak>Estimate Your Project Timeline & Quote</span>
                 </h2>
             </div>
             <div class="text-xs text-on-surface-variant max-w-md">
-                اختر مواصفات مشروعك للحصول على تقدير فوري وإرساله مباشرة للمهندسين عبر الواتساب.
+                <span x-show="lang === 'ar'">اختر مواصفات مشروعك للحصول على تقدير فوري وإرساله مباشرة للمهندسين عبر الواتساب.</span>
+                <span x-show="lang === 'en'" x-cloak>Select your requirements to receive instant timeline calculation and send directly to engineers on WhatsApp.</span>
             </div>
         </div>
 
@@ -226,45 +285,56 @@
                 
                 <!-- 1. Select Project Type -->
                 <div class="space-y-3">
-                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">1. نوع المشروع المطلوب:</label>
+                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">
+                        <span x-show="lang === 'ar'">1. نوع المشروع المطلوب:</span>
+                        <span x-show="lang === 'en'" x-cloak>1. Project Track / Category:</span>
+                    </label>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <button type="button" @click="projectType = 'mvp'" 
-                                class="p-4 rounded-2xl border text-right transition-all flex items-center gap-3"
+                                class="p-4 rounded-2xl border text-start transition-all flex items-center gap-3"
                                 :class="projectType === 'mvp' ? 'border-primary bg-primary/10 text-primary font-bold shadow-md' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
                             <span class="material-symbols-outlined text-2xl text-primary">rocket_launch</span>
                             <div>
-                                <div class="text-xs font-bold">تطبيق بزنس / MVP</div>
-                                <div class="text-[10px] text-on-surface-variant">للشركات والمتاجر والأنشطة الناشئة</div>
+                                <div class="text-xs font-bold" x-show="lang === 'ar'">تطبيق بزنس / MVP</div>
+                                <div class="text-xs font-bold" x-show="lang === 'en'" x-cloak>Business MVP / Mobile App</div>
+                                <div class="text-[10px] text-on-surface-variant" x-show="lang === 'ar'">للشركات والمتاجر والأنشطة الناشئة</div>
+                                <div class="text-[10px] text-on-surface-variant" x-show="lang === 'en'" x-cloak>For startups, retail & commercial platforms</div>
                             </div>
                         </button>
 
                         <button type="button" @click="projectType = 'saas'" 
-                                class="p-4 rounded-2xl border text-right transition-all flex items-center gap-3"
+                                class="p-4 rounded-2xl border text-start transition-all flex items-center gap-3"
                                 :class="projectType === 'saas' ? 'border-primary bg-primary/10 text-primary font-bold shadow-md' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
                             <span class="material-symbols-outlined text-2xl text-secondary">dashboard</span>
                             <div>
-                                <div class="text-xs font-bold">منصة SaaS سحابية</div>
-                                <div class="text-[10px] text-on-surface-variant">لوحات تحكم متقدمة وإدارة مبيعات</div>
+                                <div class="text-xs font-bold" x-show="lang === 'ar'">منصة SaaS سحابية</div>
+                                <div class="text-xs font-bold" x-show="lang === 'en'" x-cloak>Cloud SaaS & Multi-tenant</div>
+                                <div class="text-[10px] text-on-surface-variant" x-show="lang === 'ar'">لوحات تحكم متقدمة وإدارة مبيعات</div>
+                                <div class="text-[10px] text-on-surface-variant" x-show="lang === 'en'" x-cloak>Enterprise control panels & live metrics</div>
                             </div>
                         </button>
 
                         <button type="button" @click="projectType = 'ai'" 
-                                class="p-4 rounded-2xl border text-right transition-all flex items-center gap-3"
+                                class="p-4 rounded-2xl border text-start transition-all flex items-center gap-3"
                                 :class="projectType === 'ai' ? 'border-primary bg-primary/10 text-primary font-bold shadow-md' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
                             <span class="material-symbols-outlined text-2xl text-emerald-500">psychology</span>
                             <div>
-                                <div class="text-xs font-bold">ذكاء اصطناعي و Vision</div>
-                                <div class="text-[10px] text-on-surface-variant">نماذج تعلم عميق وتحليل بيانات</div>
+                                <div class="text-xs font-bold" x-show="lang === 'ar'">ذكاء اصطناعي و Vision</div>
+                                <div class="text-xs font-bold" x-show="lang === 'en'" x-cloak>AI, ML & Computer Vision</div>
+                                <div class="text-[10px] text-on-surface-variant" x-show="lang === 'ar'">نماذج تعلم عميق وتحليل بيانات</div>
+                                <div class="text-[10px] text-on-surface-variant" x-show="lang === 'en'" x-cloak>Deep learning architectures & predictive models</div>
                             </div>
                         </button>
 
                         <button type="button" @click="projectType = 'academic'" 
-                                class="p-4 rounded-2xl border text-right transition-all flex items-center gap-3"
+                                class="p-4 rounded-2xl border text-start transition-all flex items-center gap-3"
                                 :class="projectType === 'academic' ? 'border-primary bg-primary/10 text-primary font-bold shadow-md' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
                             <span class="material-symbols-outlined text-2xl text-amber-500">school</span>
                             <div>
-                                <div class="text-xs font-bold">مشروع تخرج أكاديمي</div>
-                                <div class="text-[10px] text-on-surface-variant">كود مصدري + توثيق ومناقشة</div>
+                                <div class="text-xs font-bold" x-show="lang === 'ar'">مشروع تخرج أكاديمي</div>
+                                <div class="text-xs font-bold" x-show="lang === 'en'" x-cloak>Academic Graduation Thesis</div>
+                                <div class="text-[10px] text-on-surface-variant" x-show="lang === 'ar'">كود مصدري + توثيق ومناقشة</div>
+                                <div class="text-[10px] text-on-surface-variant" x-show="lang === 'en'" x-cloak>Full code + IEEE documentation & defense</div>
                             </div>
                         </button>
                     </div>
@@ -272,63 +342,81 @@
 
                 <!-- 2. Select Platform -->
                 <div class="space-y-3">
-                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">2. المنصة المستهدفة:</label>
+                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">
+                        <span x-show="lang === 'ar'">2. المنصة المستهدفة:</span>
+                        <span x-show="lang === 'en'" x-cloak>2. Target Platform:</span>
+                    </label>
                     <div class="grid grid-cols-3 gap-3">
                         <button type="button" @click="platform = 'web'" 
                                 class="p-3 rounded-xl border text-center transition-all text-xs font-bold"
                                 :class="platform === 'web' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
-                            موقع / منصة ويب
+                            <span x-show="lang === 'ar'">موقع / منصة ويب</span>
+                            <span x-show="lang === 'en'" x-cloak>Web Platform</span>
                         </button>
 
                         <button type="button" @click="platform = 'mobile'" 
                                 class="p-3 rounded-xl border text-center transition-all text-xs font-bold"
                                 :class="platform === 'mobile' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
-                            تطبيق موبايل
+                            <span x-show="lang === 'ar'">تطبيق موبايل</span>
+                            <span x-show="lang === 'en'" x-cloak>Mobile App</span>
                         </button>
 
                         <button type="button" @click="platform = 'both'" 
                                 class="p-3 rounded-xl border text-center transition-all text-xs font-bold"
                                 :class="platform === 'both' ? 'border-primary bg-primary/10 text-primary' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
-                            موبايل + ويب
+                            <span x-show="lang === 'ar'">موبايل + ويب</span>
+                            <span x-show="lang === 'en'" x-cloak>Web + Mobile</span>
                         </button>
                     </div>
                 </div>
 
                 <!-- 3. Add-ons & Options -->
                 <div class="space-y-3">
-                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">3. خدمات إضافية:</label>
+                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">
+                        <span x-show="lang === 'ar'">3. خدمات وإضافات اختيارية:</span>
+                        <span x-show="lang === 'en'" x-cloak>3. Optional Deliverables:</span>
+                    </label>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <label class="p-3 rounded-xl border border-slate-200 dark:border-white/10 flex items-center gap-2 cursor-pointer text-xs font-semibold hover:bg-slate-100 dark:hover:bg-white/5">
                             <input type="checkbox" x-model="needDocs" class="rounded border-slate-300 text-primary focus:ring-primary">
-                            <span>كتابة التوثيق والتقرير</span>
+                            <span x-show="lang === 'ar'">كتابة التوثيق والتقرير</span>
+                            <span x-show="lang === 'en'" x-cloak>Full PDF Documentation</span>
                         </label>
 
                         <label class="p-3 rounded-xl border border-slate-200 dark:border-white/10 flex items-center gap-2 cursor-pointer text-xs font-semibold hover:bg-slate-100 dark:hover:bg-white/5">
                             <input type="checkbox" x-model="needHosting" class="rounded border-slate-300 text-primary focus:ring-primary">
-                            <span>الرفع على السيرفر (Hosting)</span>
+                            <span x-show="lang === 'ar'">الرفع على السيرفر (Hosting)</span>
+                            <span x-show="lang === 'en'" x-cloak>Cloud Server Setup</span>
                         </label>
 
                         <label class="p-3 rounded-xl border border-slate-200 dark:border-white/10 flex items-center gap-2 cursor-pointer text-xs font-semibold hover:bg-slate-100 dark:hover:bg-white/5">
                             <input type="checkbox" x-model="needPayment" class="rounded border-slate-300 text-primary focus:ring-primary">
-                            <span>ربط بوابات الدفع الإلكتروني</span>
+                            <span x-show="lang === 'ar'">ربط بوابات الدفع الإلكتروني</span>
+                            <span x-show="lang === 'en'" x-cloak>Payment Gateway Integration</span>
                         </label>
                     </div>
                 </div>
 
                 <!-- 4. Urgency -->
                 <div class="space-y-3">
-                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">4. سرعة التنفيذ المطلوب:</label>
+                    <label class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">
+                        <span x-show="lang === 'ar'">4. سرعة التنفيذ المطلوب:</span>
+                        <span x-show="lang === 'en'" x-cloak>4. Delivery Urgency:</span>
+                    </label>
                     <div class="grid grid-cols-2 gap-3">
                         <button type="button" @click="urgency = 'normal'" 
                                 class="p-3 rounded-xl border text-center transition-all text-xs font-bold"
                                 :class="urgency === 'normal' ? 'border-emerald-500 bg-emerald-500/10 text-emerald-500' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
-                            قياسي (جدول زمني طبيعي)
+                            <span x-show="lang === 'ar'">قياسي (جدول زمني طبيعي)</span>
+                            <span x-show="lang === 'en'" x-cloak>Standard Sprint Pace</span>
                         </button>
 
                         <button type="button" @click="urgency = 'express'" 
-                                class="p-3 rounded-xl border text-center transition-all text-xs font-bold"
+                                class="p-3 rounded-xl border text-center transition-all text-xs font-bold flex items-center justify-center gap-1"
                                 :class="urgency === 'express' ? 'border-amber-500 bg-amber-500/10 text-amber-500' : 'border-slate-200 dark:border-white/10 text-on-surface hover:bg-slate-100 dark:hover:bg-white/5'">
-                            ⚡ عاجل ومكثف (Speed Delivery)
+                            <span class="material-symbols-outlined text-sm text-amber-500">bolt</span>
+                            <span x-show="lang === 'ar'">عاجل ومكثف (Speed Delivery)</span>
+                            <span x-show="lang === 'en'" x-cloak>Express Priority Delivery</span>
                         </button>
                     </div>
                 </div>
@@ -339,33 +427,43 @@
             <div class="lg:col-span-4 glass-card rounded-2xl p-6 space-y-6 border border-primary/40 bg-surface-container/80 sticky top-24">
                 <h3 class="text-base font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 pb-3 flex items-center gap-2">
                     <span class="material-symbols-outlined text-primary">receipt_long</span>
-                    ملخص تقدير الطلب
+                    <span x-show="lang === 'ar'">ملخص تقدير الطلب</span>
+                    <span x-show="lang === 'en'" x-cloak>Project Estimate Summary</span>
                 </h3>
 
                 <ul class="space-y-3 text-xs text-on-surface">
                     <li class="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-2">
-                        <span class="text-on-surface-variant">النوع:</span>
+                        <span class="text-on-surface-variant" x-show="lang === 'ar'">النوع:</span>
+                        <span class="text-on-surface-variant" x-show="lang === 'en'" x-cloak>Track:</span>
                         <span class="font-bold text-slate-900 dark:text-white" x-text="projectTypeName"></span>
                     </li>
                     <li class="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-2">
-                        <span class="text-on-surface-variant">المنصة:</span>
+                        <span class="text-on-surface-variant" x-show="lang === 'ar'">المنصة:</span>
+                        <span class="text-on-surface-variant" x-show="lang === 'en'" x-cloak>Platform:</span>
                         <span class="font-bold text-slate-900 dark:text-white" x-text="platformName"></span>
                     </li>
                     <li class="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-2">
-                        <span class="text-on-surface-variant">المدة المتوقعة:</span>
+                        <span class="text-on-surface-variant" x-show="lang === 'ar'">المدة المتوقعة:</span>
+                        <span class="text-on-surface-variant" x-show="lang === 'en'" x-cloak>Est. Timeline:</span>
                         <span class="font-bold text-emerald-500" x-text="estimatedDays"></span>
                     </li>
                 </ul>
 
                 <div class="p-4 rounded-xl bg-primary/10 border border-primary/20 space-y-1 text-center">
-                    <div class="text-[10px] text-on-surface-variant uppercase font-bold">التقدير التنافسي المبدئي</div>
-                    <div class="text-xs font-bold text-primary">أفضل تكلفة مرنة تناسب ميزانيتك</div>
+                    <div class="text-[10px] text-on-surface-variant uppercase font-bold" x-show="lang === 'ar'">التقدير التنافسي المبدئي</div>
+                    <div class="text-[10px] text-on-surface-variant uppercase font-bold" x-show="lang === 'en'" x-cloak>Competitive Transparent Pricing</div>
+                    <div class="text-xs font-bold text-primary" x-show="lang === 'ar'">أفضل تكلفة مرنة تناسب ميزانيتك</div>
+                    <div class="text-xs font-bold text-primary" x-show="lang === 'en'" x-cloak>Tailored flexibly to your exact budget</div>
                 </div>
 
                 <a :href="whatsappUrl" target="_blank" 
                    class="w-full bg-[#10B981] hover:bg-[#059669] text-white py-3.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2 whatsapp-glow transition-all active:scale-95">
-                    <span class="material-symbols-outlined">chat</span>
-                    إرسال الطلب والتأكيد عبر واتساب
+                    <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 24 24">
+                        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.529 1.83.809 2.796.81h.005c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.767-5.773-5.773zm3.385 8.163c-.145.409-.844.757-1.157.778-.314.02-.628.021-1.848-.485-1.564-.648-2.56-2.241-2.639-2.344-.078-.103-.635-.845-.635-1.611 0-.766.402-1.144.545-1.301.143-.157.313-.197.418-.197.104 0 .208.001.299.006.096.005.226-.037.353.268.13.313.443 1.082.482 1.161.039.079.065.17.013.273-.052.104-.078.17-.156.26-.078.092-.163.205-.234.275-.078.079-.16.165-.069.321.091.157.404.668.868 1.08.597.532 1.101.697 1.258.775.156.078.247.069.338-.035.092-.104.391-.455.495-.611.104-.157.209-.13.348-.078.14.052.887.418 1.04.495.153.078.256.117.295.182.039.066.039.382-.106.791z"/>
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.39A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.182c-1.637 0-3.167-.47-4.467-1.282l-.32-.198-2.964.777.791-2.89-.217-.346A8.142 8.142 0 0 1 3.818 12c0-4.512 3.67-8.182 8.182-8.182 4.512 0 8.182 3.67 8.182 8.182 0 4.512-3.67 8.182-8.182 8.182z"/>
+                    </svg>
+                    <span x-show="lang === 'ar'">إرسال الطلب والتأكيد عبر واتساب</span>
+                    <span x-show="lang === 'en'" x-cloak>Confirm & Send to WhatsApp</span>
                 </a>
             </div>
 
@@ -376,17 +474,26 @@
     <!-- Technologies Stack Section -->
     <div class="glass-card p-8 rounded-3xl space-y-8">
         <div class="text-center max-w-2xl mx-auto space-y-2">
-            <span class="text-xs font-bold text-primary uppercase tracking-wider">تقنيات الاستوديو</span>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">التقنيات والأدوات المستخدمة</h2>
-            <p class="text-on-surface-variant text-xs md:text-sm">نعتمد على أحدث التقنيات البرمجية المستقرة والسريعة عالمياً.</p>
+            <span class="text-xs font-bold text-primary uppercase tracking-wider" x-show="lang === 'ar'">تقنيات الاستوديو</span>
+            <span class="text-xs font-bold text-primary uppercase tracking-wider" x-show="lang === 'en'" x-cloak>Studio Tech Stack</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white" x-show="lang === 'ar'">التقنيات والأدوات المستخدمة</h2>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white" x-show="lang === 'en'" x-cloak>Modern Technologies & Tools</h2>
+            <p class="text-on-surface-variant text-xs md:text-sm" x-show="lang === 'ar'">نعتمد على أحدث التقنيات البرمجية المستقرة والسريعة عالمياً.</p>
+            <p class="text-on-surface-variant text-xs md:text-sm" x-show="lang === 'en'" x-cloak>Engineered with world-class, reliable, and high-performance stacks.</p>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
             {% for tech in technologies %}
             <div class="p-4 rounded-2xl bg-surface-container border border-slate-200 dark:border-white/10 text-center space-y-2 hover:border-primary/40 transition-colors">
                 <span class="material-symbols-outlined text-primary text-3xl">code</span>
-                <div class="font-bold text-slate-900 dark:text-white text-xs md:text-sm">{{ tech.name }}</div>
-                <div class="text-[10px] text-on-surface-variant">{{ tech.category.name }}</div>
+                <div class="font-bold text-slate-900 dark:text-white text-xs md:text-sm">
+                    <span x-show="lang === 'ar'">{{ tech.name }}</span>
+                    <span x-show="lang === 'en'" x-cloak>{{ tech.name_en|default:tech.name }}</span>
+                </div>
+                <div class="text-[10px] text-on-surface-variant">
+                    <span x-show="lang === 'ar'">{{ tech.category.name }}</span>
+                    <span x-show="lang === 'en'" x-cloak>{{ tech.category.name_en|default:tech.category.name }}</span>
+                </div>
             </div>
             {% empty %}
             <div class="col-span-6 text-center py-6 text-on-surface-variant italic">Python, Django, Flutter, React, PyTorch, Tailwind CSS, PostgreSQL.</div>

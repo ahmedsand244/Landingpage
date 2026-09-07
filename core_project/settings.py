@@ -90,6 +90,13 @@ else:
         }
     }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'codeplus-landing-cache',
+    }
+}
+
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {

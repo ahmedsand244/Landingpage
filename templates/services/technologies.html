@@ -1,33 +1,45 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Technologies Stack | Graduation Projects Studio{% endblock %}
+{% block title %}
+    {% if lang == 'en' %}Technologies Stack | Code+ Studio{% else %}التقنيات والأدوات البرمجية | استوديو Code+{% endif %}
+{% endblock %}
 
 {% block content %}
-<main class="flex-grow pt-2xl pb-3xl px-safe-margin max-w-[1440px] mx-auto w-full flex gap-xl relative">
+<main class="flex-grow py-12 px-4 md:px-8 max-w-[1440px] mx-auto w-full relative space-y-12">
     <!-- Background Accents -->
     <div class="absolute top-0 left-1/4 w-1/2 h-64 bg-primary/10 blur-[100px] rounded-full pointer-events-none -z-10"></div>
     <div class="absolute bottom-1/4 right-0 w-1/3 h-96 bg-secondary/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
     
-    <div class="w-full">
-        <header class="mb-2xl text-center max-w-3xl mx-auto">
-            <span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">CURATED TOOLKITS</span>
-            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">Elite Technology Stack</h1>
-            <p class="font-body-base text-body-base text-on-surface-variant">Powering academic excellence and enterprise-grade solutions through a meticulously curated selection of modern frameworks and tools.</p>
+    <div class="w-full space-y-10">
+        <header class="text-center max-w-3xl mx-auto space-y-3">
+            <span class="px-4 py-1.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 uppercase tracking-wider inline-block">
+                <span x-show="lang === 'ar'">منظومة التقنيات</span>
+                <span x-show="lang === 'en'" x-cloak>Curated Tech Stack</span>
+            </span>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                <span x-show="lang === 'ar'">أقوى التقنيات والأطر البرمجية الحديثة</span>
+                <span x-show="lang === 'en'" x-cloak>Elite Technology & Framework Stack</span>
+            </h1>
+            <p class="text-on-surface-variant text-sm md:text-base leading-relaxed">
+                <span x-show="lang === 'ar'">نعتمد على حزم برمجية مختارة بعناية لتحقيق أعلى كفاءة وأمان وسرعة في مشاريع البزنس والأبحاث الأكاديمية.</span>
+                <span x-show="lang === 'en'" x-cloak>Powering academic excellence and enterprise-grade solutions through a meticulously curated selection of modern frameworks and tools.</span>
+            </p>
         </header>
 
         {% if categories %}
             {% for category in categories %}
                 {% if category.technologies.all %}
-                    <div class="mb-2xl">
-                        <h2 class="font-headline-md text-headline-md text-primary border-b border-white/5 pb-xs mb-lg flex items-center gap-sm">
+                    <div class="space-y-6">
+                        <h2 class="text-xl font-bold text-primary border-b border-slate-200 dark:border-white/10 pb-3 flex items-center gap-2">
                             <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
-                            {{ category.name }}
+                            <span x-show="lang === 'ar'">{{ category.name }}</span>
+                            <span x-show="lang === 'en'" x-cloak>{{ category.name_en|default:category.name }}</span>
                         </h2>
-                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-grid-gutter">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                             {% for tech in category.technologies.all %}
-                            <div class="glass-panel rounded-xl p-lg flex flex-col items-center justify-center gap-md aspect-square glow-hover transition-all duration-300 group cursor-pointer">
-                                <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center border border-white/5 group-hover:border-secondary/30 transition-colors">
+                            <div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-3 aspect-square hover:border-primary/40 transition-all group">
+                                <div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center border border-slate-200 dark:border-white/10 group-hover:border-secondary/40 transition-colors">
                                     {% if tech.icon_svg %}
                                         <div class="w-8 h-8 text-on-surface-variant group-hover:text-secondary flex items-center justify-center">
                                             {{ tech.icon_svg|safe }}
@@ -36,8 +48,14 @@
                                         <span class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-secondary transition-colors">code</span>
                                     {% endif %}
                                 </div>
-                                <h3 class="font-headline-md text-headline-md text-on-surface text-center font-bold">{{ tech.name }}</h3>
-                                <p class="font-body-sm text-[12px] text-on-surface-variant text-center line-clamp-2 px-xs">{{ tech.description }}</p>
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white text-center">
+                                    <span x-show="lang === 'ar'">{{ tech.name }}</span>
+                                    <span x-show="lang === 'en'" x-cloak>{{ tech.name_en|default:tech.name }}</span>
+                                </h3>
+                                <p class="text-[11px] text-on-surface-variant text-center line-clamp-2 px-1">
+                                    <span x-show="lang === 'ar'">{{ tech.description }}</span>
+                                    <span x-show="lang === 'en'" x-cloak>{{ tech.description_en|default:tech.description }}</span>
+                                </p>
                             </div>
                             {% endfor %}
                         </div>
@@ -45,7 +63,7 @@
                 {% endif %}
             {% endfor %}
         {% else %}
-            <div class="glass-panel rounded-xl p-xl text-center">
+            <div class="glass-card rounded-2xl p-8 text-center">
                 <p class="text-on-surface-variant italic">No technologies registered in the database yet.</p>
             </div>
         {% endif %}

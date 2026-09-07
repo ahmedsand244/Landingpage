@@ -1,21 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}معرض المشاريع والأعمال | Portfolio{% endblock %}
+{% block title %}
+    {% if lang == 'en' %}Portfolio & Projects | Code+ Studio{% else %}معرض المشاريع والأعمال | Code+ Studio{% endif %}
+{% endblock %}
 
 {% block content %}
 <main class="w-full max-w-[1440px] mx-auto px-4 md:px-8 py-8 md:py-12 space-y-10">
     
     <!-- Page Header -->
     <div class="text-center max-w-3xl mx-auto space-y-4">
-        <span class="px-4 py-1.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 inline-block">
-            معرض النماذج والمشاريع
+        <span class="px-4 py-1.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 inline-block" x-text="t('portfolio_sec_badge', 'معرض النماذج والمشاريع')">
         </span>
         <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
-            استعرض كافة أعمالنا للبزنس ومشاريع التخرج
+            <span x-show="lang === 'ar'">استعرض كافة أعمالنا للبزنس ومشاريع التخرج</span>
+            <span x-show="lang === 'en'" x-cloak>Explore Our Business & Academic Portfolio</span>
         </h1>
         <p class="text-on-surface-variant text-sm md:text-base leading-relaxed">
-            مجموعة مختارة من التطبيقات والمنصات المنفذة للشركات والأنشطة التجارية والمشاريع الأكاديمية.
+            <span x-show="lang === 'ar'">مجموعة مختارة من التطبيقات والمنصات المنفذة للشركات والأنشطة التجارية والمشاريع الأكاديمية.</span>
+            <span x-show="lang === 'en'" x-cloak>A curated showcase of live systems, scalable SaaS, and advanced AI thesis solutions delivered for businesses and universities.</span>
         </p>
     </div>
 
@@ -25,20 +28,22 @@
         <!-- Filter Tabs -->
         <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
             <a href="{% url 'projects:portfolio' %}" class="px-4 py-2 rounded-xl text-xs font-bold transition-all {% if not current_type %}bg-primary text-white shadow-md{% else %}bg-surface-container text-on-surface-variant hover:text-slate-900 dark:hover:text-white{% endif %}">
-                الكل ({{ projects|length }})
+                <span x-text="t('portfolio_filter_all', 'الكل') + ' ({{ projects|length }})'"></span>
             </a>
-            <a href="{% url 'projects:portfolio' %}?type=business" class="px-4 py-2 rounded-xl text-xs font-bold transition-all {% if current_type == 'business' %}bg-secondary text-white shadow-md{% else %}bg-surface-container text-on-surface-variant hover:text-slate-900 dark:hover:text-white{% endif %}">
-                💼 مشاريع البزنس
+            <a href="{% url 'projects:portfolio' %}?type=business" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 {% if current_type == 'business' %}bg-secondary text-white shadow-md{% else %}bg-surface-container text-on-surface-variant hover:text-slate-900 dark:hover:text-white{% endif %}">
+                <span class="material-symbols-outlined text-base">business_center</span>
+                <span x-text="t('portfolio_filter_biz', 'مشاريع البزنس')"></span>
             </a>
-            <a href="{% url 'projects:portfolio' %}?type=academic" class="px-4 py-2 rounded-xl text-xs font-bold transition-all {% if current_type == 'academic' %}bg-emerald-600 text-white shadow-md{% else %}bg-surface-container text-on-surface-variant hover:text-slate-900 dark:hover:text-white{% endif %}">
-                🎓 مشاريع التخرج
+            <a href="{% url 'projects:portfolio' %}?type=academic" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 {% if current_type == 'academic' %}bg-emerald-600 text-white shadow-md{% else %}bg-surface-container text-on-surface-variant hover:text-slate-900 dark:hover:text-white{% endif %}">
+                <span class="material-symbols-outlined text-base">school</span>
+                <span x-text="t('portfolio_filter_acad', 'مشاريع التخرج')"></span>
             </a>
         </div>
 
         <!-- Search Form -->
         <form method="get" class="w-full md:w-72 relative">
             {% if current_type %}<input type="hidden" name="type" value="{{ current_type }}"/>{% endif %}
-            <input type="text" name="q" value="{{ search_query|default:'' }}" placeholder="بحث باسم المشروع أو التقنية..." class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary pe-10"/>
+            <input type="text" name="q" value="{{ search_query|default:'' }}" :placeholder="t('portfolio_search_ph', 'بحث باسم المشروع أو التقنية...')" class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary pe-10"/>
             <button type="submit" class="absolute end-3 top-2.5 text-on-surface-variant hover:text-primary">
                 <span class="material-symbols-outlined text-lg">search</span>
             </button>
@@ -48,7 +53,7 @@
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for project in projects %}
-        <div class="glass-card rounded-3xl overflow-hidden hover:border-primary/40 transition-all duration-300 flex flex-col justify-between group">
+        <div class="glass-card rounded-3xl overflow-hidden interactive-card flex flex-col justify-between group">
             
             <!-- Image / Asset Cover -->
             <div class="h-52 overflow-hidden relative bg-surface-container flex items-center justify-center border-b border-slate-200 dark:border-white/10">
@@ -61,21 +66,26 @@
                     </div>
                 {% endif %}
                 
-                <div class="absolute top-3 right-3">
-                    <span class="bg-primary/20 backdrop-blur-md border border-primary/40 text-primary px-3 py-1 rounded-full text-xs font-bold">
-                        {{ project.get_project_type_display }}
+                <div class="absolute top-3 end-3 z-10 pointer-events-none">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold tracking-wide shadow-lg backdrop-blur-md border border-white/20 {% if project.project_type == 'commercial' %}bg-slate-900/85 text-secondary border-secondary/40{% else %}bg-slate-900/85 text-emerald-400 border-emerald-500/40{% endif %}">
+                        <span class="w-1.5 h-1.5 rounded-full {% if project.project_type == 'commercial' %}bg-secondary{% else %}bg-emerald-400{% endif %}"></span>
+                        <span x-show="lang === 'ar'">{{ project.project_type_label_ar }}</span>
+                        <span x-show="lang === 'en'" x-cloak>{{ project.project_type_label_en }}</span>
                     </span>
                 </div>
+
             </div>
 
             <!-- Card Content -->
             <div class="p-6 flex-grow flex flex-col justify-between gap-4">
                 <div class="space-y-2">
                     <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-1">
-                        {{ project.title }}
+                        <span x-show="lang === 'ar'">{{ project.title }}</span>
+                        <span x-show="lang === 'en'" x-cloak>{{ project.title_en|default:project.title }}</span>
                     </h3>
                     <p class="text-xs text-on-surface-variant line-clamp-2 leading-relaxed">
-                        {{ project.summary }}
+                        <span x-show="lang === 'ar'">{{ project.summary }}</span>
+                        <span x-show="lang === 'en'" x-cloak>{{ project.summary_en|default:project.summary }}</span>
                     </p>
                 </div>
 
@@ -83,7 +93,8 @@
                 <div class="flex flex-wrap gap-1.5 pt-2">
                     {% for tech in project.technologies.all %}
                         <span class="px-2 py-0.5 rounded bg-surface-container border border-slate-200 dark:border-white/10 text-[10px] font-mono text-secondary">
-                            {{ tech.name }}
+                            <span x-show="lang === 'ar'">{{ tech.name }}</span>
+                            <span x-show="lang === 'en'" x-cloak>{{ tech.name_en|default:tech.name }}</span>
                         </span>
                     {% endfor %}
                 </div>
@@ -92,10 +103,12 @@
                 <div class="flex justify-between items-center border-t border-slate-200 dark:border-white/10 pt-4 mt-2 text-xs">
                     <span class="text-on-surface-variant font-mono flex items-center gap-1">
                         <span class="material-symbols-outlined text-sm">domain</span>
-                        {{ project.client_name }}
+                        <span x-show="lang === 'ar'">{{ project.client_name }}</span>
+                        <span x-show="lang === 'en'" x-cloak>{{ project.client_name_en|default:project.client_name }}</span>
                     </span>
                     <a href="{% url 'projects:project_detail' slug=project.slug %}" class="text-primary font-bold flex items-center gap-1 hover:underline">
-                        <span>التفاصيل</span> <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_back</span>
+                        <span x-text="t('portfolio_details_btn', 'التفاصيل')"></span> 
+                        <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_back</span>
                     </a>
                 </div>
             </div>
@@ -104,8 +117,8 @@
         {% empty %}
         <div class="col-span-3 text-center py-16 glass-card rounded-3xl space-y-3">
             <span class="material-symbols-outlined text-5xl text-on-surface-variant">search_off</span>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white">لم يتم العثور على مشاريع متطابقة</h3>
-            <p class="text-xs text-on-surface-variant">جرب التصفح بفلاتر مختلفة أو تغيير كلمة البحث.</p>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white" x-text="t('portfolio_no_results', 'لم يتم العثور على مشاريع متطابقة')"></h3>
+            <p class="text-xs text-on-surface-variant" x-text="t('portfolio_no_results_sub', 'جرب التصفح بفلاتر مختلفة أو تغيير كلمة البحث.')"></p>
         </div>
         {% endfor %}
     </div>

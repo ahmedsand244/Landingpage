@@ -44,12 +44,21 @@
           },
           async loadLang(l) {
               try {
-                  const res = await fetch('/static/translations/' + l + '.json');
-                  this.translations = await res.json();
+                  const cached = localStorage.getItem('codeplus_i18n_' + l);
+                  if (cached) {
+                      try { this.translations = JSON.parse(cached); } catch(err) {}
+                  }
                   document.documentElement.setAttribute('lang', l);
                   document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
                   const currentThemeClass = document.documentElement.classList.contains('dark') ? 'dark' : '';
                   document.documentElement.className = currentThemeClass + ' ' + (l === 'ar' ? 'font-cairo' : 'font-geist');
+
+                  const res = await fetch('/static/translations/' + l + '.json');
+                  if (res.ok) {
+                      const data = await res.json();
+                      this.translations = data;
+                      localStorage.setItem('codeplus_i18n_' + l, JSON.stringify(data));
+                  }
               } catch(e) { console.error('Error loading i18n file', e); }
           },
           t(key, defaultText) {
@@ -75,12 +84,17 @@
         })();
     </script>
 
+    <!-- High Performance Network Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Geist:wght@400;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     
-    <!-- Alpine.js for frontend state & i18n & theme switcher -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine.js local for zero network redirect latency -->
+    <script defer src="{% static 'js/alpine.min.js' %}"></script>
 
     <script id="tailwind-config">
         tailwind.config = {
@@ -128,6 +142,12 @@
             --glass-border: rgba(255, 255, 255, 0.08);
             --shadow-card: 0 0 20px rgba(0, 0, 0, 0.2);
         }
+        html {
+            scroll-behavior: smooth;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         html, body {
             overflow-x: hidden;
             max-width: 100vw;
@@ -137,26 +157,92 @@
             color: var(--text-main);
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
+
+        /* Modern Sleek Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 9999px;
+            border: 2px solid var(--bg-color);
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+
+        /* Fluid Glass Card & Spring Physics */
         .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border: 1px solid var(--glass-border);
             box-shadow: var(--shadow-card);
-            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.3s ease, 
+                        background-color 0.3s ease;
+            will-change: transform, box-shadow;
+        }
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.35);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
+        }
+        .dark .interactive-card:hover {
+            box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.3), 0 0 20px rgba(99, 102, 241, 0.15);
+        }
+
+        /* Keyframe Micro-Animations */
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        @keyframes shimmer-slow {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .animate-float {
+            animation: float-gentle 4s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float-gentle 4s ease-in-out 2s infinite;
+        }
+        .whatsapp-glow {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+            animation: pulse-glow 2.5s infinite;
         }
         .glow-hover:hover {
             box-shadow: 0 0 25px rgba(99, 102, 241, 0.25);
         }
-        .whatsapp-glow {
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-            animation: pulse-glow 2s infinite;
+
+        /* Smooth Scroll Reveal System (Hardware-Accelerated) */
+        .reveal-init {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
         }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        .reveal-init.revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
+
         img, video, iframe {
             max-width: 100%;
             height: auto;
@@ -200,11 +286,11 @@
          class="bg-gradient-to-r from-primary via-indigo-600 to-emerald-600 text-white text-xs md:text-sm py-2.5 px-4 relative z-50 shadow-md border-b border-white/10 print:hidden">
         <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
             <div class="flex items-center gap-2 overflow-hidden mx-auto sm:mx-0">
-                <span class="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-extrabold uppercase animate-pulse flex-shrink-0">
-                    عرض خاص 🔥
+                <span class="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-extrabold uppercase animate-pulse flex-shrink-0 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">local_offer</span>
+                    <span x-text="t('banner_badge', 'عرض خاص')"></span>
                 </span>
-                <span class="font-bold truncate">
-                    خصم 20% لفترة محدودة على تطوير تطبيقات الـ MVP وتوثيق مشاريع التخرج للموسم الحالي!
+                <span class="font-bold truncate" x-text="t('banner_text', 'خصم 20% لفترة محدودة على تطوير تطبيقات الـ MVP وتوثيق مشاريع التخرج للموسم الحالي!')">
                 </span>
             </div>
 
@@ -212,7 +298,7 @@
                 <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفادة%20من%20عرض%20الخصم%20المباشر%2020%" 
                    target="_blank" 
                    class="bg-white hover:bg-slate-100 text-slate-900 px-3.5 py-1 rounded-full text-xs font-extrabold shadow-sm transition-transform active:scale-95 flex items-center gap-1">
-                    <span>احجز عرضك الآن</span>
+                    <span x-text="t('banner_btn', 'احجز عرضك الآن')"></span>
                     <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_forward</span>
                 </a>
 
@@ -222,6 +308,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Interactive Constellation & Mesh Canvas Background -->
     <canvas id="tech-bg-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-70 transition-opacity duration-500"></canvas>
@@ -233,13 +320,19 @@
             <!-- Brand Logo Image -->
             <a href="/" class="flex items-center hover:opacity-95 transition-opacity min-h-[44px] group">
                 <!-- Light Mode Logo (Visible in Light Theme) -->
-                <img src="{% static 'images/logo_light.png' %}" 
+                <img src="{% static 'images/logo_light.svg' %}" 
+                     onerror="this.onerror=null; this.src='{% static 'images/logo_light.png' %}';"
                      alt="Code+ Logo" 
+                     width="200" height="60"
+                     fetchpriority="high"
                      class="h-16 md:h-20 w-auto object-contain drop-shadow-sm dark:hidden group-hover:scale-105 transition-transform duration-300"/>
                 
                 <!-- Dark Mode Logo (Visible in Dark Theme) -->
-                <img src="{% static 'images/logo_dark.png' %}" 
+                <img src="{% static 'images/logo_dark.svg' %}" 
+                     onerror="this.onerror=null; this.src='{% static 'images/logo_dark.png' %}';"
                      alt="Code+ Logo" 
+                     width="200" height="60"
+                     fetchpriority="high"
                      class="h-16 md:h-20 w-auto object-contain drop-shadow-[0_0_20px_rgba(16,185,129,0.4)] hidden dark:block group-hover:scale-105 transition-transform duration-300"/>
             </a>
             
@@ -287,7 +380,10 @@
                 </button>
 
                 <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="bg-[#10B981] hover:bg-[#059669] text-white px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 whatsapp-glow transition-all active:scale-95 min-h-[44px]">
-                    <span class="material-symbols-outlined text-lg">chat</span>
+                    <svg class="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24">
+                        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.529 1.83.809 2.796.81h.005c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.767-5.773-5.767zm3.385 8.163c-.145.409-.844.757-1.157.778-.314.02-.628.021-1.848-.485-1.564-.648-2.56-2.241-2.639-2.344-.078-.103-.635-.845-.635-1.611 0-.766.402-1.144.545-1.301.143-.157.313-.197.418-.197.104 0 .208.001.299.006.096.005.226-.037.353.268.13.313.443 1.082.482 1.161.039.079.065.17.013.273-.052.104-.078.17-.156.26-.078.092-.163.205-.234.275-.078.079-.16.165-.069.321.091.157.404.668.868 1.08.597.532 1.101.697 1.258.775.156.078.247.069.338-.035.092-.104.391-.455.495-.611.104-.157.209-.13.348-.078.14.052.887.418 1.04.495.153.078.256.117.295.182.039.066.039.382-.106.791z"/>
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.39A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.182c-1.637 0-3.167-.47-4.467-1.282l-.32-.198-2.964.777.791-2.89-.217-.346A8.142 8.142 0 0 1 3.818 12c0-4.512 3.67-8.182 8.182-8.182 4.512 0 8.182 3.67 8.182 8.182 0 4.512-3.67 8.182-8.182 8.182z"/>
+                    </svg>
                     <span x-text="t('nav_whatsapp', 'تواصل معنا واتساب')"></span>
                 </a>
             </div>
@@ -318,7 +414,13 @@
             <a class="block px-4 py-3 rounded-lg font-semibold min-h-[44px] flex items-center {% if '/portfolio' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface{% endif %}" href="/portfolio/" x-text="t('nav_portfolio', 'المشاريع والأعمال')"></a>
             <a class="block px-4 py-3 rounded-lg font-semibold min-h-[44px] flex items-center {% if '/services' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface{% endif %}" href="/services/" x-text="t('nav_services', 'الخدمات والتقنيات')"></a>
             <a class="block px-4 py-3 rounded-lg font-semibold min-h-[44px] flex items-center {% if '/contact' in request.path %}text-primary bg-primary/10{% else %}text-on-surface-variant hover:text-on-surface{% endif %}" href="/contact/" x-text="t('nav_contact', 'تواصل معنا')"></a>
-            <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="block w-full text-center bg-[#10B981] text-white py-3 rounded-xl font-bold mt-2 min-h-[44px] flex items-center justify-center gap-2" x-text="t('nav_whatsapp', 'تحدث معنا واتساب مباشرة')"></a>
+            <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="w-full text-center bg-[#10B981] text-white py-3 rounded-xl font-bold mt-2 min-h-[44px] flex items-center justify-center gap-2">
+                <svg class="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.529 1.83.809 2.796.81h.005c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.767-5.773-5.773zm3.385 8.163c-.145.409-.844.757-1.157.778-.314.02-.628.021-1.848-.485-1.564-.648-2.56-2.241-2.639-2.344-.078-.103-.635-.845-.635-1.611 0-.766.402-1.144.545-1.301.143-.157.313-.197.418-.197.104 0 .208.001.299.006.096.005.226-.037.353.268.13.313.443 1.082.482 1.161.039.079.065.17.013.273-.052.104-.078.17-.156.26-.078.092-.163.205-.234.275-.078.079-.16.165-.069.321.091.157.404.668.868 1.08.597.532 1.101.697 1.258.775.156.078.247.069.338-.035.092-.104.391-.455.495-.611.104-.157.209-.13.348-.078.14.052.887.418 1.04.495.153.078.256.117.295.182.039.066.039.382-.106.791z"/>
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.39A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.182c-1.637 0-3.167-.47-4.467-1.282l-.32-.198-2.964.777.791-2.89-.217-.346A8.142 8.142 0 0 1 3.818 12c0-4.512 3.67-8.182 8.182-8.182 4.512 0 8.182 3.67 8.182 8.182 0 4.512-3.67 8.182-8.182 8.182z"/>
+                </svg>
+                <span x-text="t('nav_whatsapp', 'تحدث معنا واتساب مباشرة')"></span>
+            </a>
         </div>
     </nav>
 
@@ -334,13 +436,19 @@
             <div>
                 <a href="/" class="inline-flex items-center mb-4 hover:opacity-95 transition-opacity">
                     <!-- Light Mode Footer Logo -->
-                    <img src="{% static 'images/logo_light.png' %}" 
+                    <img src="{% static 'images/logo_light.svg' %}" 
+                         onerror="this.onerror=null; this.src='{% static 'images/logo_light.png' %}';"
                          alt="Code+ Logo" 
+                         width="160" height="48"
+                         loading="lazy"
                          class="h-12 md:h-16 w-auto object-contain drop-shadow-sm dark:hidden"/>
                     
                     <!-- Dark Mode Footer Logo -->
-                    <img src="{% static 'images/logo_dark.png' %}" 
+                    <img src="{% static 'images/logo_dark.svg' %}" 
+                         onerror="this.onerror=null; this.src='{% static 'images/logo_dark.png' %}';"
                          alt="Code+ Logo" 
+                         width="160" height="48"
+                         loading="lazy"
                          class="h-12 md:h-16 w-auto object-contain drop-shadow-sm hidden dark:block"/>
                 </a>
                 <p class="text-on-surface-variant text-sm leading-relaxed" x-text="t('hero_desc', 'نطور ونبني حلول البرمجيات وتطبيقات البزنس للشركات والأنشطة التجارية، إلى جانب المشاريع الأكاديمية.')"></p>
@@ -360,7 +468,10 @@
                 <h4 class="text-on-surface font-bold mb-3 text-base" x-text="t('footer_support', 'الدعم والتواصل المباشر')"></h4>
                 <p class="text-sm text-on-surface-variant mb-4" x-text="t('cta_banner_desc', 'هل لديك فكرة تطبيق، نظام بزنس، أو مشروع تخرج؟ تواصل معنا مباشرة:')"></p>
                 <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="inline-flex items-center gap-2 bg-[#10B981] text-white px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-[#059669] transition-colors min-h-[44px]">
-                    <span class="material-symbols-outlined text-lg">chat</span>
+                    <svg class="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24">
+                        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.529 1.83.809 2.796.81h.005c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.767-5.773-5.767zm3.385 8.163c-.145.409-.844.757-1.157.778-.314.02-.628.021-1.848-.485-1.564-.648-2.56-2.241-2.639-2.344-.078-.103-.635-.845-.635-1.611 0-.766.402-1.144.545-1.301.143-.157.313-.197.418-.197.104 0 .208.001.299.006.096.005.226-.037.353.268.13.313.443 1.082.482 1.161.039.079.065.17.013.273-.052.104-.078.17-.156.26-.078.092-.163.205-.234.275-.078.079-.16.165-.069.321.091.157.404.668.868 1.08.597.532 1.101.697 1.258.775.156.078.247.069.338-.035.092-.104.391-.455.495-.611.104-.157.209-.13.348-.078.14.052.887.418 1.04.495.153.078.256.117.295.182.039.066.039.382-.106.791z"/>
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.39A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.182c-1.637 0-3.167-.47-4.467-1.282l-.32-.198-2.964.777.791-2.89-.217-.346A8.142 8.142 0 0 1 3.818 12c0-4.512 3.67-8.182 8.182-8.182 4.512 0 8.182 3.67 8.182 8.182 0 4.512-3.67 8.182-8.182 8.182z"/>
+                    </svg>
                     <span>WhatsApp: +20 15 54397407</span>
                 </a>
             </div>
@@ -372,42 +483,63 @@
     <script>
         (function() {
             const canvas = document.getElementById('tech-bg-canvas');
-            if (!canvas || window.innerWidth < 768) return;
-            const ctx = canvas.getContext('2d');
+            if (!canvas || window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const ctx = canvas.getContext('2d', { alpha: true });
+            if (!ctx) return;
             
             let width = canvas.width = window.innerWidth;
             let height = canvas.height = window.innerHeight;
+            let isRunning = true;
             
-            let mouse = { x: -1000, y: -1000, radius: 180 };
+            let mouse = { x: -1000, y: -1000, radius: 180, radiusSq: 180 * 180 };
             
             window.addEventListener('mousemove', (e) => {
                 mouse.x = e.clientX;
                 mouse.y = e.clientY;
-            });
+            }, { passive: true });
             
             window.addEventListener('mouseleave', () => {
                 mouse.x = -1000;
                 mouse.y = -1000;
-            });
+            }, { passive: true });
             
+            let resizeTimer;
             window.addEventListener('resize', () => {
-                if (window.innerWidth < 768) return;
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-                initParticles();
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    if (window.innerWidth < 768) {
+                        isRunning = false;
+                        return;
+                    }
+                    width = canvas.width = window.innerWidth;
+                    height = canvas.height = window.innerHeight;
+                    initParticles();
+                }, 200);
+            }, { passive: true });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    isRunning = false;
+                } else {
+                    if (!isRunning && window.innerWidth >= 768) {
+                        isRunning = true;
+                        lastTime = performance.now();
+                        requestAnimationFrame(animate);
+                    }
+                }
             });
             
             let particles = [];
             let squares = [];
-            const particleCount = Math.min(Math.floor((width * height) / 18000), 50);
-            const squareCount = 10;
+            const particleCount = Math.min(Math.floor((width * height) / 22000), 38);
+            const squareCount = 8;
             
             class Particle {
                 constructor() {
                     this.x = Math.random() * width;
                     this.y = Math.random() * height;
-                    this.vx = (Math.random() - 0.5) * 0.7;
-                    this.vy = (Math.random() - 0.5) * 0.7;
+                    this.vx = (Math.random() - 0.5) * 0.65;
+                    this.vy = (Math.random() - 0.5) * 0.65;
                     this.radius = Math.random() * 2 + 1.2;
                     this.isGreen = Math.random() > 0.55;
                 }
@@ -433,11 +565,11 @@
                 constructor() {
                     this.x = Math.random() * width;
                     this.y = Math.random() * height;
-                    this.size = Math.random() * 24 + 10;
-                    this.vx = (Math.random() - 0.5) * 0.45;
-                    this.vy = (Math.random() - 0.5) * 0.45;
+                    this.size = Math.random() * 22 + 10;
+                    this.vx = (Math.random() - 0.5) * 0.4;
+                    this.vy = (Math.random() - 0.5) * 0.4;
                     this.angle = Math.random() * Math.PI * 2;
-                    this.vAngle = (Math.random() - 0.5) * 0.012;
+                    this.vAngle = (Math.random() - 0.5) * 0.01;
                 }
                 update() {
                     this.x += this.vx;
@@ -479,28 +611,42 @@
 
             initParticles();
 
-            function animate() {
+            const maxDist = 135;
+            const maxDistSq = maxDist * maxDist;
+            let lastTime = 0;
+            const targetFpsInterval = 1000 / 36; // Silky-smooth 36 FPS capped background thread saving CPU/GPU
+
+            function animate(now) {
+                if (!isRunning) return;
+                requestAnimationFrame(animate);
+
+                if (now - lastTime < targetFpsInterval) return;
+                lastTime = now - ((now - lastTime) % targetFpsInterval);
+
                 const isDark = document.documentElement.classList.contains('dark');
                 ctx.clearRect(0, 0, width, height);
 
                 // Draw Floating Squares
-                squares.forEach(s => {
-                    s.update();
-                    s.draw(isDark);
-                });
+                for (let i = 0; i < squares.length; i++) {
+                    squares[i].update();
+                    squares[i].draw(isDark);
+                }
 
-                // Draw Connecting Threads
-                const maxDist = 135;
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const dx = particles[i].x - particles[j].x;
-                        const dy = particles[i].y - particles[j].y;
-                        const dist = Math.hypot(dx, dy);
-                        if (dist < maxDist) {
+                // Draw Connecting Threads (fast squared distance)
+                const pLen = particles.length;
+                for (let i = 0; i < pLen; i++) {
+                    const pi = particles[i];
+                    for (let j = i + 1; j < pLen; j++) {
+                        const pj = particles[j];
+                        const dx = pi.x - pj.x;
+                        const dy = pi.y - pj.y;
+                        const distSq = dx * dx + dy * dy;
+                        if (distSq < maxDistSq) {
+                            const dist = Math.sqrt(distSq);
                             const alpha = (1 - dist / maxDist) * (isDark ? 0.35 : 0.18);
                             ctx.beginPath();
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.moveTo(pi.x, pi.y);
+                            ctx.lineTo(pj.x, pj.y);
                             ctx.strokeStyle = isDark 
                                 ? `rgba(99, 102, 241, ${alpha})`
                                 : `rgba(79, 70, 229, ${alpha})`;
@@ -510,13 +656,15 @@
                     }
                 }
 
-                // Draw Mouse Constellation Connections
+                // Draw Mouse Constellation Connections (fast squared distance)
                 if (mouse.x > 0 && mouse.y > 0) {
-                    for (let p of particles) {
+                    for (let i = 0; i < pLen; i++) {
+                        const p = particles[i];
                         const dx = p.x - mouse.x;
                         const dy = p.y - mouse.y;
-                        const dist = Math.hypot(dx, dy);
-                        if (dist < mouse.radius) {
+                        const distSq = dx * dx + dy * dy;
+                        if (distSq < mouse.radiusSq) {
+                            const dist = Math.sqrt(distSq);
                             const alpha = (1 - dist / mouse.radius) * (isDark ? 0.65 : 0.35);
                             ctx.beginPath();
                             ctx.moveTo(p.x, p.y);
@@ -531,15 +679,48 @@
                 }
 
                 // Draw Particles (Stars/Nodes)
-                particles.forEach(p => {
-                    p.update();
-                    p.draw(isDark);
-                });
-
-                requestAnimationFrame(animate);
+                for (let i = 0; i < pLen; i++) {
+                    particles[i].update();
+                    particles[i].draw(isDark);
+                }
             }
 
-            animate();
+            requestAnimationFrame(animate);
+        })();
+
+        // Smooth Scroll-Reveal System with zero layout-thrashing
+        (function() {
+            if (typeof IntersectionObserver === 'undefined') return;
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0.1
+            });
+
+            function observeElements() {
+                const candidates = document.querySelectorAll('section, .glass-card, .grid > div, main header, main h1, main h2');
+                candidates.forEach((el, index) => {
+                    if (!el.classList.contains('reveal-init')) {
+                        el.classList.add('reveal-init');
+                        if (index % 4 !== 0) {
+                            el.style.transitionDelay = `${(index % 4) * 80}ms`;
+                        }
+                        revealObserver.observe(el);
+                    }
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', observeElements);
+            } else {
+                observeElements();
+            }
         })();
     </script>
 </body>

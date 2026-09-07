@@ -82,7 +82,7 @@
                                 :class="activeTrack === 'business' 
                                     ? 'bg-white dark:bg-slate-800 text-primary shadow-sm border border-slate-200/80 dark:border-white/10' 
                                     : 'text-on-surface-variant hover:text-on-surface'">
-                            <span>💼</span>
+                            <span class="material-symbols-outlined text-base">business_center</span>
                             <span x-text="t('tab_biz', 'البزنس والشركات')"></span>
                         </button>
 
@@ -91,7 +91,7 @@
                                 :class="activeTrack === 'academic' 
                                     ? 'bg-white dark:bg-slate-800 text-emerald-500 shadow-sm border border-slate-200/80 dark:border-white/10' 
                                     : 'text-on-surface-variant hover:text-on-surface'">
-                            <span>🎓</span>
+                            <span class="material-symbols-outlined text-base">school</span>
                             <span x-text="t('tab_acad', 'مشاريع التخرج')"></span>
                         </button>
                     </div>
@@ -112,15 +112,15 @@
                         <div class="space-y-2.5 pt-1">
                             <div class="flex items-start gap-2.5 text-xs text-on-surface">
                                 <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
-                                <span>تطبيقات الموبايل (iOS & Android) والأنشطة التجارية</span>
+                                <span x-text="t('track_biz_f1', 'تطبيقات الموبايل (iOS & Android) والأنشطة التجارية')"></span>
                             </div>
                             <div class="flex items-start gap-2.5 text-xs text-on-surface">
                                 <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
-                                <span>منصات SaaS ولوحات التحكم الإدارية المتكاملة</span>
+                                <span x-text="t('track_biz_f2', 'منصات SaaS ولوحات التحكم الإدارية المتكاملة')"></span>
                             </div>
                             <div class="flex items-start gap-2.5 text-xs text-on-surface">
                                 <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
-                                <span>ربط بوابات الدفع والسيرفرات السحابية والأمان</span>
+                                <span x-text="t('track_biz_f3', 'ربط بوابات الدفع والسيرفرات السحابية والأمان')"></span>
                             </div>
                         </div>
 
@@ -149,15 +149,15 @@
                         <div class="space-y-2.5 pt-1">
                             <div class="flex items-start gap-2.5 text-xs text-on-surface">
                                 <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                                <span>أبحاث وخوارزميات الذكاء الاصطناعي وتعلم الآلة (AI/ML)</span>
+                                <span x-text="t('track_acad_f1', 'أبحاث وخوارزميات الذكاء الاصطناعي وتعلم الآلة (AI/ML)')"></span>
                             </div>
                             <div class="flex items-start gap-2.5 text-xs text-on-surface">
                                 <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                                <span>الكود المصدري النظيف وتوثيق المشروع الكامل (Thesis)</span>
+                                <span x-text="t('track_acad_f2', 'الكود المصدري النظيف وتوثيق المشروع الكامل (Thesis)')"></span>
                             </div>
                             <div class="flex items-start gap-2.5 text-xs text-on-surface">
                                 <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
-                                <span>دعم فني كامل وتدريب شامل حتى يوم المناقشة</span>
+                                <span x-text="t('track_acad_f3', 'دعم فني كامل وتدريب شامل حتى يوم المناقشة')"></span>
                             </div>
                         </div>
 
@@ -165,7 +165,8 @@
                             <a href="{% if site_settings.academic_site_url %}{{ site_settings.academic_site_url }}{% else %}https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20تخرج%20أكاديمي{% endif %}" 
                                {% if site_settings.academic_site_url %}target="_blank" rel="noopener noreferrer"{% endif %} 
                                class="w-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 py-2.5 px-4 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all min-h-[44px]">
-                                <span>{{ site_settings.academic_button_text|default:"تحدث معنا لمشروع التخرج" }}</span>
+                                <span x-show="lang === 'ar'">{{ site_settings.academic_button_text|default:"تحدث معنا لمشروع التخرج" }}</span>
+                                <span x-show="lang === 'en'" x-cloak>{{ site_settings.academic_button_text_en|default:"Talk to Us for Graduation Project" }}</span>
                                 <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_forward</span>
                             </a>
                         </div>
@@ -184,14 +185,12 @@
                 <div class="space-y-1">
                     <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-primary/20 text-primary border border-primary/30 inline-flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-sm">verified</span>
-                        <span>اعتماد وجودة الاستوديو</span>
+                        <span x-text="t('metrics_badge', 'اعتماد وجودة الاستوديو')"></span>
                     </span>
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">
-                        إنجازات بالأرقام وثقة متواصلة في أعمالنا
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white" x-text="t('metrics_title', 'إنجازات بالأرقام وثقة متواصلة في أعمالنا')">
                     </h2>
                 </div>
-                <p class="text-xs md:text-sm text-on-surface-variant max-w-md leading-relaxed">
-                    نلتزم بأعلى معايير الأداء والسرعة وتسليم الكود المصدري كاملاً، مع المتابعة المستمرة حتى بعد التسليم.
+                <p class="text-xs md:text-sm text-on-surface-variant max-w-md leading-relaxed" x-text="t('metrics_desc', 'نلتزم بأعلى معايير الأداء والسرعة وتسليم الكود المصدري كاملاً، مع المتابعة المستمرة حتى بعد التسليم.')">
                 </p>
             </div>
 
@@ -203,11 +202,21 @@
                         <span class="material-symbols-outlined text-2xl">{{ metric.icon_name }}</span>
                     </div>
                     <div class="text-3xl md:text-4xl font-black {% if metric.color_theme == 'emerald' %}text-emerald-500{% elif metric.color_theme == 'secondary' %}text-secondary{% elif metric.color_theme == 'amber' %}text-amber-500{% else %}text-slate-900 dark:text-white{% endif %} font-mono tracking-tight">{{ metric.value }}</div>
-                    <div class="text-xs font-bold text-slate-900 dark:text-white">{{ metric.title }}</div>
-                    {% if metric.subtitle %}<p class="text-[11px] text-on-surface-variant leading-relaxed">{{ metric.subtitle }}</p>{% endif %}
+                    
+                    <div class="text-xs font-bold text-slate-900 dark:text-white">
+                        <span x-show="lang === 'ar'">{{ metric.title }}</span>
+                        <span x-show="lang === 'en'" x-cloak>{{ metric.title_en|default:metric.title }}</span>
+                    </div>
+                    
+                    {% if metric.subtitle %}
+                    <p class="text-[11px] text-on-surface-variant leading-relaxed">
+                        <span x-show="lang === 'ar'">{{ metric.subtitle }}</span>
+                        <span x-show="lang === 'en'" x-cloak>{{ metric.subtitle_en|default:metric.subtitle }}</span>
+                    </p>
+                    {% endif %}
                 </div>
                 {% empty %}
-                <div class="col-span-4 text-center py-6 text-on-surface-variant text-xs italic">لا توجد إحصائيات مضافة حالياً. يمكنك إضافتها من لوحة التحكم.</div>
+                <div class="col-span-4 text-center py-6 text-on-surface-variant text-xs italic">لا توجد إحصائيات مضافة حالياً.</div>
                 {% endfor %}
             </div>
         </div>
@@ -222,7 +231,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-secondary/40 transition-all">
+            <div class="glass-card p-6 rounded-2xl space-y-3 interactive-card">
                 <div class="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary">
                     <span class="material-symbols-outlined text-2xl">rocket_launch</span>
                 </div>
@@ -230,7 +239,7 @@
                 <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('srv1_desc', 'بناء النموذج الأول الجاهز للتجربة والسوق بأقل وقت وأعلى كفاءة لجمع أول عملاء ومستثمرين.')"></p>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-primary/40 transition-all">
+            <div class="glass-card p-6 rounded-2xl space-y-3 interactive-card">
                 <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                     <span class="material-symbols-outlined text-2xl">dashboard</span>
                 </div>
@@ -238,7 +247,7 @@
                 <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('srv2_desc', 'تطوير أنظمة سحابية متكاملة لإدارة العمليات والمبيعات والشحنات مع تقارير حية ورسومات بيانية.')"></p>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl space-y-3 hover:border-emerald-500/40 transition-all">
+            <div class="glass-card p-6 rounded-2xl space-y-3 interactive-card">
                 <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
                     <span class="material-symbols-outlined text-2xl">smart_toy</span>
                 </div>
@@ -263,7 +272,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             {% for project in featured_projects %}
-            <div class="glass-card rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-300 flex flex-col justify-between group">
+            <div class="glass-card rounded-2xl overflow-hidden interactive-card flex flex-col justify-between group">
                 <div class="h-48 overflow-hidden relative bg-surface-container flex items-center justify-center border-b border-slate-200 dark:border-white/10">
                     {% if project.gallery.first %}
                         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ project.gallery.first.image.url }}" alt="{{ project.title }}"/>
@@ -273,30 +282,42 @@
                             <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Project Asset</span>
                         </div>
                     {% endif %}
-                    <div class="absolute top-3 right-3">
-                        <span class="bg-primary/20 backdrop-blur-md border border-primary/40 text-primary px-3 py-1 rounded-full text-xs font-bold">
-                            {{ project.get_project_type_display }}
+                    <div class="absolute top-3 end-3 z-10 pointer-events-none">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold tracking-wide shadow-lg backdrop-blur-md border border-white/20 {% if project.project_type == 'commercial' %}bg-slate-900/85 text-secondary border-secondary/40{% else %}bg-slate-900/85 text-emerald-400 border-emerald-500/40{% endif %}">
+                            <span class="w-1.5 h-1.5 rounded-full {% if project.project_type == 'commercial' %}bg-secondary{% else %}bg-emerald-400{% endif %}"></span>
+                            <span x-show="lang === 'ar'">{{ project.project_type_label_ar }}</span>
+                            <span x-show="lang === 'en'" x-cloak>{{ project.project_type_label_en }}</span>
                         </span>
                     </div>
+
                 </div>
 
                 <div class="p-6 flex-grow flex flex-col justify-between gap-4">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">{{ project.title }}</h3>
-                        <p class="text-xs text-on-surface-variant line-clamp-2 mt-2 leading-relaxed">{{ project.summary }}</p>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                            <span x-show="lang === 'ar'">{{ project.title }}</span>
+                            <span x-show="lang === 'en'" x-cloak>{{ project.title_en|default:project.title }}</span>
+                        </h3>
+                        <p class="text-xs text-on-surface-variant line-clamp-2 mt-2 leading-relaxed">
+                            <span x-show="lang === 'ar'">{{ project.summary }}</span>
+                            <span x-show="lang === 'en'" x-cloak>{{ project.summary_en|default:project.summary }}</span>
+                        </p>
                     </div>
 
                     <div class="flex justify-between items-center border-t border-slate-200 dark:border-white/10 pt-4 mt-2 text-xs">
-                        <span class="text-on-surface-variant font-mono">{{ project.client_name }}</span>
+                        <span class="text-on-surface-variant font-mono">
+                            <span x-show="lang === 'ar'">{{ project.client_name }}</span>
+                            <span x-show="lang === 'en'" x-cloak>{{ project.client_name_en|default:project.client_name }}</span>
+                        </span>
                         <a href="{% url 'projects:project_detail' slug=project.slug %}" class="text-primary font-bold flex items-center gap-1 hover:underline">
-                            <span>Details</span> <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_back</span>
+                            <span x-text="t('portfolio_details_btn', 'التفاصيل')"></span> 
+                            <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_back</span>
                         </a>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <div class="col-span-3 text-center py-12 text-on-surface-variant glass-card rounded-2xl">
-                No featured projects yet.
+            <div class="col-span-3 text-center py-12 text-on-surface-variant glass-card rounded-2xl" x-text="t('portfolio_no_results', 'No featured projects yet.')">
             </div>
             {% endfor %}
         </div>
@@ -322,7 +343,7 @@
                 {% if comment_success %}
                 <div class="p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs md:text-sm font-bold flex items-center gap-2">
                     <span class="material-symbols-outlined text-xl">check_circle</span>
-                    <span>Comment submitted successfully! Thank you {{ commenter_name }}.</span>
+                    <span x-text="t('comment_success_msg', 'Comment submitted successfully!')"></span>
                 </div>
                 {% endif %}
 
@@ -348,12 +369,12 @@
 
                         <div>
                             <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1" x-text="t('form_rating', 'التقييم بالنجوم')"></label>
-                            <select name="rating" class="w-full bg-background border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-amber-500 focus:outline-none focus:border-primary">
-                                <option value="5" selected>⭐⭐⭐⭐⭐ (5 Stars)</option>
-                                <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
-                                <option value="3">⭐⭐⭐ (3 Stars)</option>
-                                <option value="2">⭐⭐ (2 Stars)</option>
-                                <option value="1">⭐ (1 Star)</option>
+                            <select name="rating" class="w-full bg-background border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-amber-500 font-semibold focus:outline-none focus:border-primary">
+                                <option value="5" selected>5 Stars (Excellent - ممتاز)</option>
+                                <option value="4">4 Stars (Very Good - جيد جداً)</option>
+                                <option value="3">3 Stars (Good - جيد)</option>
+                                <option value="2">2 Stars (Fair - مقبول)</option>
+                                <option value="1">1 Star (Needs Improvement - يحتاج تحسين)</option>
                             </select>
                         </div>
                     </div>
@@ -373,7 +394,7 @@
             <!-- Comments List Display -->
             <div class="space-y-6 max-w-4xl mx-auto">
                 <h3 class="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 pb-3 flex items-center justify-between">
-                    <span>Reviews & Feedback ({{ testimonials|length }})</span>
+                    <span x-text="t('reviews_header', 'التقييمات والآراء') + ' ({{ testimonials|length }})'"></span>
                 </h3>
 
                 {% for t in testimonials %}
@@ -386,7 +407,10 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-slate-900 dark:text-white text-sm md:text-base">{{ t.name }}</h4>
-                                <span class="text-xs text-on-surface-variant">{{ t.role_university }}</span>
+                                <span class="text-xs text-on-surface-variant">
+                                    <span x-show="lang === 'ar'">{{ t.role_university }}</span>
+                                    <span x-show="lang === 'en'" x-cloak>{{ t.role_university_en|default:t.role_university }}</span>
+                                </span>
                             </div>
                         </div>
 
@@ -400,18 +424,20 @@
                     </div>
 
                     <p class="text-xs md:text-sm text-on-surface leading-relaxed border-s-2 border-primary/40 px-3">
-                        {{ t.review_text }}
+                        <span x-show="lang === 'ar'">{{ t.review_text }}</span>
+                        <span x-show="lang === 'en'" x-cloak>{{ t.review_text_en|default:t.review_text }}</span>
                     </p>
 
                     <!-- Official Admin Reply Display -->
-                    {% if t.admin_reply %}
+                    {% if t.admin_reply or t.admin_reply_en %}
                     <div class="mx-4 mt-3 p-4 rounded-xl bg-primary/10 border border-primary/30 space-y-1">
                         <div class="flex items-center gap-2 text-xs font-bold text-primary">
                             <span class="material-symbols-outlined text-base">verified</span>
-                            <span>Studio Admin Reply:</span>
+                            <span x-text="t('admin_reply_badge', 'رد إدارة الاستوديو:')"></span>
                         </div>
                         <p class="text-xs text-on-surface leading-relaxed">
-                            {{ t.admin_reply }}
+                            <span x-show="lang === 'ar'">{{ t.admin_reply }}</span>
+                            <span x-show="lang === 'en'" x-cloak>{{ t.admin_reply_en|default:t.admin_reply }}</span>
                         </p>
                     </div>
                     {% endif %}
@@ -424,8 +450,7 @@
 
                 </div>
                 {% empty %}
-                <div class="text-center py-8 text-on-surface-variant italic">
-                    No comments yet. Be the first to leave a review!
+                <div class="text-center py-8 text-on-surface-variant italic" x-text="t('portfolio_no_results_sub', 'No comments yet.')">
                 </div>
                 {% endfor %}
             </div>
@@ -446,16 +471,19 @@
             <div class="glass-card p-6 rounded-2xl space-y-2">
                 <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
                     <span class="material-symbols-outlined text-primary text-xl">help_outline</span>
-                    {{ faq.question }}
+                    <span x-show="lang === 'ar'">{{ faq.question }}</span>
+                    <span x-show="lang === 'en'" x-cloak>{{ faq.question_en|default:faq.question }}</span>
                 </h3>
                 <p class="text-xs md:text-sm text-on-surface-variant leading-relaxed px-2">
-                    {{ faq.answer }}
+                    <span x-show="lang === 'ar'">{{ faq.answer }}</span>
+                    <span x-show="lang === 'en'" x-cloak>{{ faq.answer_en|default:faq.answer }}</span>
                 </p>
             </div>
             {% endfor %}
         </div>
     </section>
     {% endif %}
+
 
     <!-- Call to Action Banner -->
     <section class="max-w-[1440px] mx-auto px-4 md:px-8">
@@ -465,7 +493,10 @@
             </p>
             <div>
                 <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#059669] text-white px-8 py-3.5 rounded-xl font-bold text-base whatsapp-glow transition-all active:scale-95">
-                    <span class="material-symbols-outlined">chat</span>
+                    <svg class="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24">
+                        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.529 1.83.809 2.796.81h.005c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.767-5.773-5.767zm3.385 8.163c-.145.409-.844.757-1.157.778-.314.02-.628.021-1.848-.485-1.564-.648-2.56-2.241-2.639-2.344-.078-.103-.635-.845-.635-1.611 0-.766.402-1.144.545-1.301.143-.157.313-.197.418-.197.104 0 .208.001.299.006.096.005.226-.037.353.268.13.313.443 1.082.482 1.161.039.079.065.17.013.273-.052.104-.078.17-.156.26-.078.092-.163.205-.234.275-.078.079-.16.165-.069.321.091.157.404.668.868 1.08.597.532 1.101.697 1.258.775.156.078.247.069.338-.035.092-.104.391-.455.495-.611.104-.157.209-.13.348-.078.14.052.887.418 1.04.495.153.078.256.117.295.182.039.066.039.382-.106.791z"/>
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.39A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.182c-1.637 0-3.167-.47-4.467-1.282l-.32-.198-2.964.777.791-2.89-.217-.346A8.142 8.142 0 0 1 3.818 12c0-4.512 3.67-8.182 8.182-8.182 4.512 0 8.182 3.67 8.182 8.182 0 4.512-3.67 8.182-8.182 8.182z"/>
+                    </svg>
                     <span x-text="t('cta_banner_btn', 'تحدث معنا الآن عبر واتساب')"></span>
                 </a>
             </div>

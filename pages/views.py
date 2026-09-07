@@ -9,8 +9,8 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Load featured projects for the hero/overview section
-        context['featured_projects'] = Project.objects.filter(is_featured=True)[:3]
+        # Load featured projects for the hero/overview section with prefetched gallery
+        context['featured_projects'] = Project.objects.filter(is_featured=True).prefetch_related('gallery')[:3]
         # Load real approved testimonials / comments
         context['testimonials'] = Testimonial.objects.filter(is_approved=True).order_by('-created_at', '-id')
         context['faqs'] = FAQ.objects.all()[:4]

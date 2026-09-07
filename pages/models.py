@@ -9,7 +9,9 @@ class FAQ(models.Model):
     ]
 
     question = models.CharField(max_length=255)
+    question_en = models.CharField(max_length=255, blank=True)
     answer = models.TextField()
+    answer_en = models.TextField(blank=True)
     category = models.CharField(max_length=30, choices=CATEGORY_CHOICES, default='general', db_index=True)
     order = models.IntegerField(default=0, db_index=True, help_text="Used to control order of items in list")
 
@@ -23,11 +25,14 @@ class FAQ(models.Model):
 class Testimonial(models.Model):
     name = models.CharField(max_length=150)
     email = models.EmailField(blank=True, null=True, help_text="Optional email for notification")
-    role_university = models.CharField(max_length=200, help_text="Role or University/Company name")
+    role_university = models.CharField(max_length=200, help_text="Role or University/Company name in Arabic")
+    role_university_en = models.CharField(max_length=200, blank=True, help_text="Role or University/Company name in English")
     review_text = models.TextField()
+    review_text_en = models.TextField(blank=True)
     rating = models.IntegerField(default=5, choices=[(i, f"{i} Stars") for i in range(1, 6)])
     is_approved = models.BooleanField(default=True, help_text="Approved to show publicly")
-    admin_reply = models.TextField(blank=True, null=True, help_text="Official admin reply to this comment")
+    admin_reply = models.TextField(blank=True, null=True, help_text="Official admin reply in Arabic")
+    admin_reply_en = models.TextField(blank=True, null=True, help_text="Official admin reply in English")
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     class Meta:
@@ -65,6 +70,11 @@ class SiteSetting(models.Model):
         default="الانتقال لمنصة مشاريع التخرج الأكاديمية",
         help_text="نص الزر في مسار مشاريع التخرج"
     )
+    academic_button_text_en = models.CharField(
+        max_length=150,
+        default="Go to Academic Graduation Platform",
+        blank=True
+    )
 
     class Meta:
         verbose_name = "إعدادات الموقع"
@@ -83,8 +93,10 @@ class StudioMetric(models.Model):
     ]
 
     title = models.CharField(max_length=150, help_text="عنوان الإحصائية (مثال: مشروع بزنس و MVP مكتمل)")
+    title_en = models.CharField(max_length=150, blank=True, help_text="English metric title")
     value = models.CharField(max_length=50, help_text="القيمة الرقمية (مثال: +50 أو 100%)")
     subtitle = models.CharField(max_length=200, blank=True, help_text="وصف مكمل (مثال: منصات سحابية وتطبيقات جوال حية)")
+    subtitle_en = models.CharField(max_length=200, blank=True, help_text="English metric subtitle")
     icon_name = models.CharField(max_length=50, default="rocket_launch", help_text="اسم أيقونة Material Symbols (مثل: rocket_launch, workspace_premium, public, code)")
     color_theme = models.CharField(max_length=20, choices=THEME_CHOICES, default='primary')
     order = models.IntegerField(default=0, help_text="ترتيب العرض")
@@ -97,4 +109,5 @@ class StudioMetric(models.Model):
 
     def __str__(self):
         return f"{self.value} - {self.title}"
+
 
