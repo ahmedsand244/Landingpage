@@ -81,12 +81,12 @@
     <meta property="og:url" content="https://codepage.pythonanywhere.com/"/>
     <meta property="og:title" content="Code+ Studio | حلول البرمجيات ومنصات الأعمال المتطورة"/>
     <meta property="og:description" content="استوديو متخصص في تطوير تطبيقات البزنس، أنظمة الشركات، منصات SaaS، وحلول الذكاء الاصطناعي ومشاريع التخرج المتكاملة."/>
-    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/og_preview.png' %}"/>
-    <meta property="og:image:secure_url" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/og_preview.png' %}"/>
+    <meta property="og:image" content="{% if request.get_host %}{{ request.scheme }}://{{ request.get_host }}{% else %}https://codepage.pythonanywhere.com{% endif %}{% static 'images/og_preview.png' %}"/>
+    <meta property="og:image:secure_url" content="{% if request.get_host %}{{ request.scheme }}://{{ request.get_host }}{% else %}https://codepage.pythonanywhere.com{% endif %}{% static 'images/og_preview.png' %}"/>
     <meta property="og:image:type" content="image/png"/>
     <meta property="og:image:width" content="1200"/>
     <meta property="og:image:height" content="630"/>
-    <meta property="og:image:alt" content="Code+ Software Solutions Preview"/>
+    <meta property="og:image:alt" content="Code+ Studio Brand Preview"/>
     <meta property="og:site_name" content="Code+ Studio"/>
     <meta property="og:locale" content="ar_AR"/>
 
@@ -94,7 +94,7 @@
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="Code+ Studio | حلول البرمجيات وتطبيقات البزنس"/>
     <meta name="twitter:description" content="استوديو متخصص في تطوير تطبيقات البزنس، منصات SaaS، ومشاريع التخرج والذكاء الاصطناعي."/>
-    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/og_preview.png' %}"/>
+    <meta name="twitter:image" content="{% if request.get_host %}{{ request.scheme }}://{{ request.get_host }}{% else %}https://codepage.pythonanywhere.com{% endif %}{% static 'images/og_preview.png' %}"/>
     
     <!-- Anti-FOUC (Flash of Unstyled Content) Instant Theme Script -->
     <script>
@@ -345,20 +345,18 @@
             <!-- Brand Logo Image -->
             <a href="/" class="flex items-center hover:opacity-95 transition-opacity min-h-[44px] group">
                 <!-- Light Mode Logo (Visible in Light Theme) -->
-                <img src="{% static 'images/logo_light.svg' %}" 
-                     onerror="this.onerror=null; this.src='{% static 'images/logo_light.png' %}';"
+                <img src="{% static 'images/logo_light.png' %}" 
                      alt="Code+ Logo" 
                      width="200" height="60"
                      fetchpriority="high"
-                     class="h-16 md:h-20 w-auto object-contain drop-shadow-sm dark:hidden group-hover:scale-105 transition-transform duration-300"/>
+                     class="h-14 md:h-18 w-auto object-contain drop-shadow-sm dark:hidden group-hover:scale-105 transition-transform duration-300"/>
                 
                 <!-- Dark Mode Logo (Visible in Dark Theme) -->
-                <img src="{% static 'images/logo_dark.svg' %}" 
-                     onerror="this.onerror=null; this.src='{% static 'images/logo_dark.png' %}';"
+                <img src="{% static 'images/logo_dark.png' %}" 
                      alt="Code+ Logo" 
                      width="200" height="60"
                      fetchpriority="high"
-                     class="h-16 md:h-20 w-auto object-contain drop-shadow-[0_0_20px_rgba(16,185,129,0.4)] hidden dark:block group-hover:scale-105 transition-transform duration-300"/>
+                     class="h-14 md:h-18 w-auto object-contain drop-shadow-[0_0_20px_rgba(16,185,129,0.4)] hidden dark:block group-hover:scale-105 transition-transform duration-300"/>
             </a>
             
             <!-- Desktop Navigation Menu (4 Links) -->
@@ -461,20 +459,18 @@
             <div>
                 <a href="/" class="inline-flex items-center mb-4 hover:opacity-95 transition-opacity">
                     <!-- Light Mode Footer Logo -->
-                    <img src="{% static 'images/logo_light.svg' %}" 
-                         onerror="this.onerror=null; this.src='{% static 'images/logo_light.png' %}';"
+                    <img src="{% static 'images/logo_light.png' %}" 
                          alt="Code+ Logo" 
                          width="160" height="48"
                          loading="lazy"
-                         class="h-12 md:h-16 w-auto object-contain drop-shadow-sm dark:hidden"/>
+                         class="h-12 md:h-14 w-auto object-contain drop-shadow-sm dark:hidden"/>
                     
                     <!-- Dark Mode Footer Logo -->
-                    <img src="{% static 'images/logo_dark.svg' %}" 
-                         onerror="this.onerror=null; this.src='{% static 'images/logo_dark.png' %}';"
+                    <img src="{% static 'images/logo_dark.png' %}" 
                          alt="Code+ Logo" 
                          width="160" height="48"
                          loading="lazy"
-                         class="h-12 md:h-16 w-auto object-contain drop-shadow-sm hidden dark:block"/>
+                         class="h-12 md:h-14 w-auto object-contain drop-shadow-sm hidden dark:block"/>
                 </a>
                 <p class="text-on-surface-variant text-sm leading-relaxed" x-text="t('hero_desc', 'نطور ونبني حلول البرمجيات وتطبيقات البزنس للشركات والأنشطة التجارية، إلى جانب المشاريع الأكاديمية.')"></p>
             </div>
