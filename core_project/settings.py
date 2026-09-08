@@ -33,9 +33,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.gzip.GZipMiddleware',  # High-speed response compression
+    'django.middleware.gzip.GZipMiddleware',  # Built-in High-speed response compression
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Instant static file serving & caching
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',  # i18n locale middleware
     'django.middleware.common.CommonMiddleware',
@@ -135,13 +134,6 @@ LOCALE_PATHS = [
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# High-Performance WhiteNoise Static Files Storage & Compression
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-WHITENOISE_MAX_AGE = 31536000  # 1 year cache for static assets
-
-# High-Performance Cached Database Sessions
-SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # Media files
 MEDIA_URL = '/media/'
