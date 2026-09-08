@@ -4,43 +4,47 @@
 {% block title %}Code+ | حلول البرمجيات والأعمال وتطوير المنصات{% endblock %}
 
 {% block content %}
-<div class="space-y-20 pb-16">
+<div class="space-y-24 pb-20">
 
-    <!-- Hero Section -->
-    <section class="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden border-b border-slate-200 dark:border-white/5">
-        <!-- Ambient Glowing Background Orbs -->
-        <div class="absolute -top-10 right-0 w-96 h-96 bg-primary/20 dark:bg-primary/25 rounded-full blur-[100px] pointer-events-none -z-10"></div>
-        <div class="absolute top-1/2 -left-10 w-80 h-80 bg-emerald-500/15 dark:bg-emerald-500/20 rounded-full blur-[90px] pointer-events-none -z-10 animate-pulse"></div>
+    <!-- Hero & Interactive Studio Engine Showcase -->
+    <section class="relative pt-10 pb-16 md:pt-16 md:pb-24 overflow-hidden border-b border-slate-200/80 dark:border-white/5">
+        <!-- Ambient Glowing Background Lights -->
+        <div class="absolute -top-24 end-0 w-[500px] h-[500px] bg-primary/15 dark:bg-primary/20 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+        <div class="absolute top-1/3 -start-20 w-[450px] h-[450px] bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-[120px] pointer-events-none -z-10"></div>
 
         <div class="max-w-[1440px] mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
             
             <!-- Left Text Content -->
-            <div class="lg:col-span-7 space-y-6">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 shadow-sm backdrop-blur-md">
+            <div class="lg:col-span-7 space-y-7">
+                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-surface border border-slate-200 dark:border-white/10 shadow-sm backdrop-blur-xl">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span class="text-xs md:text-sm font-bold text-primary" x-text="t('hero_badge', 'استوديو متخصص لبرمجيات البزنس والمشاريع')"></span>
+                    <span class="text-xs md:text-sm font-bold text-slate-800 dark:text-slate-200" x-text="t('hero_badge', 'استوديو متخصص لبرمجيات البزنس والمشاريع')"></span>
                 </div>
 
-                <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight" x-text="t('hero_title', 'نحول أفكار البزنس والمشاريع إلى تطبيقات وأنظمة برمجية جاهزة للسوق')">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-[1.15] tracking-tight">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-primary to-slate-800 dark:from-white dark:via-indigo-200 dark:to-white" x-text="t('hero_title', 'نحول أفكار البزنس والمشاريع إلى تطبيقات وأنظمة برمجية جاهزة للسوق')"></span>
                 </h1>
 
                 <p class="text-on-surface-variant text-base md:text-lg max-w-2xl leading-relaxed font-normal" x-text="t('hero_desc', 'نصمم ونطور تطبيقات الويب والموبايل والشركات الناشئة (MVPs & SaaS)، إلى جانب تطوير ومتابعة مشاريع التخرج الأكاديمية بأعلى جودة وتوثيق كامل.')">
                 </p>
 
                 <div class="flex flex-wrap items-center gap-4 pt-2">
-                    <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="bg-[#10B981] hover:bg-[#059669] text-white px-8 py-3.5 rounded-xl font-bold text-base flex items-center gap-2.5 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all active:scale-95">
-                        <span class="material-symbols-outlined text-xl">chat</span>
+                    <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="bg-[#10B981] hover:bg-[#059669] text-white px-8 py-3.5 rounded-2xl font-bold text-base flex items-center gap-2.5 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all active:scale-95 group">
+                        <svg class="w-5 h-5 fill-current flex-shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.529 1.83.809 2.796.81h.005c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.767-5.773-5.767zm3.385 8.163c-.145.409-.844.757-1.157.778-.314.02-.628.021-1.848-.485-1.564-.648-2.56-2.241-2.639-2.344-.078-.103-.635-.845-.635-1.611 0-.766.402-1.144.545-1.301.143-.157.313-.197.418-.197.104 0 .208.001.299.006.096.005.226-.037.353.268.13.313.443 1.082.482 1.161.039.079.065.17.013.273-.052.104-.078.17-.156.26-.078.092-.163.205-.234.275-.078.079-.16.165-.069.321.091.157.404.668.868 1.08.597.532 1.101.697 1.258.775.156.078.247.069.338-.035.092-.104.391-.455.495-.611.104-.157.209-.13.348-.078.14.052.887.418 1.04.495.153.078.256.117.295.182.039.066.039.382-.106.791z"/>
+                            <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.39A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.182c-1.637 0-3.167-.47-4.467-1.282l-.32-.198-2.964.777.791-2.89-.217-.346A8.142 8.142 0 0 1 3.818 12c0-4.512 3.67-8.182 8.182-8.182 4.512 0 8.182 3.67 8.182 8.182 0 4.512-3.67 8.182-8.182 8.182z"/>
+                        </svg>
                         <span x-text="t('hero_cta_wa', 'تحدث معنا لبدء مشروعك')"></span>
                     </a>
 
-                    <a href="/portfolio/" class="glass-card text-on-surface px-6 py-3.5 rounded-xl font-bold text-base hover:bg-slate-200/60 dark:hover:bg-white/10 border border-slate-200/80 dark:border-white/10 transition-all flex items-center gap-2">
+                    <a href="/portfolio/" class="glass-card text-slate-900 dark:text-white px-7 py-3.5 rounded-2xl font-bold text-base hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 transition-all flex items-center gap-2 group">
                         <span x-text="t('hero_cta_portfolio', 'معرض الأعمال والمشاريع')"></span>
-                        <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_back</span>
+                        <span class="material-symbols-outlined text-sm rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">arrow_back</span>
                     </a>
                 </div>
 
                 <!-- Stats / Highlights -->
-                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-white/10 max-w-lg">
+                <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-200 dark:border-white/10 max-w-lg">
                     <div class="space-y-1">
                         <div class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight" x-text="t('stat_projects_val', '+60')"></div>
                         <div class="text-xs font-semibold text-on-surface-variant" x-text="t('stat_projects_label', 'مشروع بزنس وأكاديمي')"></div>
@@ -56,41 +60,45 @@
                 </div>
             </div>
 
-            <!-- Right Visual Interactive Tab Switcher Card (Vercel Style) -->
+            <!-- Right Interactive Studio Tracks Bento Card -->
             <div class="lg:col-span-5" x-data="{ activeTrack: 'business' }">
-                <div class="glass-card p-6 md:p-7 rounded-3xl relative space-y-6 border border-slate-200/80 dark:border-white/10 shadow-xl transition-all duration-300">
+                <div class="glass-card p-6 md:p-8 rounded-3xl relative space-y-6 border border-slate-200/90 dark:border-white/10 shadow-2xl transition-all duration-300">
                     
                     <!-- Header Title & Studio Badge -->
                     <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-2.5">
-                            <span class="material-symbols-outlined text-primary text-2xl">hub</span>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-xl">hub</span>
+                            </div>
                             <div>
-                                <h3 class="text-slate-900 dark:text-white font-extrabold text-base" x-text="t('tracks_title', 'مسارات التطوير في الاستوديو')"></h3>
-                                <p class="text-xs text-on-surface-variant font-medium" x-text="t('tracks_sub', 'اختر المسار لتصفح الخدمات والتفاصيل')"></p>
+                                <h3 class="text-slate-900 dark:text-white font-extrabold text-base" x-text="t('tracks_title', 'مسارات التطوير في استوديو Code+')"></h3>
+                                <p class="text-xs text-on-surface-variant font-medium" x-text="t('tracks_sub', 'حلول متكاملة للبزنس والأكاديميا')"></p>
                             </div>
                         </div>
-                        <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-xs font-bold flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span>Code+ Pro</span>
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Code+ Engine</span>
                         </span>
                     </div>
 
-                    <!-- Clean Vercel-Style Tab Switcher Buttons -->
-                    <div class="p-1 rounded-2xl bg-slate-200/60 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 grid grid-cols-2 gap-1">
-                        <button @click="activeTrack = 'business'" 
-                                class="py-2.5 px-3 rounded-xl text-xs md:text-sm font-bold transition-all duration-200 flex items-center justify-center gap-2 min-h-[40px]"
+                    <!-- Modern Capsule Tab Switcher -->
+                    <div class="p-1.5 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 grid grid-cols-2 gap-1.5">
+                        <button type="button"
+                                @click="activeTrack = 'business'" 
+                                class="py-2.5 px-3 rounded-xl text-xs md:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 min-h-[42px]"
                                 :class="activeTrack === 'business' 
-                                    ? 'bg-white dark:bg-slate-800 text-primary shadow-sm border border-slate-200/80 dark:border-white/10' 
-                                    : 'text-on-surface-variant hover:text-on-surface'">
+                                    ? 'bg-white dark:bg-slate-800 text-primary shadow-md border border-slate-200/80 dark:border-white/10' 
+                                    : 'text-on-surface-variant hover:text-slate-900 dark:hover:text-white'">
                             <span class="material-symbols-outlined text-base">business_center</span>
                             <span x-text="t('tab_biz', 'البزنس والشركات')"></span>
                         </button>
 
-                        <button @click="activeTrack = 'academic'" 
-                                class="py-2.5 px-3 rounded-xl text-xs md:text-sm font-bold transition-all duration-200 flex items-center justify-center gap-2 min-h-[40px]"
+                        <button type="button"
+                                @click="activeTrack = 'academic'" 
+                                class="py-2.5 px-3 rounded-xl text-xs md:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 min-h-[42px]"
                                 :class="activeTrack === 'academic' 
-                                    ? 'bg-white dark:bg-slate-800 text-emerald-500 shadow-sm border border-slate-200/80 dark:border-white/10' 
-                                    : 'text-on-surface-variant hover:text-on-surface'">
+                                    ? 'bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-md border border-slate-200/80 dark:border-white/10' 
+                                    : 'text-on-surface-variant hover:text-slate-900 dark:hover:text-white'">
                             <span class="material-symbols-outlined text-base">school</span>
                             <span x-text="t('tab_acad', 'مشاريع التخرج')"></span>
                         </button>
@@ -98,34 +106,40 @@
 
                     <!-- Business Track Panel -->
                     <div x-show="activeTrack === 'business'" 
-                         x-transition:enter="transition ease-out duration-200"
-                         x-transition:enter-start="opacity-0 scale-98"
-                         x-transition:enter-end="opacity-100 scale-100"
-                         class="space-y-4 pt-1">
+                         x-transition:enter="transition ease-out duration-300"
+                         x-transition:enter-start="opacity-0 translate-y-2"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         class="space-y-5 pt-1">
                         
-                        <div>
-                            <h4 class="text-slate-900 dark:text-white font-bold text-sm mb-1" x-text="t('track_biz_title', 'مسار البزنس والشركات الناشئة (Business & MVPs)')"></h4>
-                            <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('track_biz_desc', 'نصمم ونطور المنصات البرمجية الجاهزة للاستثمار والنمو التجاري وفق أعلى معايير الجودة.')"></p>
+                        <div class="p-4 rounded-2xl bg-primary/5 border border-primary/15 space-y-1">
+                            <h4 class="text-slate-900 dark:text-white font-bold text-sm flex items-center gap-2" x-text="t('track_biz_title', 'مسار البزنس والشركات الناشئة (Business & MVPs)')"></h4>
+                            <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('track_biz_desc', 'نصمم ونطور المنصات البرمجية وتطبيقات الموبايل الجاهزة للاستثمار والنمو التجاري وفق أعلى معايير الجودة.')"></p>
                         </div>
 
                         <!-- Feature Checklist -->
-                        <div class="space-y-2.5 pt-1">
-                            <div class="flex items-start gap-2.5 text-xs text-on-surface">
-                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                        <div class="space-y-3 pt-1">
+                            <div class="flex items-center gap-3 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                                <div class="w-6 h-6 rounded-full bg-secondary/15 text-secondary flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined text-sm font-bold">check</span>
+                                </div>
                                 <span x-text="t('track_biz_f1', 'تطبيقات الموبايل (iOS & Android) والأنشطة التجارية')"></span>
                             </div>
-                            <div class="flex items-start gap-2.5 text-xs text-on-surface">
-                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                            <div class="flex items-center gap-3 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                                <div class="w-6 h-6 rounded-full bg-secondary/15 text-secondary flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined text-sm font-bold">check</span>
+                                </div>
                                 <span x-text="t('track_biz_f2', 'منصات SaaS ولوحات التحكم الإدارية المتكاملة')"></span>
                             </div>
-                            <div class="flex items-start gap-2.5 text-xs text-on-surface">
-                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                            <div class="flex items-center gap-3 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                                <div class="w-6 h-6 rounded-full bg-secondary/15 text-secondary flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined text-sm font-bold">check</span>
+                                </div>
                                 <span x-text="t('track_biz_f3', 'ربط بوابات الدفع والسيرفرات السحابية والأمان')"></span>
                             </div>
                         </div>
 
-                        <div class="pt-3">
-                            <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20تطبيق/مشروع%20تجاري" target="_blank" class="w-full bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 py-2.5 px-4 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all min-h-[44px]">
+                        <div class="pt-2">
+                            <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20تطبيق/مشروع%20تجاري" target="_blank" class="w-full bg-primary hover:bg-primary-hover text-white py-3 px-4 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-md shadow-primary/20 transition-all min-h-[44px]">
                                 <span x-text="t('btn_biz_cta', 'تواصل لبدء مشروعك التجاري')"></span>
                                 <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_forward</span>
                             </a>
@@ -134,37 +148,43 @@
 
                     <!-- Academic Track Panel -->
                     <div x-show="activeTrack === 'academic'" 
-                         x-transition:enter="transition ease-out duration-200"
-                         x-transition:enter-start="opacity-0 scale-98"
-                         x-transition:enter-end="opacity-100 scale-100"
-                         class="space-y-4 pt-1" 
+                         x-transition:enter="transition ease-out duration-300"
+                         x-transition:enter-start="opacity-0 translate-y-2"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         class="space-y-5 pt-1" 
                          x-cloak>
                         
-                        <div>
-                            <h4 class="text-slate-900 dark:text-white font-bold text-sm mb-1" x-text="t('track_acad_title', 'المسار الأكاديمي ومشاريع التخرج (Academic & Thesis)')"></h4>
+                        <div class="p-4 rounded-2xl bg-emerald-500/5 border border-emerald-500/15 space-y-1">
+                            <h4 class="text-slate-900 dark:text-white font-bold text-sm flex items-center gap-2" x-text="t('track_acad_title', 'المسار الأكاديمي ومشاريع التخرج (Academic & Thesis)')"></h4>
                             <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('track_acad_desc', 'تطوير مشاريع التخرج الأكاديمية الصعبة، أبحاث AI، التوثيق الشامل والتجهيز للمناقشة.')"></p>
                         </div>
 
                         <!-- Feature Checklist -->
-                        <div class="space-y-2.5 pt-1">
-                            <div class="flex items-start gap-2.5 text-xs text-on-surface">
-                                <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                        <div class="space-y-3 pt-1">
+                            <div class="flex items-center gap-3 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/15 text-emerald-500 flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined text-sm font-bold">check</span>
+                                </div>
                                 <span x-text="t('track_acad_f1', 'أبحاث وخوارزميات الذكاء الاصطناعي وتعلم الآلة (AI/ML)')"></span>
                             </div>
-                            <div class="flex items-start gap-2.5 text-xs text-on-surface">
-                                <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                            <div class="flex items-center gap-3 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/15 text-emerald-500 flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined text-sm font-bold">check</span>
+                                </div>
                                 <span x-text="t('track_acad_f2', 'الكود المصدري النظيف وتوثيق المشروع الكامل (Thesis)')"></span>
                             </div>
-                            <div class="flex items-start gap-2.5 text-xs text-on-surface">
-                                <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                            <div class="flex items-center gap-3 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/15 text-emerald-500 flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined text-sm font-bold">check</span>
+                                </div>
                                 <span x-text="t('track_acad_f3', 'دعم فني كامل وتدريب شامل حتى يوم المناقشة')"></span>
                             </div>
                         </div>
 
-                        <div class="pt-3">
+                        <div class="pt-2">
                             <a href="{% if site_settings.academic_site_url %}{{ site_settings.academic_site_url }}{% else %}https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20تخرج%20أكاديمي{% endif %}" 
                                {% if site_settings.academic_site_url %}target="_blank" rel="noopener noreferrer"{% endif %} 
-                               class="w-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 py-2.5 px-4 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all min-h-[44px]">
+                               class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-4 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20 transition-all min-h-[44px]">
                                 <span x-show="lang === 'ar'">{{ site_settings.academic_button_text|default:"تحدث معنا لمشروع التخرج" }}</span>
                                 <span x-show="lang === 'en'" x-cloak>{{ site_settings.academic_button_text_en|default:"Talk to Us for Graduation Project" }}</span>
                                 <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_forward</span>
@@ -180,10 +200,10 @@
 
     <!-- STUDIO ACHIEVEMENTS & CREDENTIALS METRICS SECTION -->
     <section class="max-w-[1440px] mx-auto px-4 md:px-8">
-        <div class="glass-card rounded-3xl p-8 md:p-12 relative overflow-hidden bg-gradient-to-r from-surface-container/90 via-surface to-primary/10 border border-primary/20 shadow-2xl space-y-8">
+        <div class="glass-card rounded-3xl p-8 md:p-12 relative overflow-hidden border border-slate-200/90 dark:border-white/10 shadow-xl space-y-8">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-200 dark:border-white/10 pb-6">
                 <div class="space-y-1">
-                    <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-primary/20 text-primary border border-primary/30 inline-flex items-center gap-1.5">
+                    <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 inline-flex items-center gap-1.5 shadow-sm">
                         <span class="material-symbols-outlined text-sm">verified</span>
                         <span x-text="t('metrics_badge', 'اعتماد وجودة الاستوديو')"></span>
                     </span>
@@ -197,7 +217,7 @@
             <!-- Dynamic Metric Cards (Managed via Django Admin) -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {% for metric in studio_metrics %}
-                <div class="p-6 rounded-2xl bg-surface-container/60 border border-slate-200 dark:border-white/10 text-center space-y-3 hover:border-primary/50 transition-all hover:scale-105 group">
+                <div class="p-6 rounded-2xl bg-surface border border-slate-200 dark:border-white/10 text-center space-y-3 hover:border-primary/50 transition-all hover:-translate-y-1 shadow-sm group">
                     <div class="w-12 h-12 rounded-2xl {% if metric.color_theme == 'emerald' %}bg-emerald-500/10 border border-emerald-500/20 text-emerald-500{% elif metric.color_theme == 'secondary' %}bg-secondary/10 border border-secondary/20 text-secondary{% elif metric.color_theme == 'amber' %}bg-amber-500/10 border border-amber-500/20 text-amber-500{% else %}bg-primary/10 border border-primary/20 text-primary{% endif %} flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
                         <span class="material-symbols-outlined text-2xl">{{ metric.icon_name }}</span>
                     </div>
@@ -222,8 +242,8 @@
         </div>
     </section>
 
-    <!-- Business & Commercial Solutions Section -->
-    <section class="max-w-[1440px] mx-auto px-4 md:px-8 space-y-8">
+    <!-- Business & Commercial Solutions Bento Section -->
+    <section class="max-w-[1440px] mx-auto px-4 md:px-8 space-y-10">
         <div class="text-center max-w-2xl mx-auto space-y-2">
             <span class="text-xs font-bold text-secondary uppercase tracking-wider" x-text="t('services_sec_badge', 'خدمات البزنس والشركات')"></span>
             <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white" x-text="t('services_sec_title', 'كيف نساعدك في بناء مشروعك التجاري؟')"></h2>
@@ -231,28 +251,46 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="glass-card p-6 rounded-2xl space-y-3 interactive-card">
-                <div class="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary">
-                    <span class="material-symbols-outlined text-2xl">rocket_launch</span>
+            <div class="glass-card p-7 rounded-3xl space-y-4 interactive-card border border-slate-200 dark:border-white/10 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary">
+                        <span class="material-symbols-outlined text-2xl">rocket_launch</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white" x-text="t('srv1_title', 'تطوير الـ MVP والشركات الناشئة')"></h3>
+                    <p class="text-xs md:text-sm text-on-surface-variant leading-relaxed" x-text="t('srv1_desc', 'بناء النموذج الأول الجاهز للتجربة والسوق بأقل وقت وأعلى كفاءة لجمع أول عملاء ومستثمرين.')"></p>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white" x-text="t('srv1_title', 'تطوير الـ MVP والشركات الناشئة')"></h3>
-                <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('srv1_desc', 'بناء النموذج الأول الجاهز للتجربة والسوق بأقل وقت وأعلى كفاءة لجمع أول عملاء ومستثمرين.')"></p>
+                <div class="pt-2 flex items-center gap-2 text-xs font-bold text-secondary">
+                    <span>Full Stack & Fast Iteration</span>
+                    <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_forward</span>
+                </div>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl space-y-3 interactive-card">
-                <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                    <span class="material-symbols-outlined text-2xl">dashboard</span>
+            <div class="glass-card p-7 rounded-3xl space-y-4 interactive-card border border-slate-200 dark:border-white/10 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-2xl">dashboard</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white" x-text="t('srv2_title', 'منصات SaaS ولوحات التحكم')"></h3>
+                    <p class="text-xs md:text-sm text-on-surface-variant leading-relaxed" x-text="t('srv2_desc', 'تطوير أنظمة سحابية متكاملة لإدارة العمليات والمبيعات والشحنات مع تقارير حية ورسومات بيانية.')"></p>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white" x-text="t('srv2_title', 'منصات SaaS ولوحات التحكم')"></h3>
-                <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('srv2_desc', 'تطوير أنظمة سحابية متكاملة لإدارة العمليات والمبيعات والشحنات مع تقارير حية ورسومات بيانية.')"></p>
+                <div class="pt-2 flex items-center gap-2 text-xs font-bold text-primary">
+                    <span>Scalable Multi-Tenant Arch</span>
+                    <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_forward</span>
+                </div>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl space-y-3 interactive-card">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
-                    <span class="material-symbols-outlined text-2xl">smart_toy</span>
+            <div class="glass-card p-7 rounded-3xl space-y-4 interactive-card border border-slate-200 dark:border-white/10 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
+                        <span class="material-symbols-outlined text-2xl">smart_toy</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white" x-text="t('srv3_title', 'أتمتة العمليات بالذكاء الاصطناعي')"></h3>
+                    <p class="text-xs md:text-sm text-on-surface-variant leading-relaxed" x-text="t('srv3_desc', 'دمج خوارزميات AI لتحليل بيانات العملاء، التنبؤ بالمبيعات، وأتمتة المهام الروتينية للبزنس.')"></p>
                 </div>
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white" x-text="t('srv3_title', 'أتمتة العمليات بالذكاء الاصطناعي')"></h3>
-                <p class="text-xs text-on-surface-variant leading-relaxed" x-text="t('srv3_desc', 'دمج خوارزميات AI لتحليل بيانات العملاء، التنبؤ بالمبيعات، وأتمتة المهام الروتينية للبزنس.')"></p>
+                <div class="pt-2 flex items-center gap-2 text-xs font-bold text-emerald-500">
+                    <span>Machine Learning & APIs</span>
+                    <span class="material-symbols-outlined text-sm rtl:rotate-180">arrow_forward</span>
+                </div>
             </div>
         </div>
     </section>
@@ -264,29 +302,30 @@
                 <span class="text-xs font-bold text-primary uppercase tracking-wider" x-text="t('portfolio_sec_badge', 'معرض النماذج والمشاريع')"></span>
                 <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white mt-1" x-text="t('portfolio_sec_title', 'أبرز الأعمال والمنصات المنفذة')"></h2>
             </div>
-            <a href="/portfolio/" class="text-primary hover:text-slate-900 dark:hover:text-white text-sm font-bold flex items-center gap-1 transition-colors">
+            <a href="/portfolio/" class="text-primary hover:text-slate-900 dark:hover:text-white text-sm font-bold flex items-center gap-1.5 transition-colors group">
                 <span x-text="t('portfolio_sec_all', 'عرض كافة الأعمال')"></span>
-                <span class="material-symbols-outlined text-base rtl:rotate-180">arrow_back</span>
+                <span class="material-symbols-outlined text-base rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">arrow_back</span>
             </a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             {% for project in featured_projects %}
-            <div class="glass-card rounded-2xl overflow-hidden interactive-card flex flex-col justify-between group">
-                <div class="h-48 overflow-hidden relative bg-surface-container flex items-center justify-center border-b border-slate-200 dark:border-white/10">
+            <div class="glass-card rounded-3xl overflow-hidden interactive-card flex flex-col justify-between group border border-slate-200 dark:border-white/10 shadow-lg">
+                <div class="h-52 overflow-hidden relative bg-surface-container flex items-center justify-center border-b border-slate-200 dark:border-white/10">
                     {% if project.gallery.first %}
                         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                              src="{{ project.gallery.first.image.url }}" 
                              alt="{{ project.title }}"
                              loading="lazy"
                              decoding="async"
-                             width="400" height="200"/>
+                             width="400" height="220"/>
                     {% else %}
                         <div class="flex flex-col items-center gap-2 text-primary/60">
                             <span class="material-symbols-outlined text-5xl">inventory_2</span>
                             <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Project Asset</span>
                         </div>
                     {% endif %}
+                    
                     <div class="absolute top-3 end-3 z-10 pointer-events-none">
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold tracking-wide shadow-lg backdrop-blur-md border border-white/20 {% if project.project_type == 'commercial' %}bg-slate-900/85 text-secondary border-secondary/40{% else %}bg-slate-900/85 text-emerald-400 border-emerald-500/40{% endif %}">
                             <span class="w-1.5 h-1.5 rounded-full {% if project.project_type == 'commercial' %}bg-secondary{% else %}bg-emerald-400{% endif %}"></span>
@@ -298,19 +337,30 @@
                 </div>
 
                 <div class="p-6 flex-grow flex flex-col justify-between gap-4">
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                    <div class="space-y-2">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors line-clamp-1">
                             <span x-show="lang === 'ar'">{{ project.title }}</span>
                             <span x-show="lang === 'en'" x-cloak>{{ project.title_en|default:project.title }}</span>
                         </h3>
-                        <p class="text-xs text-on-surface-variant line-clamp-2 mt-2 leading-relaxed">
+                        <p class="text-xs text-on-surface-variant line-clamp-2 leading-relaxed">
                             <span x-show="lang === 'ar'">{{ project.summary }}</span>
                             <span x-show="lang === 'en'" x-cloak>{{ project.summary_en|default:project.summary }}</span>
                         </p>
                     </div>
 
+                    <!-- Tech Chips -->
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                        {% for tech in project.technologies.all|slice:":3" %}
+                            <span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-[10px] font-mono font-semibold text-slate-700 dark:text-slate-300">
+                                <span x-show="lang === 'ar'">{{ tech.name }}</span>
+                                <span x-show="lang === 'en'" x-cloak>{{ tech.name_en|default:tech.name }}</span>
+                            </span>
+                        {% endfor %}
+                    </div>
+
                     <div class="flex justify-between items-center border-t border-slate-200 dark:border-white/10 pt-4 mt-2 text-xs">
-                        <span class="text-on-surface-variant font-mono">
+                        <span class="text-on-surface-variant font-mono text-[11px] truncate max-w-[170px] flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">domain</span>
                             <span x-show="lang === 'ar'">{{ project.client_name }}</span>
                             <span x-show="lang === 'en'" x-cloak>{{ project.client_name_en|default:project.client_name }}</span>
                         </span>
@@ -330,7 +380,7 @@
 
     <!-- REAL INTERACTIVE COMMENTS & REVIEWS SECTION -->
     <section class="max-w-[1440px] mx-auto px-4 md:px-8 space-y-8" id="comments-section">
-        <div class="glass-card p-8 md:p-12 rounded-3xl space-y-12">
+        <div class="glass-card p-8 md:p-12 rounded-3xl space-y-12 border border-slate-200 dark:border-white/10 shadow-2xl">
             
             <div class="text-center max-w-2xl mx-auto space-y-2">
                 <span class="text-xs font-bold text-emerald-500 uppercase tracking-wider" x-text="t('testimonials_badge', 'ثقة العملاء والشركات')"></span>
@@ -339,16 +389,16 @@
             </div>
 
             <!-- Comment Submission Form -->
-            <div class="max-w-3xl mx-auto bg-surface-container p-6 md:p-8 rounded-2xl border border-slate-200 dark:border-white/10 space-y-6">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3">
+            <div class="max-w-3xl mx-auto bg-surface p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-white/10 shadow-lg space-y-6">
+                <h3 class="text-base md:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3">
                     <span class="material-symbols-outlined text-primary">rate_review</span>
                     <span x-text="t('comments_form_title', 'إضافة تعليق / تقييم جديد')"></span>
                 </h3>
 
                 {% if comment_success %}
-                <div class="p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs md:text-sm font-bold flex items-center gap-2">
-                    <span class="material-symbols-outlined text-xl">check_circle</span>
-                    <span x-text="t('comment_success_msg', 'Comment submitted successfully!')"></span>
+                <div class="p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs md:text-sm font-bold flex items-center gap-2 shadow-sm">
+                    <span class="material-symbols-outlined text-xl text-emerald-500">check_circle</span>
+                    <span x-text="t('comment_success_msg', 'تم إرسال تعليقك بنجاح! شكراً لك.')"></span>
                 </div>
                 {% endif %}
 
@@ -356,40 +406,40 @@
                     {% csrf_token %}
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1" x-text="t('form_name', 'الاسم الكريم') + ' *'"></label>
-                            <input type="text" name="name" required class="w-full bg-background border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary"/>
+                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1.5" x-text="t('form_name', 'الاسم الكريم') + ' *'"></label>
+                            <input type="text" name="name" required class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary shadow-inner"/>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1" x-text="t('form_role', 'الصفة / الشركة أو الجامعة')"></label>
-                            <input type="text" name="role_university" class="w-full bg-background border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary"/>
+                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1.5" x-text="t('form_role', 'الصفة / الشركة أو الجامعة')"></label>
+                            <input type="text" name="role_university" class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary shadow-inner"/>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1" x-text="t('form_email', 'البريد الإلكتروني (اختياري)')"></label>
-                            <input type="email" name="email" class="w-full bg-background border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary"/>
+                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1.5" x-text="t('form_email', 'البريد الإلكتروني (اختياري)')"></label>
+                            <input type="email" name="email" class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary shadow-inner"/>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1" x-text="t('form_rating', 'التقييم بالنجوم')"></label>
-                            <select name="rating" class="w-full bg-background border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-amber-500 font-semibold focus:outline-none focus:border-primary">
-                                <option value="5" selected>5 Stars (Excellent - ممتاز)</option>
-                                <option value="4">4 Stars (Very Good - جيد جداً)</option>
-                                <option value="3">3 Stars (Good - جيد)</option>
-                                <option value="2">2 Stars (Fair - مقبول)</option>
-                                <option value="1">1 Star (Needs Improvement - يحتاج تحسين)</option>
+                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1.5" x-text="t('form_rating', 'التقييم بالنجوم')"></label>
+                            <select name="rating" class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-amber-500 font-bold focus:outline-none focus:border-primary shadow-inner">
+                                <option value="5" selected>⭐⭐⭐⭐⭐ 5 Stars (ممتاز - Excellent)</option>
+                                <option value="4">⭐⭐⭐⭐ 4 Stars (جيد جداً - Very Good)</option>
+                                <option value="3">⭐⭐⭐ 3 Stars (جيد - Good)</option>
+                                <option value="2">⭐⭐ 2 Stars (مقبول - Fair)</option>
+                                <option value="1">⭐ 1 Star (يحتاج تحسين - Needs Improvement)</option>
                             </select>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1" x-text="t('form_message', 'تفاصيل التعليق أو الاستفسار') + ' *'"></label>
-                        <textarea name="review_text" rows="3" required class="w-full bg-background border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary"></textarea>
+                        <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1.5" x-text="t('form_message', 'تفاصيل التعليق أو الاستفسار') + ' *'"></label>
+                        <textarea name="review_text" rows="3" required class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary shadow-inner"></textarea>
                     </div>
 
-                    <button type="submit" class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-xl font-bold text-xs transition-colors flex items-center gap-2">
+                    <button type="submit" class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-xl font-bold text-xs shadow-md shadow-primary/25 transition-all flex items-center gap-2 active:scale-95">
                         <span class="material-symbols-outlined text-base">send</span>
                         <span x-text="t('form_submit', 'نشر التعليق الآن')"></span>
                     </button>
@@ -397,50 +447,55 @@
             </div>
 
             <!-- Comments List Display -->
-            <div class="space-y-6 max-w-4xl mx-auto">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 pb-3 flex items-center justify-between">
+            <div class="space-y-4 max-w-4xl mx-auto">
+                <h3 class="text-base md:text-lg font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 pb-3 flex items-center justify-between">
                     <span x-text="t('reviews_header', 'التقييمات والآراء') + ' ({{ testimonials|length }})'"></span>
                 </h3>
 
                 {% for t in testimonials %}
-                <div class="bg-surface-container p-6 rounded-2xl border border-slate-200 dark:border-white/10 space-y-4">
+                <div class="glass-card p-6 md:p-7 rounded-3xl border border-slate-200/90 dark:border-white/10 space-y-4 shadow-sm hover:border-primary/30 transition-all">
                     
                     <div class="flex items-start justify-between gap-4">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary font-bold text-base">
-                                {{ t.name|slice:":1" }}
+                            <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-emerald-500 p-0.5 shadow-sm">
+                                <div class="w-full h-full bg-surface rounded-[14px] flex items-center justify-center text-primary font-black text-base">
+                                    {{ t.name|slice:":1" }}
+                                </div>
                             </div>
                             <div>
-                                <h4 class="font-bold text-slate-900 dark:text-white text-sm md:text-base">{{ t.name }}</h4>
-                                <span class="text-xs text-on-surface-variant">
+                                <h4 class="font-bold text-slate-900 dark:text-white text-sm md:text-base flex items-center gap-1.5">
+                                    <span>{{ t.name }}</span>
+                                    <span class="material-symbols-outlined text-emerald-500 text-sm" title="Verified">verified</span>
+                                </h4>
+                                <span class="text-xs text-on-surface-variant font-medium">
                                     <span x-show="lang === 'ar'">{{ t.role_university }}</span>
                                     <span x-show="lang === 'en'" x-cloak>{{ t.role_university_en|default:t.role_university }}</span>
                                 </span>
                             </div>
                         </div>
 
-                        <div class="flex items-center text-amber-500 gap-0.5 text-xs">
+                        <div class="flex items-center text-amber-500 gap-0.5 text-xs bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">
                             {% for i in "12345" %}
                                 {% if forloop.counter <= t.rating %}
-                                    <span class="material-symbols-outlined text-base">star</span>
+                                    <span class="material-symbols-outlined text-sm">star</span>
                                 {% endif %}
                             {% endfor %}
                         </div>
                     </div>
 
-                    <p class="text-xs md:text-sm text-on-surface leading-relaxed border-s-2 border-primary/40 px-3">
+                    <p class="text-xs md:text-sm text-slate-800 dark:text-slate-200 leading-relaxed border-s-2 border-primary/50 px-3">
                         <span x-show="lang === 'ar'">{{ t.review_text }}</span>
                         <span x-show="lang === 'en'" x-cloak>{{ t.review_text_en|default:t.review_text }}</span>
                     </p>
 
                     <!-- Official Admin Reply Display -->
                     {% if t.admin_reply or t.admin_reply_en %}
-                    <div class="mx-4 mt-3 p-4 rounded-xl bg-primary/10 border border-primary/30 space-y-1">
-                        <div class="flex items-center gap-2 text-xs font-bold text-primary">
-                            <span class="material-symbols-outlined text-base">verified</span>
+                    <div class="mx-2 mt-3 p-4 rounded-2xl bg-primary/5 border border-primary/20 space-y-1">
+                        <div class="flex items-center gap-1.5 text-xs font-bold text-primary">
+                            <span class="material-symbols-outlined text-sm">verified_user</span>
                             <span x-text="t('admin_reply_badge', 'رد إدارة الاستوديو:')"></span>
                         </div>
-                        <p class="text-xs text-on-surface leading-relaxed">
+                        <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                             <span x-show="lang === 'ar'">{{ t.admin_reply }}</span>
                             <span x-show="lang === 'en'" x-cloak>{{ t.admin_reply_en|default:t.admin_reply }}</span>
                         </p>
@@ -473,7 +528,7 @@
 
         <div class="space-y-4">
             {% for faq in faqs %}
-            <div class="glass-card p-6 rounded-2xl space-y-2">
+            <div class="glass-card p-6 md:p-7 rounded-3xl space-y-2 border border-slate-200 dark:border-white/10 shadow-sm hover:border-primary/40 transition-all">
                 <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
                     <span class="material-symbols-outlined text-primary text-xl">help_outline</span>
                     <span x-show="lang === 'ar'">{{ faq.question }}</span>
@@ -489,16 +544,15 @@
     </section>
     {% endif %}
 
-
     <!-- Call to Action Banner -->
     <section class="max-w-[1440px] mx-auto px-4 md:px-8">
-        <div class="bg-gradient-to-r from-primary/20 via-surface-container to-emerald-500/20 border border-slate-200 dark:border-white/10 p-8 md:p-12 rounded-3xl text-center space-y-6">
+        <div class="bg-gradient-to-r from-primary/15 via-surface to-emerald-500/15 border border-slate-200/90 dark:border-white/10 p-8 md:p-14 rounded-3xl text-center space-y-6 shadow-2xl">
             <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white" x-text="t('cta_banner_title', 'جاهز لبدء تطبيق البزنس أو مشروعك الخاص؟')"></h2>
             <p class="text-on-surface-variant text-sm md:text-base max-w-xl mx-auto" x-text="t('cta_banner_desc', 'تواصل معنا اليوم لمناقشة الفكرة والخطة التنفيذية واستلام تقدير التكلفة والجدول الزمني المباشر.')">
             </p>
             <div>
-                <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#059669] text-white px-8 py-3.5 rounded-xl font-bold text-base whatsapp-glow transition-all active:scale-95">
-                    <svg class="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24">
+                <a href="https://wa.me/201554397407?text=أهلاً%20بكم،%20أود%20الاستفسار%20عن%20تطوير%20مشروع%20برمجي%20/%20تطبيق%20بزنس" target="_blank" class="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#059669] text-white px-9 py-4 rounded-2xl font-bold text-base shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 whatsapp-glow transition-all active:scale-95 group">
+                    <svg class="w-5 h-5 fill-current flex-shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
                         <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.529 1.83.809 2.796.81h.005c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.767-5.773-5.767zm3.385 8.163c-.145.409-.844.757-1.157.778-.314.02-.628.021-1.848-.485-1.564-.648-2.56-2.241-2.639-2.344-.078-.103-.635-.845-.635-1.611 0-.766.402-1.144.545-1.301.143-.157.313-.197.418-.197.104 0 .208.001.299.006.096.005.226-.037.353.268.13.313.443 1.082.482 1.161.039.079.065.17.013.273-.052.104-.078.17-.156.26-.078.092-.163.205-.234.275-.078.079-.16.165-.069.321.091.157.404.668.868 1.08.597.532 1.101.697 1.258.775.156.078.247.069.338-.035.092-.104.391-.455.495-.611.104-.157.209-.13.348-.078.14.052.887.418 1.04.495.153.078.256.117.295.182.039.066.039.382-.106.791z"/>
                         <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.39A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.182c-1.637 0-3.167-.47-4.467-1.282l-.32-.198-2.964.777.791-2.89-.217-.346A8.142 8.142 0 0 1 3.818 12c0-4.512 3.67-8.182 8.182-8.182 4.512 0 8.182 3.67 8.182 8.182 0 4.512-3.67 8.182-8.182 8.182z"/>
                     </svg>
