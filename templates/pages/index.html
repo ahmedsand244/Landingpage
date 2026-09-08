@@ -360,162 +360,248 @@
                         {% endfor %}
                     </div>
 
-                    <div class="flex justify-between items-center border-t border-slate-200 dark:border-white/10 pt-4 mt-2 text-xs">
-                        <span class="text-on-surface-variant font-mono text-[11px] truncate max-w-[150px] flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm">domain</span>
-                            <span x-show="lang === 'ar'">{{ project.client_name }}</span>
-                            <span x-show="lang === 'en'" x-cloak>{{ project.client_name_en|default:project.client_name }}</span>
-                        </span>
-                        <a href="{% url 'projects:project_detail' slug=project.slug %}" 
-                           class="glass-card bg-surface hover:bg-primary hover:text-white text-slate-900 dark:text-slate-100 px-3.5 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 border border-slate-200 dark:border-white/10 transition-all duration-200 shadow-sm hover:shadow-md hover:shadow-primary/20 active:scale-95 group/btn">
-                            <span x-text="t('portfolio_details_btn', 'التفاصيل')"></span> 
-                            <span class="material-symbols-outlined text-sm text-primary group-hover/btn:text-white rtl:rotate-180 group-hover/btn:translate-x-0.5 rtl:group-hover/btn:-translate-x-0.5 transition-all">arrow_back</span>
-                        </a>
-                    </div>
-                </div>
+                    <div class="flex justify-between items-center border-t border-slate-200 dark:b    <!-- REAL INTERACTIVE COMMENTS & REVIEWS SECTION -->
+    <section class="max-w-[1440px] mx-auto px-4 md:px-8 space-y-10" id="comments-section">
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto space-y-3">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold tracking-wide shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="material-symbols-outlined text-sm">stars</span>
+                <span x-text="t('testimonials_badge', 'ثقة العملاء والشركات')"></span>
             </div>
-            {% empty %}
-            <div class="col-span-3 text-center py-12 text-on-surface-variant glass-card rounded-2xl" x-text="t('portfolio_no_results', 'No featured projects yet.')">
-            </div>
-            {% endfor %}
+            <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight" x-text="t('comments_title', 'شاركنا رأيك أو استفسارك الحقيقي')"></h2>
+            <p class="text-xs md:text-sm text-on-surface-variant leading-relaxed" x-text="t('comments_desc', 'يمكنك كتابة تعليقك وتقييمك وتلقي الرد المباشر من فريق وإدارة الاستوديو.')"></p>
         </div>
-    </section>
 
-    <!-- REAL INTERACTIVE COMMENTS & REVIEWS SECTION -->
-    <section class="max-w-[1440px] mx-auto px-4 md:px-8 space-y-8" id="comments-section">
-        <div class="glass-card p-8 md:p-12 rounded-3xl space-y-12 border border-slate-200 dark:border-white/10 shadow-2xl">
+        <!-- 2-Column Responsive Bento Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            <div class="text-center max-w-2xl mx-auto space-y-2">
-                <span class="text-xs font-bold text-emerald-500 uppercase tracking-wider" x-text="t('testimonials_badge', 'ثقة العملاء والشركات')"></span>
-                <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 dark:text-white" x-text="t('comments_title', 'شاركنا رأيك أو استفسارك الحقيقي')"></h2>
-                <p class="text-xs md:text-sm text-on-surface-variant" x-text="t('comments_desc', 'يمكنك كتابة تعليقك وتقييمك وتلقي الرد المباشر من فريق وإدارة الاستوديو.')"></p>
-            </div>
+            <!-- Left Column: Overall Trust Stats & Review Submission Form (Sticky on Desktop) -->
+            <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
+                
+                <!-- Trust & Overall Rating Card -->
+                <div class="glass-card p-6 md:p-7 rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl space-y-5 relative overflow-hidden">
+                    <div class="absolute -top-12 -end-12 w-32 h-32 bg-primary/15 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="absolute -bottom-12 -start-12 w-32 h-32 bg-emerald-500/15 rounded-full blur-2xl pointer-events-none"></div>
 
-            <!-- Comment Submission Form -->
-            <div class="max-w-3xl mx-auto bg-surface p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-white/10 shadow-lg space-y-6">
-                <h3 class="text-base md:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3">
-                    <span class="material-symbols-outlined text-primary">rate_review</span>
-                    <span x-text="t('comments_form_title', 'إضافة تعليق / تقييم جديد')"></span>
-                </h3>
+                    <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-4">
+                        <div>
+                            <div class="text-3xl md:text-4xl font-black bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent font-mono">5.0 / 5.0</div>
+                            <div class="flex items-center gap-0.5 text-amber-400 pt-1">
+                                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold border border-emerald-500/20 inline-flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">verified</span>
+                                <span>100% رضا العملاء</span>
+                            </span>
+                            <div class="text-[11px] text-on-surface-variant font-mono pt-1.5">مبني على تجارب واقعية</div>
+                        </div>
+                    </div>
 
-                {% if comment_success %}
-                <div class="p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs md:text-sm font-bold flex items-center gap-2 shadow-sm">
-                    <span class="material-symbols-outlined text-xl text-emerald-500">check_circle</span>
-                    <span x-text="t('comment_success_msg', 'تم إرسال تعليقك بنجاح! شكراً لك.')"></span>
+                    <!-- Trust Pillars -->
+                    <div class="grid grid-cols-1 gap-2.5 text-xs text-slate-700 dark:text-slate-300">
+                        <div class="flex items-center gap-2.5 p-2 rounded-xl bg-surface-container/50 dark:bg-white/[0.02]">
+                            <span class="material-symbols-outlined text-primary text-base">code</span>
+                            <span class="font-medium">أكواد احترافية ومشاريع مشروحة هندسياً</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 p-2 rounded-xl bg-surface-container/50 dark:bg-white/[0.02]">
+                            <span class="material-symbols-outlined text-emerald-500 text-base">support_agent</span>
+                            <span class="font-medium">رد مباشر ومتابعة حقيقية من مهندسي الاستوديو</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 p-2 rounded-xl bg-surface-container/50 dark:bg-white/[0.02]">
+                            <span class="material-symbols-outlined text-amber-500 text-base">alarm_on</span>
+                            <span class="font-medium">التزام دقيق بالمواعيد وجودة التسليم النهائي</span>
+                        </div>
+                    </div>
                 </div>
-                {% endif %}
 
-                <form method="post" action="#comments-section" class="space-y-4">
-                    {% csrf_token %}
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1.5" x-text="t('form_name', 'الاسم الكريم') + ' *'"></label>
-                            <input type="text" name="name" required class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary shadow-inner"/>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1.5" x-text="t('form_role', 'الصفة / الشركة أو الجامعة')"></label>
-                            <input type="text" name="role_university" class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary shadow-inner"/>
-                        </div>
+                <!-- Modern Interactive Submission Form -->
+                <div class="glass-card p-6 md:p-7 rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl space-y-5" x-data="{ userRating: 5, hoverRating: 0 }">
+                    <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-3">
+                        <h3 class="text-sm md:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                                <span class="material-symbols-outlined text-base">rate_review</span>
+                            </span>
+                            <span x-text="t('comments_form_title', 'إضافة تعليق / تقييم جديد')"></span>
+                        </h3>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1.5" x-text="t('form_email', 'البريد الإلكتروني (اختياري)')"></label>
-                            <input type="email" name="email" class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary shadow-inner"/>
+                    {% if comment_success %}
+                    <div class="p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs font-bold flex items-center gap-2 shadow-sm animate-fade-in">
+                        <span class="material-symbols-outlined text-xl text-emerald-500">check_circle</span>
+                        <span x-text="t('comment_success_msg', 'تم إرسال تعليقك بنجاح! شكراً لك.')"></span>
+                    </div>
+                    {% endif %}
+
+                    <form method="post" action="#comments-section" class="space-y-4">
+                        {% csrf_token %}
+
+                        <!-- Interactive Star Selector -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center text-xs font-bold text-slate-800 dark:text-slate-200">
+                                <span class="flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">grade</span>
+                                    <span x-text="t('form_rating', 'التقييم')"></span>
+                                </span>
+                                <span class="text-amber-500 font-bold text-xs" 
+                                      x-text="(hoverRating || userRating) === 5 ? '⭐⭐⭐⭐⭐ 5/5 (ممتاز)' : 
+                                             (hoverRating || userRating) === 4 ? '⭐⭐⭐⭐ 4/5 (جيد جداً)' : 
+                                             (hoverRating || userRating) === 3 ? '⭐⭐⭐ 3/5 (جيد)' : 
+                                             (hoverRating || userRating) === 2 ? '⭐⭐ 2/5 (مقبول)' : '⭐ 1/5 (يحتاج تحسين)'"></span>
+                            </div>
+                            <input type="hidden" name="rating" :value="userRating">
+                            <div class="flex items-center justify-center gap-2 bg-slate-100/70 dark:bg-white/5 py-2.5 px-3 rounded-2xl border border-slate-200 dark:border-white/10">
+                                <template x-for="star in [1, 2, 3, 4, 5]" :key="star">
+                                    <button type="button" 
+                                            @mouseenter="hoverRating = star" 
+                                            @mouseleave="hoverRating = 0" 
+                                            @click="userRating = star"
+                                            class="p-1 rounded-xl transition-all duration-150 hover:scale-125 active:scale-95 focus:outline-none"
+                                            :aria-label="star + ' stars'">
+                                        <span class="material-symbols-outlined text-2xl transition-all duration-150 select-none"
+                                              :class="(hoverRating ? star <= hoverRating : star <= userRating) ? 'text-amber-400 drop-shadow-[0_2px_6px_rgba(251,191,36,0.6)]' : 'text-slate-300 dark:text-slate-600'"
+                                              style="font-variation-settings: 'FILL' 1;">star</span>
+                                    </button>
+                                </template>
+                            </div>
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1.5" x-text="t('form_rating', 'التقييم بالنجوم')"></label>
-                            <select name="rating" class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-amber-500 font-bold focus:outline-none focus:border-primary shadow-inner">
-                                <option value="5" selected>⭐⭐⭐⭐⭐ 5 Stars (ممتاز - Excellent)</option>
-                                <option value="4">⭐⭐⭐⭐ 4 Stars (جيد جداً - Very Good)</option>
-                                <option value="3">⭐⭐⭐ 3 Stars (جيد - Good)</option>
-                                <option value="2">⭐⭐ 2 Stars (مقبول - Fair)</option>
-                                <option value="1">⭐ 1 Star (يحتاج تحسين - Needs Improvement)</option>
-                            </select>
+                        <!-- Name & Role -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-800 dark:text-slate-200 mb-1" x-text="t('form_name', 'الاسم الكريم') + ' *'"></label>
+                                <input type="text" name="name" required placeholder="مثال: م. أحمد" class="w-full bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all"/>
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-800 dark:text-slate-200 mb-1" x-text="t('form_role', 'الصفة / الشركة أو الجامعة')"></label>
+                                <input type="text" name="role_university" placeholder="مثال: مهندس برمجيات" class="w-full bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all"/>
+                            </div>
                         </div>
-                    </div>
 
-                    <div>
-                        <label class="block text-xs font-bold text-slate-900 dark:text-white mb-1.5" x-text="t('form_message', 'تفاصيل التعليق أو الاستفسار') + ' *'"></label>
-                        <textarea name="review_text" rows="3" required class="w-full bg-surface-container border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary shadow-inner"></textarea>
-                    </div>
+                        <!-- Email -->
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-800 dark:text-slate-200 mb-1" x-text="t('form_email', 'البريد الإلكتروني (اختياري)')"></label>
+                            <input type="email" name="email" placeholder="example@email.com" class="w-full bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all"/>
+                        </div>
 
-                    <button type="submit" class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-xl font-bold text-xs shadow-md shadow-primary/25 transition-all flex items-center gap-2 active:scale-95">
-                        <span class="material-symbols-outlined text-base">send</span>
-                        <span x-text="t('form_submit', 'نشر التعليق الآن')"></span>
-                    </button>
-                </form>
+                        <!-- Review Text -->
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-800 dark:text-slate-200 mb-1" x-text="t('form_message', 'تفاصيل التعليق أو الاستفسار') + ' *'"></label>
+                            <textarea name="review_text" rows="3" required placeholder="اكتب رأيك الصادق أو استفسارك هنا..." class="w-full bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-all leading-relaxed"></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-emerald-500 hover:from-primary-hover hover:to-emerald-600 text-white py-3 px-6 rounded-xl font-bold text-xs shadow-lg shadow-primary/20 hover:shadow-primary/35 transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 group">
+                            <span class="material-symbols-outlined text-base group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-transform">send</span>
+                            <span x-text="t('form_submit', 'نشر التعليق الآن')"></span>
+                        </button>
+                    </form>
+                </div>
+
             </div>
 
-            <!-- Comments List Display -->
-            <div class="space-y-4 max-w-4xl mx-auto">
-                <h3 class="text-base md:text-lg font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 pb-3 flex items-center justify-between">
-                    <span x-text="t('reviews_header', 'التقييمات والآراء') + ' ({{ testimonials|length }})'"></span>
-                </h3>
+            <!-- Right Column: Approved Reviews Stream -->
+            <div class="lg:col-span-7 space-y-4">
+                
+                <!-- Feed Top Bar -->
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-3">
+                    <h3 class="text-base md:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-xl">forum</span>
+                        <span x-text="t('reviews_header', 'التقييمات والآراء')"></span>
+                    </h3>
+                    <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold font-mono">
+                        {{ testimonials|length }} تقييم موثق
+                    </span>
+                </div>
 
-                {% for t in testimonials %}
-                <div class="glass-card p-6 md:p-7 rounded-3xl border border-slate-200/90 dark:border-white/10 space-y-4 shadow-sm hover:border-primary/30 transition-all">
-                    
-                    <div class="flex items-start justify-between gap-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-emerald-500 p-0.5 shadow-sm">
-                                <div class="w-full h-full bg-surface rounded-[14px] flex items-center justify-center text-primary font-black text-base">
-                                    {{ t.name|slice:":1" }}
+                <!-- Testimonial Cards -->
+                <div class="space-y-4">
+                    {% for t in testimonials %}
+                    <div class="glass-card p-6 rounded-3xl border border-slate-200/90 dark:border-white/10 space-y-4 shadow-sm hover:border-primary/30 transition-all relative overflow-hidden group">
+                        
+                        <!-- Watermark Quote Icon -->
+                        <span class="material-symbols-outlined text-7xl text-slate-200/40 dark:text-white/5 absolute top-2 end-3 pointer-events-none select-none font-thin transition-transform group-hover:scale-110 duration-500">format_quote</span>
+
+                        <!-- Card Header -->
+                        <div class="flex items-start justify-between gap-4 relative z-10">
+                            <div class="flex items-center gap-3">
+                                <!-- Avatar with Gradient Ring -->
+                                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-primary via-indigo-500 to-emerald-400 p-[2px] shadow-sm flex-shrink-0">
+                                    <div class="w-full h-full bg-surface rounded-[14px] flex items-center justify-center text-primary font-black text-base">
+                                        {{ t.name|slice:":1" }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm md:text-base flex items-center gap-1.5">
+                                        <span>{{ t.name }}</span>
+                                        <span class="material-symbols-outlined text-emerald-500 text-sm" title="عميل موثق">verified</span>
+                                    </h4>
+                                    <span class="text-xs text-on-surface-variant font-medium flex items-center gap-1 pt-0.5">
+                                        <span class="material-symbols-outlined text-[13px] text-slate-400">badge</span>
+                                        <span x-show="lang === 'ar'">{{ t.role_university }}</span>
+                                        <span x-show="lang === 'en'" x-cloak>{{ t.role_university_en|default:t.role_university }}</span>
+                                    </span>
                                 </div>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900 dark:text-white text-sm md:text-base flex items-center gap-1.5">
-                                    <span>{{ t.name }}</span>
-                                    <span class="material-symbols-outlined text-emerald-500 text-sm" title="Verified">verified</span>
-                                </h4>
-                                <span class="text-xs text-on-surface-variant font-medium">
-                                    <span x-show="lang === 'ar'">{{ t.role_university }}</span>
-                                    <span x-show="lang === 'en'" x-cloak>{{ t.role_university_en|default:t.role_university }}</span>
-                                </span>
+
+                            <!-- Rating Pill -->
+                            <div class="flex items-center text-amber-400 gap-0.5 text-xs bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20 shadow-sm flex-shrink-0">
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= t.rating %}
+                                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
 
-                        <div class="flex items-center text-amber-500 gap-0.5 text-xs bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">
-                            {% for i in "12345" %}
-                                {% if forloop.counter <= t.rating %}
-                                    <span class="material-symbols-outlined text-sm">star</span>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-
-                    <p class="text-xs md:text-sm text-slate-800 dark:text-slate-200 leading-relaxed border-s-2 border-primary/50 px-3">
-                        <span x-show="lang === 'ar'">{{ t.review_text }}</span>
-                        <span x-show="lang === 'en'" x-cloak>{{ t.review_text_en|default:t.review_text }}</span>
-                    </p>
-
-                    <!-- Official Admin Reply Display -->
-                    {% if t.admin_reply or t.admin_reply_en %}
-                    <div class="mx-2 mt-3 p-4 rounded-2xl bg-primary/5 border border-primary/20 space-y-1">
-                        <div class="flex items-center gap-1.5 text-xs font-bold text-primary">
-                            <span class="material-symbols-outlined text-sm">verified_user</span>
-                            <span x-text="t('admin_reply_badge', 'رد إدارة الاستوديو:')"></span>
-                        </div>
-                        <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
-                            <span x-show="lang === 'ar'">{{ t.admin_reply }}</span>
-                            <span x-show="lang === 'en'" x-cloak>{{ t.admin_reply_en|default:t.admin_reply }}</span>
+                        <!-- Review Text -->
+                        <p class="text-xs md:text-sm text-slate-800 dark:text-slate-200 leading-relaxed border-s-2 border-primary/50 ps-3.5 py-0.5 relative z-10 font-normal">
+                            <span x-show="lang === 'ar'">{{ t.review_text }}</span>
+                            <span x-show="lang === 'en'" x-cloak>{{ t.review_text_en|default:t.review_text }}</span>
                         </p>
-                    </div>
-                    {% endif %}
 
-                    {% if t.created_at %}
-                    <div class="text-[10px] text-on-surface-variant font-mono text-end pt-1">
-                        {{ t.created_at|date:"Y-m-d H:i" }}
-                    </div>
-                    {% endif %}
+                        <!-- Official Studio Reply (VIP Concierge Badge) -->
+                        {% if t.admin_reply or t.admin_reply_en %}
+                        <div class="mt-3 p-4 rounded-2xl bg-gradient-to-r from-primary/10 via-surface to-emerald-500/10 border-s-4 border-s-emerald-500 border border-slate-200/80 dark:border-white/10 space-y-1.5 shadow-sm relative z-10">
+                            <div class="flex items-center gap-1.5 text-xs font-extrabold text-emerald-600 dark:text-emerald-400">
+                                <span class="material-symbols-outlined text-sm">verified_user</span>
+                                <span x-text="t('admin_reply_badge', 'رد إدارة الاستوديو:')"></span>
+                            </div>
+                            <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                                <span x-show="lang === 'ar'">{{ t.admin_reply }}</span>
+                                <span x-show="lang === 'en'" x-cloak>{{ t.admin_reply_en|default:t.admin_reply }}</span>
+                            </p>
+                        </div>
+                        {% endif %}
 
+                        <!-- Card Footer Meta -->
+                        {% if t.created_at %}
+                        <div class="flex items-center justify-between text-[10px] text-on-surface-variant font-mono pt-2 border-t border-slate-100 dark:border-white/5 relative z-10">
+                            <span class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-sans font-bold">
+                                <span class="material-symbols-outlined text-xs">shield_check</span>
+                                <span>مراجعة مؤكدة</span>
+                            </span>
+                            <span>{{ t.created_at|date:"Y-m-d H:i" }}</span>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                    {% empty %}
+                    <div class="text-center py-12 glass-card rounded-3xl text-on-surface-variant border border-slate-200 dark:border-white/10 space-y-2">
+                        <span class="material-symbols-outlined text-4xl text-primary/40">forum</span>
+                        <div class="text-sm font-bold" x-text="t('portfolio_no_results_sub', 'No comments yet.')"></div>
+                        <div class="text-xs text-on-surface-variant">كن أول من يشاركنا تقييمه وتجربته اليوم!</div>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% empty %}
-                <div class="text-center py-8 text-on-surface-variant italic" x-text="t('portfolio_no_results_sub', 'No comments yet.')">
-                </div>
-                {% endfor %}
+
             </div>
 
         </div>
