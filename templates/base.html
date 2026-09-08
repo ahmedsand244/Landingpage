@@ -53,11 +53,22 @@
                   const currentThemeClass = document.documentElement.classList.contains('dark') ? 'dark' : '';
                   document.documentElement.className = currentThemeClass + ' ' + (l === 'ar' ? 'font-cairo' : 'font-geist');
 
-                  const res = await fetch('/static/translations/' + l + '.json');
-                  if (res.ok) {
-                      const data = await res.json();
-                      this.translations = data;
-                      localStorage.setItem('codeplus_i18n_' + l, JSON.stringify(data));
+                  // Asynchronous non-blocking background fetch if cached, or blocking only on first cold load
+                  const fetchTranslations = async () => {
+                      try {
+                          const res = await fetch('/static/translations/' + l + '.json');
+                          if (res.ok) {
+                              const data = await res.json();
+                              this.translations = data;
+                              localStorage.setItem('codeplus_i18n_' + l, JSON.stringify(data));
+                          }
+                      } catch(err) {}
+                  };
+
+                  if (!cached) {
+                      await fetchTranslations();
+                  } else {
+                      fetchTranslations();
                   }
               } catch(e) { console.error('Error loading i18n file', e); }
           },
@@ -112,6 +123,8 @@
     <!-- High Performance Network Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
